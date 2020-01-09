@@ -22,11 +22,11 @@ public class Piece {
 	@Column( name="libelle", length = 50, nullable=false )
 	private String libelle;
 	
-	@Column( name="quantite", nullable=false )
+	@Column( name="quantite", nullable=true )
 	private Integer qte;
 	
 	@Temporal(TemporalType.DATE)
-	@Column( name="date_creation", nullable=false )
+	@Column( name="date_creation", nullable=true )
 	private Date dateCreation;
 
 	public Integer getId() {
