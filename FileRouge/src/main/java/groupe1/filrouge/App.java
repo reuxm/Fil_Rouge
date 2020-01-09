@@ -1,4 +1,4 @@
-package Groupe1.FileRouge;
+package groupe1.filrouge;
 
 /**
  * Hello world!

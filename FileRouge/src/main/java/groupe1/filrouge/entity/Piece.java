@@ -1,4 +1,4 @@
-package Groupe1.FileRouge.entity;
+package groupe1.filrouge.entity;
 
 import java.util.Date;
 
