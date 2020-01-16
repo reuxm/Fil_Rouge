@@ -75,7 +75,5 @@ public class CommandeVehicule {
 	public void setDateCloture(Date dateCloture) {
 		this.dateCloture = dateCloture;
 	}
-	
-	
 
 }
