@@ -39,5 +39,13 @@ public class CommandePiece {
 	@Temporal(TemporalType.DATE)
 	@Column( name="date_cloture", nullable=true )
 	private Date dateCloture;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 }
