@@ -26,7 +26,7 @@ public class CommandePiece {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn( name="id_user", nullable=false )
+	@JoinColumn( name="id_piece", nullable=false )
 	private Piece piece;
 	
 	@Column( name="quantite", nullable=false )
@@ -46,6 +46,46 @@ public class CommandePiece {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+  
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+
+	public Integer getQte() {
+		return qte;
+	}
+
+	public void setQte(Integer qte) {
+		this.qte = qte;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Date getDateCloture() {
+		return dateCloture;
+	}
+
+	public void setDateCloture(Date dateCloture) {
+		this.dateCloture = dateCloture;
 	}
 	
 }
