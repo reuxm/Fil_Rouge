@@ -33,7 +33,7 @@ public class Client {
 	private String adresse;
 
 	@Column(name = "code_postal", length = 50, nullable = false)
-	private String codepostal;
+	private String codePostal;
 
 	@Column(name = "ville", length = 50, nullable = false)
 	private String ville;
@@ -91,11 +91,11 @@ public class Client {
 	}
 
 	public String getCodepostal() {
-		return codepostal;
+		return codePostal;
 	}
 
 	public void setCodepostal(String codepostal) {
-		this.codepostal = codepostal;
+		this.codePostal = codepostal;
 	}
 
 	public String getVille() {
@@ -133,7 +133,7 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", name=" + name + ", firstname=" + firstname + ", adresse=" + adresse
-				+ ", codepostal=" + codepostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile
+				+ ", codepostal=" + codePostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile
 				+ ", portable=" + portable + "]";
 	}
 

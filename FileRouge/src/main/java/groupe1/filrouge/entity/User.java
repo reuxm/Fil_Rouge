@@ -21,10 +21,10 @@ public class User {
 	private Integer id;
 	
 	@Column(name="firstname", length = 50, nullable = false)
-	private String firstName;
+	private String firstname;
 
 	@Column(name="lastname", length = 50, nullable = false)
-	private String lastName;
+	private String lastname;
 	
 	@Column(name="login", length = 15, nullable = false)
 	private String login;
@@ -47,20 +47,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstName) {
+		this.firstname = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastName) {
+		this.lastname = lastName;
 	}
 
 	public String getLogin() {
@@ -81,7 +81,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", login=" + login
+		return "User [id=" + id + ", firstName=" + firstname + ", lastName=" + lastname + ", login=" + login
 				+ ", password=" + password + "]";
 	}
 	

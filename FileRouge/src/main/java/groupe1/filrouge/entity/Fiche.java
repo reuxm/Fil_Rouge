@@ -29,7 +29,7 @@ public class Fiche {
 	private Date dateCloture;
 	
 	@Column(name="etatfiche", nullable=false)
-	private Boolean etatFiche;
+	private Boolean etat;
 	
 	@ManyToOne
 	@JoinColumn(name="id_user",  nullable = false)
@@ -68,11 +68,11 @@ public class Fiche {
 	}
 
 	public Boolean getEtatFiche() {
-		return etatFiche;
+		return etat;
 	}
 
 	public void setEtatFiche(Boolean etatFiche) {
-		this.etatFiche = etatFiche;
+		this.etat = etatFiche;
 	}
 
 	public User getUser() {

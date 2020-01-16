@@ -25,7 +25,7 @@ public class CommandeVehicule {
 	@JoinColumn( name="id_devis", nullable=true )
 	private Devis devis;
 
-	@Column( name="etatdevis", nullable=true, columnDefinition = "0" )
+	@Column( name="etat", nullable=true, columnDefinition = "0" )
 	private Boolean etat;
 	
 	@Temporal(TemporalType.DATE)
@@ -35,6 +35,46 @@ public class CommandeVehicule {
 	@Temporal(TemporalType.DATE)
 	@Column( name="date_cloture", nullable=true )
 	private Date dateCloture;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Devis getDevis() {
+		return devis;
+	}
+
+	public void setDevis(Devis devis) {
+		this.devis = devis;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtatDevis(Boolean etat) {
+		this.etat= etat;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Date getDateCloture() {
+		return dateCloture;
+	}
+
+	public void setDateCloture(Date dateCloture) {
+		this.dateCloture = dateCloture;
+	}
 	
 	
 
