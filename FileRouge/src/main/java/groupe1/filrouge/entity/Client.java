@@ -44,9 +44,6 @@ public class Client {
 	@Column(name = "mobile", length = 50, nullable = false)
 	private String mobile;
 
-	@Column(name = "portable", length = 50, nullable = false)
-	private String portable;
-
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	private List<Devis> listeDevis;
 
@@ -122,19 +119,10 @@ public class Client {
 		this.mobile = mobile;
 	}
 
-	public String getPortable() {
-		return portable;
-	}
-
-	public void setPortable(String portable) {
-		this.portable = portable;
-	}
-
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", name=" + name + ", firstname=" + firstname + ", adresse=" + adresse
-				+ ", codepostal=" + codePostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile
-				+ ", portable=" + portable + "]";
+				+ ", codepostal=" + codePostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile + "]";
 	}
 
 }

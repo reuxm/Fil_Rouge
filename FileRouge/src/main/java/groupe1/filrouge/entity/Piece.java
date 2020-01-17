@@ -26,7 +26,7 @@ public class Piece {
 	private Integer qte;
 	
 	@Temporal(TemporalType.DATE)
-	@Column( name="date_creation", nullable=true )
+	@Column( name="date_saisie", nullable=true )
 	private Date dateCreation;
 
 	public Integer getId() {
