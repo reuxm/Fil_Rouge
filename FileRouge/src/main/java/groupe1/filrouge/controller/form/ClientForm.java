@@ -25,8 +25,8 @@ public class ClientForm {
 	@NotEmpty
 	private String mobile;
 
-	@NotEmpty
-	private String cloturer;
+	
+	private String cloturer="false";
 	
 	public Integer getId() {
 		return id;

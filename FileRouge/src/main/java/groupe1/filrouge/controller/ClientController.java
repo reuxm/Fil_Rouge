@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 
 
 import groupe1.filrouge.controller.form.ClientForm;
@@ -36,25 +34,29 @@ public class ClientController {
 		pclient.setMobile(clientform.getMobile());
 		pclient.setTelephone(clientform.getTelephone());
 		pclient.setVille(clientform.getVille());
+		pclient.setCloturer(Boolean.parseBoolean(clientform.getCloturer()));
 		return pclient;
 	}
 	
-	@GetMapping("/afficherClient")
-	public String getAffiche(Model pmodel) {
+	@GetMapping("/afficherCreerClient")
+	public String getAffiche(Model pModel) {
 		List<Client> lclient = service.list();
-		pmodel.addAttribute("listeclient", lclient);		
-		return "client";
-	}
-	
-	@RequestMapping(value="/creerFormClient")
-	public String affFormCreation(final ModelMap pModel) {
+		pModel.addAttribute("listeclient", lclient);	
 		pModel.addAttribute("clientform", new ClientForm());
+		pModel.addAttribute("action", "#");
+		return "clients";
+	}
+	@GetMapping("/CreerFormClient")
+	public String getFormAffiche(Model pModel) {
 		pModel.addAttribute("action", "CreerClient");
-		return "creationClient";
+		ClientForm clientform = new ClientForm();
+		clientform.setId(0);
+		pModel.addAttribute("clientform", clientform);
+		return "clients";
 	}
 
 	
-	@GetMapping("/modifFormClient/{id}")
+	@GetMapping("/afficherModifierClient/{id}")
 	public String getAfficheMod(@PathVariable final Integer id,Model pmodel) {
 		Client client = service.find(id);
 		pmodel.addAttribute("listeclient", null);
@@ -72,13 +74,13 @@ public class ClientController {
 			clientform.setCloturer(client.getCloturer().toString());
 			pmodel.addAttribute("clientform", clientform);
 		}
-		return "client";
+		return "clients";
 	}	
 	
-	@RequestMapping(value="/creerClient")
+	@PostMapping(value="/CreerClient")
 	public String creer(@Valid @ModelAttribute(name = "clientform") ClientForm clientform,
 			BindingResult presult, Model pmodel) {
-		
+			System.out.println(pmodel);
 		if(!presult.hasErrors()) {
 			try
 			{

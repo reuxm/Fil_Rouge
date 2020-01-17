@@ -22,14 +22,14 @@ public class FactureDevis {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name="id_fiche", nullable=false)
-	private Fiche fiche;
+	@JoinColumn(name="id_devis", nullable=false)
+	private Devis devis;
 
-	@Column( name="prixHT", columnDefinition="Decimal(10,2) default '0.0'")
-	private float prixHT;
+	@Column( name="prixHT", nullable=true)
+	private Float prixHT;
 	
-	@Column( name="TVA", columnDefinition="Decimal(10,2) default '0.2'")
-	private float TVA;
+	@Column( name="tauxTVA", nullable=true)
+	private Float TVA;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
@@ -43,12 +43,12 @@ public class FactureDevis {
 		this.id = id;
 	}
 
-	public Fiche getFiche() {
-		return fiche;
+	public Devis getDevis() {
+		return devis;
 	}
 
-	public void setFiche(Fiche fiche) {
-		this.fiche = fiche;
+	public void setFiche(Devis devis) {
+		this.devis = devis;
 	}
 
 	public float getPrixHT() {
