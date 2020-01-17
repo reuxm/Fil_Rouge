@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  	<title th:text="'Gestion Des Classes'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	 <head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion De Mon Ecole'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+  </head>
+  <body>
+ 	<div th:replace="fragments/header :: header"></div>
+ 
+	    <div class="container">
+			 <table th:unless="${action == 'ModifierTache' }">
+			 <thead>
+			 	<tr>
+			 	<th>Id</th>
+			 	<th>Commentaire</th>
+			 	<th>Fiche</th>
+			 	<th>Utilisateur</th>
+			 	<th>Priorite</th>
+			 	<th>Piece</th>
+			 	<th>Quantité</th>
+			 	<th>Etat</th>
+
+	
+			 	</tr>
+			 </thead>
+			 <tbody>
+			 	<tr th:each="tache : ${listetache}">
+			 		<td >
+			 		<a	th:href="@{/afficherModifierTache/{id}(id=${tache.id})}" 
+			 		th:text="${tache.id}"></a></td>
+			 		<td th:text="${tache.commentaire}"/>
+			 		<td th:text="${tache.fiche.description}"/>
+			 		<td th:text="${tache.user.firstname}"/>
+			 		<td th:text="${tache.priorite.libelle}"/>
+			 		<td th:text="${tache.piece.libelle}"/>
+			 		<td th:text="${tache.qte}"/>
+			 		<td th:text="${tache.etat}"/>
+			 		<td >
+			 	</tr>
+			 </tbody>
+		 </table>
+	
+		 		
+	 <h2 th:if="${action == 'ModifierTache'}">
+	 <a	th:href="@{/afficherCreerTache}" th:text="'Formulaire de Modification'"></a>
+	 </h2>
+	 <h2 th:unless="${action == 'ModifierTache'}">Formulaire d'Ajout</h2>
+	 
+	 <div>
+		  <form action="#" th:action="@{/{action}(action=${action})}" 
+		  th:object="${tacheform}"   method="post">
+		  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+		    	<label for="com">Commentaire</label>
+		   		<input type="text" th:field="*{commentaire}" id="com" placeholder="Commentaire"/>
+		   		
+		   	    <select th:field="*{fiche}">
+			    <option th:each="fiche :${listefiche}" 
+			    	th:value="${fiche.id}" th:utext="${fiche.description}"/>
+			    </select>
+			    <select th:field="*{user}">
+			    <option th:each="user :${listeuser}" 
+			    	th:value="${user.id}" th:utext="${user.firstname}"/>
+			    </select>
+			    <select th:field="*{priorite}">
+			    <option th:each="priorite :${listepriorite}" 
+			    	th:value="${priorite.id}" th:utext="${priorite.libelle}"/>
+			    </select>
+			    <select th:field="*{piece}">
+			    <option th:each="piece :${listepiece}" 
+			    	th:value="${piece.id}" th:utext="${piece.libelle}"/>
+			    </select>
+			    
+		   		<input type="number" th:field="*{qte}" id="qte" placeholder="Quantitée"/>
+		   		<label for="qte">CodePostal</label>
+		   		
+		   		
+	   			<input type="checkbox" id="etat" name="Etat" th:field="*{etat}" checked />
+				
+		   <button type="submit">Valider</button>
+		</form>
+	 </div>
+
+   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+    </div>
+    </body>
+
+</html>

@@ -43,7 +43,7 @@ public class Tache {
 	
 	@ManyToOne
 	@JoinColumn( name="id_piece", nullable=false )
-	private Vehicule piece;
+	private Piece piece;
 
 	public Integer getId() {
 		return id;
@@ -69,11 +69,11 @@ public class Tache {
 		this.qte = qte;
 	}
 
-	public Boolean getEtatTache() {
+	public Boolean getEtat() {
 		return etat;
 	}
 
-	public void setEtatTache(Boolean etatTache) {
+	public void setEtat(Boolean etatTache) {
 		this.etat = etatTache;
 	}
 
@@ -101,11 +101,11 @@ public class Tache {
 		this.priorite = priorite;
 	}
 
-	public Vehicule getPiece() {
+	public Piece getPiece() {
 		return piece;
 	}
 
-	public void setPiece(Vehicule piece) {
+	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
 	
