@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+ <div class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+          <a	class="navbar-brand" th:href="@{/Acceuil}" 
+            th:text="'Home'"></a>
+            <a	class="navbar-brand" th:href="@{/gererClient}" 
+            th:text="'Gestion des Clients'"></a>
+             <a	class="navbar-brand" th:href="@{/gererDevis}" 
+            th:text="'Gestion des Devis'"></a>
+             <a	class="navbar-brand" th:href="@{/gererFiche}" 
+            th:text="'Gestion des Fiches'"></a>
+             <a	class="navbar-brand" th:href="@{/gererCommande}" 
+            th:text="'Gestion des Commandes'"></a>
+             <a	class="navbar-brand" th:href="@{/Contact}" 
+            th:text="'Contact'"></a>
+ 
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active">
+              <a	class="navbar-brand" th:href="@{/afficherCreerProf}" 
+            th:text="'Gestion des Professeurs'"></a></li>
+            <li class="active">
+              <a	class="navbar-brand" th:href="@{/afficherCreerClasse}" 
+            th:text="'Gestion des Classes'"></a></li>
+            <li class="active">
+              <a	class="navbar-brand" th:href="@{/afficherCreerEleve}" 
+            th:text="'Gestion des Elèves'"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+       
+ </div>
+ </body>
+
+ 
