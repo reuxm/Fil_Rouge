@@ -63,7 +63,7 @@ public class Piece {
 
 	@Override
 	public String toString() {
-		return "Piece [id=" + id + ", libelle=" + libelle + ", qte=" + qte + ", dateCreation=" + dateCreation + "]";
+		return "Vehicule [id=" + id + ", libelle=" + libelle + ", qte=" + qte + ", dateCreation=" + dateCreation + "]";
 	}
 	
 }

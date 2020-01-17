@@ -25,10 +25,12 @@ public class FactureFiche {
 	@JoinColumn(name="id_fiche", nullable=false)
 	private Fiche fiche;
 
+
 	@Column( name="prixHT", nullable=true)
 	private float prixHT;
 	
 	@Column( name="tauxTVA", nullable=true )
+
 	private float TVA;
 
 	@Temporal(TemporalType.DATE)
