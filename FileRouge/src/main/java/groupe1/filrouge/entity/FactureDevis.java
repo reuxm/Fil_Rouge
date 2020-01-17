@@ -26,10 +26,10 @@ public class FactureDevis {
 	private Devis devis;
 
 	@Column( name="prixHT")
-	private float prixHT;
+	private Float prixHT;
 	
 	@Column( name="tauxTVA")
-	private float TVA;
+	private Float TVA;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
@@ -46,8 +46,9 @@ public class FactureDevis {
 	public Devis getDevis() {
 		return devis;
 	}
-
+  
 	public void setDevis(Devis devis) {
+
 		this.devis = devis;
 	}
 
@@ -59,11 +60,11 @@ public class FactureDevis {
 		this.prixHT = prixHT;
 	}
 
-	public float getTVA() {
+	public Float getTVA() {
 		return TVA;
 	}
 
-	public void setTVA(float tVA) {
+	public void setTVA(Float tVA) {
 		TVA = tVA;
 	}
 
