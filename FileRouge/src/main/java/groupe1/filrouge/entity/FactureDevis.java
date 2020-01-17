@@ -44,11 +44,10 @@ public class FactureDevis {
 		this.id = id;
 	}
 
-
 	public Devis getDevis() {
 		return devis;
 	}
-
+  
 	public void setDevis(Devis devis) {
 		this.devis = devis;
 	}

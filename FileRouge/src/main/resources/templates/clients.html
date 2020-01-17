@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
   	<title th:text="'Gestion Des Classes'"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	 <div class="container">
+	 <head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion De Mon Ecole'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+  </head>
+  <body>
+ 	<div th:replace="fragments/header :: header"></div>
+ 
+    <div class="container">
 		 <table th:unless="${action == 'ModifierClient' or action== 'CreerClient'}">
 		 <thead>
 		 	<tr>
@@ -69,6 +76,9 @@
 	   <button type="submit">Valider</button>
 	</form>
  </div>
-</div>
-</body>
+
+   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+    </div>
+    </body>
+
 </html>

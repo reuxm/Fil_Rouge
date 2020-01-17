@@ -1,0 +1,33 @@
+h1{
+    color: black;
+    margin: auto;
+    text-align: center;
+}
+.logo
+{
+    margin-left: 10p;
+    height: 50px;
+    width: 50px;
+    border: 1px black solid;
+    border-radius: 50%;
+ 
+}
+.home{
+    margin: auto;
+    height: 450px;
+    width: 100%;
+    display:block
+}
+
+.btn{
+    margin:0px auto;
+    text-align: center
+  }
+
+#login
+{
+    margin-left: 10p;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;   
+}
