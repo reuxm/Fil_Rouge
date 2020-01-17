@@ -41,7 +41,7 @@ public class ServicePriorite implements IServicePriorite {
 	@Transactional
 	@Override
 	public void supprimerPriorite(Priorite pPriorite) {
-		dao.deleteById(pPriorite.getId());
+		/*dao.deleteById(pPriorite.getId());*/
 	}
 
 }
