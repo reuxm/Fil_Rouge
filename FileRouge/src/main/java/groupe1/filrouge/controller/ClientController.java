@@ -42,18 +42,14 @@ public class ClientController {
 	public String getAffiche(Model pModel) {
 		List<Client> lclient = service.list();
 		pModel.addAttribute("listeclient", lclient);	
-		pModel.addAttribute("clientform", new ClientForm());
-		pModel.addAttribute("action", "#");
-		return "clients";
-	}
-	@GetMapping("/CreerFormClient")
-	public String getFormAffiche(Model pModel) {
+		
 		pModel.addAttribute("action", "CreerClient");
 		ClientForm clientform = new ClientForm();
 		clientform.setId(0);
 		pModel.addAttribute("clientform", clientform);
 		return "clients";
 	}
+	
 
 	
 	@GetMapping("/afficherModifierClient/{id}")
