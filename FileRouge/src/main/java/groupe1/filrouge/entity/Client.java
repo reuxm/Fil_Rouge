@@ -41,9 +41,11 @@ public class Client {
 
 	@Column(name = "mobile", length = 50, nullable = false)
 	private String mobile;
+
 	
 	@Column(name = "cloturer")
 	private Boolean cloturer;
+
 
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	private List<Devis> listeDevis;
@@ -121,14 +123,6 @@ public class Client {
 	}
 
 
-
-	@Override
-	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", firstname=" + firstname + ", adresse=" + adresse
-				+ ", codepostal=" + codePostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile
-				+ "]";
-	}
-
 	public String getCodePostal() {
 		return codePostal;
 	}
@@ -143,6 +137,14 @@ public class Client {
 
 	public void setCloturer(Boolean cloturer) {
 		this.cloturer = cloturer;
+	}
+	
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + ", firstname=" + firstname + ", adresse=" + adresse
+				+ ", codepostal=" + codePostal + ", ville=" + ville + ", telephone=" + telephone + ", mobile=" + mobile
+				+ "]";
+	
 	}
 
 }

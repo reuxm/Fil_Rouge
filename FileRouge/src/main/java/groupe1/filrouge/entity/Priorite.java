@@ -17,6 +17,14 @@ public class Priorite {
 	@Column(name="libelle", length = 50, nullable = false)
 	private String libelle;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
@@ -24,5 +32,9 @@ public class Priorite {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 	
 }

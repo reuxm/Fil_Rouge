@@ -25,7 +25,7 @@ public class CommandeVehicule {
 	@JoinColumn( name="id_devis", nullable=true )
 	private Devis devis;
 
-	@Column( name="etat", nullable=true, columnDefinition = "0" )
+	@Column( name="etat", nullable=true )
 	private Boolean etat;
 	
 	@Temporal(TemporalType.DATE)
