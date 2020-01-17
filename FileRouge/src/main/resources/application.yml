@@ -11,6 +11,6 @@ spring:
               format_sql: true
 
       datasource:
-           url: jdbc:mysql://localhost:3306/gestioneleves
+           url: jdbc:mysql://localhost:3306/garagepoefr
            username: root
            password: 
