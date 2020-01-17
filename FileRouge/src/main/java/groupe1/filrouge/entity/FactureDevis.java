@@ -25,10 +25,11 @@ public class FactureDevis {
 	@JoinColumn(name="id_devis", nullable=false)
 	private Devis devis;
 
-	@Column( name="prixHT")
+	@Column( name="prixHT", nullable=true)
 	private Float prixHT;
 	
-	@Column( name="tauxTVA")
+	@Column( name="tauxTVA", nullable=true)
+
 	private Float TVA;
 
 	@Temporal(TemporalType.DATE)
@@ -48,7 +49,6 @@ public class FactureDevis {
 	}
   
 	public void setDevis(Devis devis) {
-
 		this.devis = devis;
 	}
 

@@ -42,7 +42,7 @@ public class ServiceClient implements IServiceClient {
 	@Override
 	@Transactional
 	public void delete(Client c) {
-		dao.deleteById( c.getId() );
+		dao.deleteById(c.getId());
 	}
 
 }
