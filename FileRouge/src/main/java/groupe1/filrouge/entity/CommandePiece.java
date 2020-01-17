@@ -27,7 +27,7 @@ public class CommandePiece {
 
 	@ManyToOne
 	@JoinColumn( name="id_piece", nullable=false )
-	private Piece piece;
+	private Vehicule piece;
 	
 	@Column( name="quantite", nullable=false )
 	private Integer qte;
@@ -56,11 +56,11 @@ public class CommandePiece {
 		this.user = user;
 	}
 
-	public Piece getPiece() {
+	public Vehicule getPiece() {
 		return piece;
 	}
 
-	public void setPiece(Piece piece) {
+	public void setPiece(Vehicule piece) {
 		this.piece = piece;
 	}
 

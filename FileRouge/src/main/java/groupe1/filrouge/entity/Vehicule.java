@@ -62,11 +62,11 @@ public class Vehicule {
 		this.modele = modele;
 	}
 
-	public Integer getQuantite() {
+	public Integer getQte() {
 		return qte;
 	}
 
-	public void setQuantite(Integer quantite) {
+	public void setQte(Integer quantite) {
 		this.qte = quantite;
 	}
 
