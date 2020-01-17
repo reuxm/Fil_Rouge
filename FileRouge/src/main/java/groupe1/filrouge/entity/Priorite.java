@@ -32,9 +32,5 @@ public class Priorite {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	
 }
