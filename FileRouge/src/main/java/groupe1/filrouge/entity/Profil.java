@@ -8,14 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "priorite") 
-public class Priorite {
+@Table(name="profil")
+
+public class Profil {
+
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)		
 	private Integer id;
 	
-	@Column(name="libelle", length = 50, nullable = false)
-	private String libelle;
+	@Column(name="name", length = 50, nullable = false)
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -25,16 +27,12 @@ public class Priorite {
 		this.id = id;
 	}
 
-	public String getLibelle() {
-		return libelle;
+	public String getName() {
+		return name;
 	}
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setName(String name) {
+		this.name = name;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	
 }

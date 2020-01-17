@@ -1,4 +1,4 @@
-package Groupe.FileRouge.entity;
+package groupe1.filrouge.entity;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "DEVIS")
+@Table(name = "devis")
 public class Devis {
 
 	@Id
@@ -35,7 +35,7 @@ public class Devis {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
-	private Date datecreation;
+	private Date dateCreation;
 
 	@Column(name = "etatdevis", nullable = false)
 	private Boolean etat;
@@ -48,8 +48,8 @@ public class Devis {
 		this.id = id;
 	}
 
-	public Date getDatecreation() {
-		return datecreation;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
 	public Client getClient() {
@@ -77,7 +77,7 @@ public class Devis {
 	}
 
 	public void setDatecreation(Date datecreation) {
-		this.datecreation = datecreation;
+		this.dateCreation = datecreation;
 	}
 
 	public Boolean getEtat() {

@@ -1,4 +1,4 @@
-package Groupe.FileRouge.entity;
+package groupe1.filrouge.entity;
 
 import java.util.Date;
 import java.util.List;
@@ -26,14 +26,14 @@ public class Vehicule {
 	private String modele;
 
 	@Column(name = "quantite", length = 11, nullable = false)
-	private Integer quantite;
+	private Integer qte;
 
 	@Column(name = "prixHT")
 	private double prixHT;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
-	private Date date_creation;
+	private Date dateCreation;
 	
 	@OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
 	private List<Devis> listeDevis;
@@ -63,11 +63,11 @@ public class Vehicule {
 	}
 
 	public Integer getQuantite() {
-		return quantite;
+		return qte;
 	}
 
 	public void setQuantite(Integer quantite) {
-		this.quantite = quantite;
+		this.qte = quantite;
 	}
 
 	public double getPrixHT() {
@@ -78,18 +78,18 @@ public class Vehicule {
 		this.prixHT = prixHT;
 	}
 
-	public Date getDate_creation() {
-		return date_creation;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
+	public void setDateCreation(Date date_creation) {
+		this.dateCreation = date_creation;
 	}
 
 	@Override
 	public String toString() {
-		return "Vehicule [id=" + id + ", modele=" + modele + ", quantite=" + quantite + ", prixHT=" + prixHT
-				+ ", date_creation=" + date_creation + "]";
+		return "Vehicule [id=" + id + ", modele=" + modele + ", quantite=" + qte + ", prixHT=" + prixHT
+				+ ", date_creation=" + dateCreation + "]";
 	}
 
 }
