@@ -42,6 +42,9 @@ public class Fiche {
 	@ManyToOne
 	@JoinColumn(name="id_client",  nullable = false)
 	private Client client;
+	
+	@Column( name="description", nullable=true )
+	private String description;
 
 	public Integer getId() {
 		return id;
@@ -67,14 +70,6 @@ public class Fiche {
 		this.dateCloture = dateCloture;
 	}
 
-	public Boolean getEtatFiche() {
-		return etat;
-	}
-
-	public void setEtatFiche(Boolean etatFiche) {
-		this.etat = etatFiche;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -97,6 +92,22 @@ public class Fiche {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }
