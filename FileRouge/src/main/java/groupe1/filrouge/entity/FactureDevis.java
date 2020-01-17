@@ -43,11 +43,12 @@ public class FactureDevis {
 		this.id = id;
 	}
 
-	public Devis getFiche() {
+	public Devis getDevis() {
 		return devis;
 	}
+  
+	public void setDevis(Devis devis) {
 
-	public void setFiche(Devis devis) {
 		this.devis = devis;
 	}
 
