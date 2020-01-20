@@ -20,14 +20,14 @@
 			 <table class="table w-auto" >
 			 <thead>
 			 	<tr>
-			 	<th>Id</th>
+			 	
 			 	<th>Fiche</th>
 			 	<th>Utilisateur</th>
 			 	<th>Priorite</th>
 			 	<th>Piece</th>
 			 	<th>Quantité</th>				
 			 	<th>Commentaire</th>
-			 	<th th:if="${action == 'ModifierTache'}">Terminé</th>
+			 	<th>Id</th>
 	
 			 	</tr>
 			 </thead>
@@ -36,6 +36,7 @@
 			 		<td >
 			 		<a	th:href="@{/afficherModifierTache/{id}(id=${tache.id})}" 
 			 		th:text="${tache.id}"></a></td>
+			 		<td> 
 			 		<td th:text="${tache.fiche.client.firstname + ' '+  #dates.format(tache.fiche.dateCreation, 'dd/MM')}"/>
 			 		<td th:text="${tache.user.firstname}"/>
 			 		<td th:text="${tache.priorite.libelle}"/>
