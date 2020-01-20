@@ -5,19 +5,20 @@
 <title th:text="'Modifier Fiche'"></title>
 </head>
 <body>
-<form th:object="${form}" action="#" th:action="validModifierFiche" method="post">
+<form th:object="${form}" action="#" th:action="'../validModifFiche'" method="post">
+	<input type="hidden" th:value="${id}" name="id"/>
 	<table>
 		<tr>
 			<td th:text="Description"></td>
 			<td>
-				<textarea name="description" placeholder="description"></textarea>
+				<textarea name="description" th:text="${description}"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<td th:text="Prioritée"></td>
+			<td th:text="Priorite"></td>
 			<td>
 				<select name="priorite">
-					<option th:each="p : ${listPriorite}" th:value="${p.id}" th:text="${p.libelle}" />
+					<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
 				</select>
 			</td>
 		</tr>

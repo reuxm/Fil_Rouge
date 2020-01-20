@@ -17,7 +17,7 @@
 			<td th:text="Prioritée"></td>
 			<td>
 				<select name="priorite">
-					<option th:each="p : ${listPriorite}" th:value="${p.id}" th:text="${p.libelle}" />
+					<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
 				</select>
 			</td>
 		</tr>
@@ -25,7 +25,7 @@
 			<td th:text="Client"></td>
 			<td>
 				<select name="client">
-					<option th:each="c : ${listCmient}" th:value="${c.id}" th:text="${c.nom}" />
+					<option th:each="c : ${listClients}" th:value="${c.id}" th:text="${c.name}" />
 				</select>
 			</td>
 		</tr>
