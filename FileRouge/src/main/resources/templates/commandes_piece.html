@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion Des Commandes De Pièces'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<table th:unless="${action == 'ModifierCommandePiece'}">
+		 <thead>
+		 	<tr>
+		 	<th>Id</th>
+		 	<th>Créateur</th>
+		 	<th>Pièce</th>
+		 	<th>Quantité</th>
+		 	<th>Supprimer</th>
+		 	</tr>
+		 </thead>
+		 <tbody>
+		 	<tr th:each="cmdpiece : ${listecmdpieces}">
+		 		<td ><a	th:href="@{/afficherModifierCommandePiece/{id}(id=${cmdpiece.id})}" th:text="${cmdpiece.id}"></a></td>
+		 		<td th:text="${cmdpiece.user.firstname}"/>
+		 		<td th:text="${cmdpiece.piece.libelle}"/>
+		 		<td th:text="${cmdpiece.qte}"/>
+				<td >
+		 		<a th:href="@{/SupprimerCommandePiece/{id}(id=${cmdpiece.id})}" 
+		 		th:text="'Supprimer'"></a></td>
+		 	</tr>
+		 </tbody>
+	    </table>
+	    
+	    <h2 th:if="${action == 'ModifierCommandePiece'}">
+		 <a	th:href="@{/afficherCreerCommandePiece}" th:text="'Formulaire de Modification'"></a>
+		 </h2>
+		 <h2 th:unless="${action == 'ModifierCommandePiece'}">Formulaire d'Ajout</h2>
+		 
+		 <div>
+			  <form action="#" th:action="@{/{action}(action=${action})}" 
+			  th:object="${cmdpieceform}"   method="post">
+			  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+			   		<select th:field="*{id_user}">
+			    		<option th:each="puser :${listeusers}" th:value="${puser.id}" th:utext="${puser.firstname}"/>
+					</select>
+					<select th:field="*{id_piece}">
+			    		<option th:each="ppiece :${listepieces}" th:value="${ppiece.id}" th:utext="${ppiece.libelle}"/>
+					</select>
+			   		<label for="qte">Quantité</label>
+			   		<input type="number" th:field="*{qte}" id="qte" placeholder="Quantité"/>
+			   <button  type="submit">Valider</button>
+			</form>
+		 </div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
