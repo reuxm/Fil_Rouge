@@ -4,7 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class FicheFormUpdate {
 
-	private int id;
+	private String id;
 
 	private String description;
 
@@ -13,11 +13,11 @@ public class FicheFormUpdate {
 	
 	private String cloturer;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -43,6 +43,12 @@ public class FicheFormUpdate {
 
 	public void setCloturer(String cloturer) {
 		this.cloturer = cloturer;
+	}
+
+	@Override
+	public String toString() {
+		return "FicheFormUpdate [id=" + id + ", description=" + description + ", priorite=" + priorite + ", cloturer="
+				+ cloturer + "]";
 	}
 
 	

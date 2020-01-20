@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/headerload :: load">
 <meta charset="UTF-8">
 <title th:text="'Nouvelle Fiche'"></title>
 </head>
 <body>
-<form th:object="${form}" action="#" th:action="validCreerFiche" method="post">
+
+<div th:replace="fragments/header :: header"></div>
+
+<form th:object="${form}" action="#" th:action="validCreerFiche" method="post" class="container">
 	<table>
 		<tr>
 			<td th:text="Description"></td>
@@ -17,7 +20,7 @@
 			<td th:text="Prioritée"></td>
 			<td>
 				<select name="priorite">
-					<option th:each="p : ${listPriorite}" th:value="${p.id}" th:text="${p.libelle}" />
+					<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
 				</select>
 			</td>
 		</tr>
@@ -25,12 +28,14 @@
 			<td th:text="Client"></td>
 			<td>
 				<select name="client">
-					<option th:each="c : ${listCmient}" th:value="${c.id}" th:text="${c.nom}" />
+					<option th:each="c : ${listClients}" th:value="${c.id}" th:text="${c.name}" />
 				</select>
 			</td>
 		</tr>
 	</table>
 	<button type="submit" th:text="Valider"></button>
 </form>
+
+<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
 </body>
 </html>
