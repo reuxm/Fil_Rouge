@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import groupe1.filrouge.controller.form.FicheForm;
 import groupe1.filrouge.controller.form.FicheFormUpdate;
+import groupe1.filrouge.entity.FactureFiche;
 import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceClient;
+import groupe1.filrouge.service.IServiceFactureFiche;
 import groupe1.filrouge.service.IServiceFiche;
 import groupe1.filrouge.service.IServicePriorite;
 import groupe1.filrouge.service.IServiceUser;
@@ -36,6 +38,9 @@ public class FicheController {
 	
 	@Autowired
 	private IServiceUser uService;
+	
+	@Autowired
+	private IServiceFactureFiche fService;
 	
 	@GetMapping("/fiches")
 	public String readAllFiches( Model pmodel ) {
@@ -102,8 +107,7 @@ public class FicheController {
 			fiche.setDescription( form.getDescription() );
 			
 			if( form.getCloturer()!=null && form.getCloturer().equals("on") ) {
-				fiche.setEtat( true );
-				fiche.setDateCloture( new Date() );
+				clore(fiche);
 			}
 			
 			service.modifierFiche( fiche );
@@ -114,10 +118,21 @@ public class FicheController {
 	@GetMapping("/clotureFiche/{id}")
 	public String clotureFiche(Model pmodel, @PathVariable Integer id) {
 		Fiche fiche = service.rechercheFicheId( id );
-		fiche.setEtat( true );
-		fiche.setDateCloture( new Date() );
+		clore(fiche);
 		service.modifierFiche( fiche );
 		return readAllFiches( pmodel );
+	}
+
+	private void clore(Fiche fiche) {
+		fiche.setEtat( true );
+		Date date = new Date();
+		fiche.setDateCloture( date );
+		
+		FactureFiche facture = new FactureFiche();
+		facture.setDateCreation( date );
+		facture.setFiche( fiche );
+		
+		fService.create( facture );
 	}
 	
 	
