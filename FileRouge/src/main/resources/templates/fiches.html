@@ -18,6 +18,7 @@
 					<th th:text="Cloture"></th>
 					<th th:text="Priorite"></th>
 					<th th:text="Client"></th>
+					<th th:text="Prix"></th>
 					<th th:text="Description"></th>
 					<th></th>
 				</tr>
@@ -32,6 +33,7 @@
 					<td th:text="${f.priorite.libelle}"></td>
 					<td th:text="${f.client.name}"></td>
 					<td th:text="${f.description}"></td>
+					<td th:text="${f.prix+(f.prix*f.tva)}"></td>
 					<td><a th:unless="${f.etat}" th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a></td>
 				</tr>
 			</tbody>

@@ -131,6 +131,8 @@ public class FicheController {
 		FactureFiche facture = new FactureFiche();
 		facture.setDateCreation( date );
 		facture.setFiche( fiche );
+		facture.setPrixHT( fiche.getPrix() );
+		facture.setTVA( fiche.getTva() );
 		
 		fService.create( facture );
 	}

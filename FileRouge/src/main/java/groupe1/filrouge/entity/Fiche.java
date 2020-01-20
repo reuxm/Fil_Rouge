@@ -45,6 +45,12 @@ public class Fiche {
 	
 	@Column( name="description", columnDefinition = "text", nullable=true )
 	private String description;
+	
+	@Column( name="tauxTVA", nullable=true )
+	private Float tva;
+	
+	@Column( name="prixHT", nullable=true)
+	private Float prix;
 
 	public Integer getId() {
 		return id;
@@ -108,6 +114,22 @@ public class Fiche {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Float getTva() {
+		return tva;
+	}
+
+	public void setTva(Float tva) {
+		this.tva = tva;
+	}
+
+	public Float getPrix() {
+		return prix;
+	}
+
+	public void setPrix(Float prix) {
+		this.prix = prix;
 	}
 	
 }
