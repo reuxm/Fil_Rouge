@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,7 +44,7 @@ public class Fiche {
 	@JoinColumn(name="id_client",  nullable = false)
 	private Client client;
 	
-	@Column( name="description", nullable=true )
+	@Column( name="description", columnDefinition = "text", nullable=true )
 	private String description;
 
 	public Integer getId() {

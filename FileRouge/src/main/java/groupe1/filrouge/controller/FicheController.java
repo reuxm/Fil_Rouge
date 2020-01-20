@@ -84,7 +84,7 @@ public class FicheController {
 		return "formFicheUpdate";
 	}
 
-	@PostMapping("/validCreerFiche")
+	@PostMapping("/validModifFiche")
 	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheFormUpdate form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();

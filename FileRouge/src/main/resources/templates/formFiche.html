@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title th:text="Nouvelle Fiche"></title>
+<title th:text="'Nouvelle Fiche'"></title>
 </head>
 <body>
 <form th:object="${form}" action="#" th:action="validCreerFiche" method="post">
@@ -14,9 +14,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td th:text="Priorité&eecute"></td>
+			<td th:text="Prioritée"></td>
 			<td>
-				<select name="priorit&eecute">
+				<select name="priorite">
 					<option th:each="p : ${listPriorite}" th:value="${p.id}" th:text="${p.libelle}" />
 				</select>
 			</td>
