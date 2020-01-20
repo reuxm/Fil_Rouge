@@ -12,6 +12,27 @@
 					th:fragment="header">
 					<div class="container">
 						<div class="navbar-header">
+				<img th:src="@{/img/logo.jpg}" class="logo" />
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+					<li th:classappend="${module == 'home' ? 'active' : ''}"><a
+						class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
+					<li th:classappend="${module == 'client' ? 'active' : ''}"><a
+
+					class="navbar-brand"
+						href="#" th:href="@{/afficherCreerClient}">Gérer de Client</a></li>
+
+					<li th:classappend="${module == 'commande' ? 'active' : ''}">
+						<a class="navbar-brand" href="#" th:href="@{/afficherCreerCommandePiece}">Gérer
+							Commande</a>
+					</li>
+					<li th:classappend="${module == 'fiche' ? 'active' : ''}"><a
+						class="navbar-brand" href="#" th:href="@{/fiches}">Gérer Fiche</a></li>
+					<li th:classappend="${module == 'Devis' ? 'active' : ''}"><a
+
+						class="navbar-brand" href="#" th:href="@{/devis}">Gérer Devis</a></li>
+
 
 							<img th:src="@{/img/logo.jpg}" class="logo" />
 						</div>
@@ -42,6 +63,7 @@
 											th:href="@{/afficherCreerPiece}"> Pièces</a> <a
 											class="dropdown-item" href="#"
 											th:href="@{/afficherCreerVehicule}"> Véhicule</a>
+
 
 									</div></li>
 
