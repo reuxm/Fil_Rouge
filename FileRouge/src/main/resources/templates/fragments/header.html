@@ -18,7 +18,7 @@
 						href="#" th:href="@{/}">Home</a></li>
 					<li th:classappend="${module == 'client' ? 'active' : ''}"><a
 					class="navbar-brand"
-						href="#" th:href="@{/client}">Gérer de Client</a></li>
+						href="#" th:href="@{/afficherCreerClient}">Gérer de Client</a></li>
 					<li th:classappend="${module == 'commande' ? 'active' : ''}">
 						<a class="navbar-brand" href="#" th:href="@{/commande}">Gérer Commande</a>
 					</li>
@@ -27,7 +27,7 @@
 						href="#" th:href="@{/fiche}">Gérer Fiche</a></li>
 					<li th:classappend="${module == 'Devis' ? 'active' : ''}"><a
 					class="navbar-brand"
-						href="#" th:href="@{/task}">Gérer Devis</a></li>
+						href="#" th:href="@{/taches}">Gérer Devis</a></li>
 				</ul>
 				<!-- <ul class="nav navbar-nav navbar-right">
             <li th:if="${#authorization.expression('!isAuthenticated()')}">

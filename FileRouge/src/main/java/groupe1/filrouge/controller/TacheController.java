@@ -77,6 +77,16 @@ public class TacheController {
 		Tache tache = service.rechercheTacheId(id);
 		pmodel.addAttribute("listetache", null);
 		pmodel.addAttribute("action", "ModifierTache");
+		List<Tache> ltache = service.rechercheTache();
+		List<Piece> lpiece = servicePiece.recherchePiece();
+		List<Fiche> lfiche = serviceFiche.rechercheFiche();
+		List<Priorite> lpriorite = servicePriorite.recherchePriorite();
+		List<User> luser = serviceUser.rechercheUser();
+		pmodel.addAttribute("listeuser", luser);	
+		pmodel.addAttribute("listepriorite", lpriorite);	
+		pmodel.addAttribute("listefiche", lfiche);	
+		pmodel.addAttribute("listepiece", lpiece);	
+		pmodel.addAttribute("listetache", ltache);	
 		if(pmodel.containsAttribute("tacheform") == false) {
 			TacheForm tacheform = new TacheForm();
 			tacheform.setId(tache.getId());

@@ -35,12 +35,13 @@
 			 		<a	th:href="@{/afficherModifierTache/{id}(id=${tache.id})}" 
 			 		th:text="${tache.id}"></a></td>
 			 		<td th:text="${tache.commentaire}"/>
-			 		<td th:text="${tache.fiche.description}"/>
+			 		<td th:text="${tache.fiche.client.firstname + ' '+  #dates.format(tache.fiche.dateCreation, 'dd/MM')}"/>
 			 		<td th:text="${tache.user.firstname}"/>
 			 		<td th:text="${tache.priorite.libelle}"/>
 			 		<td th:text="${tache.piece.libelle}"/>
 			 		<td th:text="${tache.qte}"/>
-			 		<td th:text="${tache.etat}"/>
+			 		<td th:if="${tache.etat}" th:text="oui"/>
+			 		<td th:unless="${tache.etat}" th:text="non"/>
 			 		<td >
 			 	</tr>
 			 </tbody>
@@ -57,30 +58,39 @@
 		  th:object="${tacheform}"   method="post">
 		  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
 		    	<label for="com">Commentaire</label>
-		   		<input type="text" th:field="*{commentaire}" id="com" placeholder="Commentaire"/>
-		   		
-		   	    <select th:field="*{fiche}">
+		   		<input type="text" th:field="*{commentaire}" id="com" placeholder="Commentaire" required/>
+		   		<label for="fiche">Fiche</label>
+		   	    <select th:field="*{fiche}" required>
+		   	    <option value="" selected hidden id="fiche">Selection fiche</option>
 			    <option th:each="fiche :${listefiche}" 
-			    	th:value="${fiche.id}" th:utext="${fiche.description}"/>
+			    	th:value="${fiche.id}" th:utext="${fiche.client.firstname + ' ' + #dates.format(fiche.dateCreation, 'dd/MMM/yyyy')}"/>
 			    </select>
-			    <select th:field="*{user}">
+			    <label for="user">Utilisateur</label>
+			    <select th:field="*{user}" required id="user">
+			    <option value="" selected hidden>Selection utilisateur</option>
 			    <option th:each="user :${listeuser}" 
 			    	th:value="${user.id}" th:utext="${user.firstname}"/>
 			    </select>
-			    <select th:field="*{priorite}">
+			    <label for="priorite">Priorité</label>
+			    <select th:field="*{priorite}" required id="priorite">
+			    <option value="" selected hidden>Selection priorité</option>
 			    <option th:each="priorite :${listepriorite}" 
 			    	th:value="${priorite.id}" th:utext="${priorite.libelle}"/>
 			    </select>
-			    <select th:field="*{piece}">
+			    <label for="piece">Pièce</label>
+			    <select th:field="*{piece}" required id="piece">
+			    <option value="" selected="selected" hidden>Selection pièces</option>
 			    <option th:each="piece :${listepiece}" 
+			    
 			    	th:value="${piece.id}" th:utext="${piece.libelle}"/>
+
 			    </select>
 			    
-		   		<input type="number" th:field="*{qte}" id="qte" placeholder="Quantitée"/>
-		   		<label for="qte">CodePostal</label>
+		   		<input type="number" th:field="*{qte}" id="qte" placeholder="Quantitée" required/>
+		   		<label for="qte">Terminé</label>
 		   		
 		   		
-	   			<input type="checkbox" id="etat" name="Etat" th:field="*{etat}" checked />
+	   			<input type="checkbox" id="etat" name="Etat" th:field="*{etat}" checked  />
 				
 		   <button type="submit">Valider</button>
 		</form>

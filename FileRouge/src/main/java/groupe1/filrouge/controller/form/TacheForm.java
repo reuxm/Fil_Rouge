@@ -9,21 +9,21 @@ public class TacheForm {
 	@NotEmpty 
 	private String commentaire;
 	
-	@NotEmpty
+
 	private Integer qte;
 	
 	private Boolean etat;
 	
-	@NotEmpty
+
 	private Integer user;
 	
-	@NotEmpty
+
 	private Integer fiche;
 	
-	@NotEmpty
+
 	private Integer priorite;
 	
-	@NotEmpty 
+
 	private Integer piece;
 
 	public Integer getId() {

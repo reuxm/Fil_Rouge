@@ -108,6 +108,12 @@ public class Tache {
 	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
+
+	@Override
+	public String toString() {
+		return "Tache [id=" + id + ", commentaire=" + commentaire + ", qte=" + qte + ", etat=" + etat + ", user=" + user
+				+ ", fiche=" + fiche + ", priorite=" + priorite + ", piece=" + piece + "]";
+	}
 	
 	
 	
