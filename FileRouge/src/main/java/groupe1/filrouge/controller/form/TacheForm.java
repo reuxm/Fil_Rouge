@@ -89,6 +89,12 @@ public class TacheForm {
 	public void setPiece(Integer piece) {
 		this.piece = piece;
 	}
+
+	@Override
+	public String toString() {
+		return "TacheForm [id=" + id + ", commentaire=" + commentaire + ", qte=" + qte + ", etat=" + etat + ", user="
+				+ user + ", fiche=" + fiche + ", priorite=" + priorite + ", piece=" + piece + "]";
+	}
 	
 	
 	
