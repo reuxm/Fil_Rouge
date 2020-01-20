@@ -1,16 +1,12 @@
 package groupe1.filrouge.controller;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.sipios.springsearch.anotation.SearchSpec;
-
 import groupe1.filrouge.controller.form.VehiculeForm;
-import groupe1.filrouge.dao.VehiculeDao;
 import groupe1.filrouge.entity.Vehicule;
 import groupe1.filrouge.service.IServiceVehicule;
 
@@ -30,9 +23,6 @@ import groupe1.filrouge.service.IServiceVehicule;
 public class VehiculeController {
 	@Autowired
 	IServiceVehicule serviceVehicule;
-	
-	@Autowired
-	VehiculeDao dao;
 	
 	private Vehicule convertForm(VehiculeForm vehiculeform) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -130,10 +120,5 @@ public class VehiculeController {
 		}
 		return this.getAffiche(pmodel);
 	}
-	
-	 @GetMapping("/SearchVoiture")
-	    public ResponseEntity<List<Vehicule>> searchForCars(@SearchSpec Specification<Vehicule> specs) {
-	        return new ResponseEntity<>(dao.findAll(Specification.where(specs)), HttpStatus.OK);
-	    }
 
 }

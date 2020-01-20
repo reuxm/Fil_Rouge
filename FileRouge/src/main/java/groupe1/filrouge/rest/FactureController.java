@@ -1,4 +1,4 @@
-package groupe1.filrouge.controller;
+package groupe1.filrouge.rest;
 
 import java.util.List;
 
