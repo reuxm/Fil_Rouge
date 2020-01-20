@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/headerload :: load">
 <meta charset="UTF-8">
 <title th:text="'Nouvelle Fiche'"></title>
 </head>
 <body>
-<form th:object="${form}" action="#" th:action="validCreerFiche" method="post">
+
+<div th:replace="fragments/header :: header"></div>
+
+<form th:object="${form}" action="#" th:action="validCreerFiche" method="post" class="container">
 	<table>
 		<tr>
 			<td th:text="Description"></td>
@@ -32,5 +35,7 @@
 	</table>
 	<button type="submit" th:text="Valider"></button>
 </form>
+
+<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
 </body>
 </html>
