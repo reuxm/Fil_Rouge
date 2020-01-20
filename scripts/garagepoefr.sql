@@ -133,7 +133,8 @@ CREATE TABLE `fiche` (
   `etatfiche` bit(1) DEFAULT b'0',
   `id_priorite` int(11) NOT NULL,
   `Date_creation` date NOT NULL,
-  `Date_cloture` date DEFAULT NULL
+  `Date_cloture` date DEFAULT NULL,
+  `description` varchar DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

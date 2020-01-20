@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,6 +43,9 @@ public class Fiche {
 	@ManyToOne
 	@JoinColumn(name="id_client",  nullable = false)
 	private Client client;
+	
+	@Column( name="description", columnDefinition = "text", nullable=true )
+	private String description;
 
 	public Integer getId() {
 		return id;
@@ -67,14 +71,6 @@ public class Fiche {
 		this.dateCloture = dateCloture;
 	}
 
-	public Boolean getEtatFiche() {
-		return etat;
-	}
-
-	public void setEtatFiche(Boolean etatFiche) {
-		this.etat = etatFiche;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -97,6 +93,22 @@ public class Fiche {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

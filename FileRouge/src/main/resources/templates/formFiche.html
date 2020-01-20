@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="'Nouvelle Fiche'"></title>
+</head>
+<body>
+<form th:object="${form}" action="#" th:action="validCreerFiche" method="post">
+	<table>
+		<tr>
+			<td th:text="Description"></td>
+			<td>
+				<textarea name="description" placeholder="description"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td th:text="Prioritée"></td>
+			<td>
+				<select name="priorite">
+					<option th:each="p : ${listPriorite}" th:value="${p.id}" th:text="${p.libelle}" />
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td th:text="Client"></td>
+			<td>
+				<select name="client">
+					<option th:each="c : ${listCmient}" th:value="${c.id}" th:text="${c.nom}" />
+				</select>
+			</td>
+		</tr>
+	</table>
+	<button type="submit" th:text="Valider"></button>
+</form>
+</body>
+</html>
