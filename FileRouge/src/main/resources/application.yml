@@ -11,6 +11,6 @@ spring:
               format_sql: true
 
       datasource:
-           url: jdbc:mysql://localhost:3306/garagepoefr
+           url: jdbc:mysql://localhost:3306/garagepoefr?serverTimezone=UTC&useLegacyDatetimeCode=false
            username: root
            password: 

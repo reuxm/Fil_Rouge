@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion Des Véhicules'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+    <div class="container">
+	 <table th:unless="${action == 'ModifierVehicule'}">
+	 <thead>
+	 	<tr>
+	 	<th>Id</th>
+	 	<th>Modèle</th>
+	 	<th>Quantité</th>
+	 	<th>Prix HT</th>
+	 	<th>Date de création</th>
+	 	<th>Supprimer</th>
+	 	</tr>
+	 </thead>
+	 <tbody>
+	 	<tr th:each="vehicule : ${listevehicule}">
+	 		<td >
+	 		<a	th:href="@{/afficherModifierVehicule/{id}(id=${vehicule.id})}" th:text="${vehicule.id}"></a></td>
+	 		<td th:text="${vehicule.modele}"/>
+	 		<td th:text="${vehicule.qte}"/>
+	 		<td th:text="${vehicule.prixHT}"/>
+	 		<td th:text="${vehicule.dateCreation}"/>
+	 		<td >
+	 		<a th:href="@{/SupprimerVehicule/{id}(id=${vehicule.id})}" th:text="'Supprimer'"></a></td>
+	 	</tr>
+	 </tbody>
+ </table>
+ 
+ <h2 th:if="${action == 'ModifierVehicule'}">
+ <a	th:href="@{/afficherCreerVehicule}" th:text="'Formulaire de Mofication'"></a>
+ </h2>
+ <h2 th:unless="${action == 'ModifierVehicule'}">Formulaire d'Ajout</h2>
+ 
+ <div>
+	  <form action="#" th:action="@{/{action}(action=${action})}" 
+	  th:object="${vehiculeform}"   method="post">
+	  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
+	    	<label for="modele">Modèle</label>
+	   		<input type="text" th:field="*{modele}" id="modele" placeholder="modèle"/>
+	   		<label for="qte">Quantité</label>
+	   		<input type="text" th:field="*{qte}" id="qte" placeholder="quantité"/>
+	   		<label for="prixHT">Prix HT</label>
+	   		<input type="text" th:field="*{prixHT}" id="prixHT" placeholder="prix HT"/>
+	   		<label for="dateCreation">Date de création</label>
+	   		<input type="date" th:field="*{dateCreation}" id="dateCreation" 
+	   		placeholder="date de création"/>
+	   <button  type="submit">Valider</button>
+	</form>
+ </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+
+</body>
+</html>

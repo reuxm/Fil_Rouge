@@ -29,7 +29,7 @@ public class Vehicule {
 	private Integer qte;
 
 	@Column(name = "prixHT")
-	private double prixHT;
+	private Float prixHT;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
@@ -62,19 +62,19 @@ public class Vehicule {
 		this.modele = modele;
 	}
 
-	public Integer getQuantite() {
+	public Integer getQte() {
 		return qte;
 	}
 
-	public void setQuantite(Integer quantite) {
+	public void setQte(Integer quantite) {
 		this.qte = quantite;
 	}
 
-	public double getPrixHT() {
+	public Float getPrixHT() {
 		return prixHT;
 	}
 
-	public void setPrixHT(double prixHT) {
+	public void setPrixHT(Float prixHT) {
 		this.prixHT = prixHT;
 	}
 
