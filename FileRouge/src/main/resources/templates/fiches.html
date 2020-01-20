@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/headerload :: load">
 <meta charset="UTF-8">
 <title th:text="Fiches"></title>
 </head>
 <body>
 
-	<table>
-		<thead>
-			<tr>
-				<th th:text="Id"></th>
-				<th th:text="Creation"></th>
-				<th th:text="Auteur"></th>
-				<th th:text="Cloture"></th>
-				<th th:text="Etat"></th>
-				<th th:text="Priorite"></th>
-				<th th:text="Client"></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="f : ${listefiches}">
-				<td><a href="./modifierFiche/${f.id}" th:text="${f.id}"></a></td>
-				<td th:text="${f.dateCreation}"></td>
-				<td th:text="${f.user.nom}"></td>
-				<td th:text="${f.dateCloture}"></td>
-				<td th:text="${f.etat}"></td>
-				<td th:text="${f.priorite.libelle}"></td>
-				<td th:text="${f.client.nom}"></td>
-				<td><a href="./supprimerFiche/${f.id}" th:text="${Supprimer}"></a></td>
-			</tr>
-		</tbody>
-	</table>
-	<a href="./creerFiche" th:text="Nouveau"></a>
+<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<table>
+			<thead>
+				<tr>
+					<th th:text="Id"></th>
+					<th th:text="Creation"></th>
+					<th th:text="Auteur"></th>
+					<th th:text="Cloture"></th>
+					<th th:text="Priorite"></th>
+					<th th:text="Client"></th>
+					<th th:text="Description"></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="f : ${listefiches}">
+					<td th:unless="${f.etat}"><a th:href="'/modifierFiche/'+${f.id}" th:text="${f.id}"></a></td>
+					<td th:if="${f.etat}" th:text="${f.id}"></td>
+					<td th:text="${f.dateCreation}"></td>
+					<td th:text="${f.user.lastname}"></td>
+					<td th:text="${f.dateCloture}"></td>
+					<td th:text="${f.priorite.libelle}"></td>
+					<td th:text="${f.client.name}"></td>
+					<td th:text="${f.description}"></td>
+					<td><a th:unless="${f.etat}" th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="./creerFiche" th:text="Nouveau"></a>
+	</div>
+<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
 </body>
 </html>

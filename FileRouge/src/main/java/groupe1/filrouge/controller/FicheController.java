@@ -67,7 +67,9 @@ public class FicheController {
 			fiche.setClient( cService.find( 
 				Integer.parseInt( form.getClient() ) 
 			) );
-			fiche.setDescription( form.getDescription() );		
+			fiche.setDescription( form.getDescription() );
+			
+			service.creerFiche( fiche );
 		}
 		return readAllFiches( pmodel );
 	}
@@ -76,7 +78,7 @@ public class FicheController {
 	public String updateFiche( Model pmodel, @PathVariable Integer id ) {
 		Fiche f = service.rechercheFicheId( id );
 		FicheFormUpdate form = new FicheFormUpdate();
-		form.setId( id );
+		form.setId( id+"" );
 		pmodel.addAttribute( "form", form );
 		pmodel.addAttribute( "priorite", f.getPriorite().getLibelle() );
 		pmodel.addAttribute( "description", f.getDescription() );
@@ -88,23 +90,35 @@ public class FicheController {
 	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheFormUpdate form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();
-			Fiche original = service.rechercheFicheId( form.getId() );
+			Fiche original = service.rechercheFicheId( Integer.parseInt( form.getId() ) );
 			fiche.setId( original.getId() );
 			fiche.setDateCreation(  original.getDateCreation() );
 			fiche.setUser( original.getUser() );
 			fiche.setClient( original.getClient() );
 			
 			fiche.setPriorite( pService.recherchePrioriteId(
-					Integer.parseInt( form.getPriorite() ) 
-				) );
+				Integer.parseInt( form.getPriorite() ) 
+			) );
+			fiche.setDescription( form.getDescription() );
 			
-			boolean end = Boolean.parseBoolean( form.getCloturer() );
-			if( end ) {
-				fiche.setEtat( end );
+			if( form.getCloturer()!=null && form.getCloturer().equals("on") ) {
+				fiche.setEtat( true );
 				fiche.setDateCloture( new Date() );
 			}
+			
+			service.modifierFiche( fiche );
 		}
 		return readAllFiches( pmodel );
 	}
+	
+	@GetMapping("/clotureFiche/{id}")
+	public String clotureFiche(Model pmodel, @PathVariable Integer id) {
+		Fiche fiche = service.rechercheFicheId( id );
+		fiche.setEtat( true );
+		fiche.setDateCloture( new Date() );
+		service.modifierFiche( fiche );
+		return readAllFiches( pmodel );
+	}
+	
 	
 }
