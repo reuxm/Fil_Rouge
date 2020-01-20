@@ -43,13 +43,24 @@ public class TacheController {
 	private Tache convertForm(TacheForm tacheform) {
 		Tache ptache= new Tache();
 		ptache.setId(tacheform.getId());
+		
+		if(tacheform.getFiche() != null)
+		{
+			ptache.setQte(tacheform.getQte());
+			ptache.setFiche(serviceFiche.rechercheFicheId(tacheform.getFiche()));
+			ptache.setPriorite(servicePriorite.recherchePrioriteId(tacheform.getPriorite()));
+			ptache.setPiece(servicePiece.recherchePieceId(tacheform.getPiece()));
+			ptache.setUser(serviceUser.rechercheUserId(tacheform.getUser()));
+		}
+		else
+		{
+			ptache = service.rechercheTacheId(tacheform.getId());
+			
+		}
 		ptache.setCommentaire(tacheform.getCommentaire());
-		ptache.setQte(tacheform.getQte());	
+		
 		ptache.setEtat(tacheform.getEtat());
-		ptache.setFiche(serviceFiche.rechercheFicheId(tacheform.getFiche()));
-		ptache.setPriorite(servicePriorite.recherchePrioriteId(tacheform.getPriorite()));
-		ptache.setPiece(servicePiece.recherchePieceId(tacheform.getPiece()));
-		ptache.setUser(serviceUser.rechercheUserId(tacheform.getUser()));
+		System.out.println(ptache);
 		return ptache;
 	}
 	
@@ -66,6 +77,25 @@ public class TacheController {
 		pModel.addAttribute("listepiece", lpiece);	
 		pModel.addAttribute("listetache", ltache);	
 		pModel.addAttribute("action", "CreerTache");
+		TacheForm tacheform = new TacheForm();
+		tacheform.setId(0);
+		pModel.addAttribute("tacheform", tacheform);
+		return "taches";
+	}
+	
+	@GetMapping("/afficherTache")
+	public String getAfficheTache(Model pModel) {
+		List<Tache> ltache = service.rechercheTache();
+		List<Piece> lpiece = servicePiece.recherchePiece();
+		List<Fiche> lfiche = serviceFiche.rechercheFiche();
+		List<Priorite> lpriorite = servicePriorite.recherchePriorite();
+		List<User> luser = serviceUser.rechercheUser();
+		pModel.addAttribute("listeuser", luser);	
+		pModel.addAttribute("listepriorite", lpriorite);	
+		pModel.addAttribute("listefiche", lfiche);	
+		pModel.addAttribute("listepiece", lpiece);	
+		pModel.addAttribute("listetache", ltache);	
+		pModel.addAttribute("action", "");
 		TacheForm tacheform = new TacheForm();
 		tacheform.setId(0);
 		pModel.addAttribute("tacheform", tacheform);
@@ -99,7 +129,7 @@ public class TacheController {
 			tacheform.setQte(tache.getQte());
 			pmodel.addAttribute("tacheform", tacheform);
 		}
-		return "taches";
+		return "ModifTache";
 	}	
 	
 	@PostMapping(value="/CreerTache")
@@ -110,6 +140,7 @@ public class TacheController {
 			try
 			{
 				Tache tache = convertForm(tacheform);
+				System.err.println(tache);
 				service.creerTache(tache);
 			}
 			catch(Exception e) {
@@ -125,6 +156,7 @@ public class TacheController {
 			 BindingResult presult,
 			Model pmodel)
 	{
+			
 		if(!presult.hasErrors()) {
 			try
 			{
@@ -132,10 +164,10 @@ public class TacheController {
 				service.creerTache(tache);
 			}
 			catch(Exception e) {
-				System.err.println(e.getMessage());
+				System.err.println("ERRR : "+e.getMessage()+" "+e.toString());
 			}
 		}
-		return this.getAffiche(pmodel);
+		return this.getAfficheTache(pmodel);
 	}
 	
 }
