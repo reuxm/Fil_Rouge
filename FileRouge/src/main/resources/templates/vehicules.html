@@ -9,19 +9,19 @@
 <div th:replace="fragments/header :: header"></div>
 
     <div class="container">
-	 <table th:unless="${action == 'ModifierVehicule'}">
+	 <table class="table table-striped table-dark" th:unless="${action == 'ModifierVehicule'}">
 	 <thead>
 	 	<tr>
-	 	<th>Id</th>
-	 	<th>Modèle</th>
-	 	<th>Quantité</th>
-	 	<th>Prix HT</th>
-	 	<th>Date de création</th>
-	 	<th>Supprimer</th>
+	 	<th scope="col">Id</th>
+	 	<th scope="col">Modèle</th>
+	 	<th scope="col">Quantité</th>
+	 	<th scope="col">Prix HT</th>
+	 	<th scope="col">Date de création</th>
+	 	<th scope="col">Supprimer</th>
 	 	</tr>
 	 </thead>
 	 <tbody>
-	 	<tr th:each="vehicule : ${listevehicule}">
+	 	<tr th:scope="row" th:each="vehicule : ${listevehicule}">
 	 		<td >
 	 		<a	th:href="@{/afficherModifierVehicule/{id}(id=${vehicule.id})}" th:text="${vehicule.id}"></a></td>
 	 		<td th:text="${vehicule.modele}"/>
@@ -42,17 +42,33 @@
  <div>
 	  <form action="#" th:action="@{/{action}(action=${action})}" 
 	  th:object="${vehiculeform}"   method="post">
-	  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
-	    	<label for="modele">Modèle</label>
-	   		<input type="text" th:field="*{modele}" id="modele" placeholder="modèle"/>
-	   		<label for="qte">Quantité</label>
-	   		<input type="text" th:field="*{qte}" id="qte" placeholder="quantité"/>
-	   		<label for="prixHT">Prix HT</label>
-	   		<input type="text" th:field="*{prixHT}" id="prixHT" placeholder="prix HT"/>
-	   		<label for="dateCreation">Date de création</label>
-	   		<input type="date" th:field="*{dateCreation}" id="dateCreation" 
+	  
+	        <div class="form-group">
+	  		<input  class="form-control" type="hidden" th:field="*{id}" th:value="*{id}"/>
+	    	<label for="modele"></label>
+	    	</div>
+	    	
+	    	<div class="form-group">
+	   		<input class="form-control" type="text" th:field="*{modele}" id="modele" placeholder="modèle"/>
+	   		<label for="qte"></label>
+	   		</div>
+	   		
+	   		<div class="form-group">
+	   		<input  class="form-control" type="text" th:field="*{qte}" id="qte" placeholder="quantité"/>
+	   		<label for="prixHT"></label>
+	   		</div>
+	   		
+	   		<div class="form-group">
+	   		<input class="form-control" type="text" th:field="*{prixHT}" id="prixHT" placeholder="prix HT"/>
+	   		<label for="dateCreation"></label>
+	   		</div>
+	   		
+	   		<div class="form-group">
+	   		<input class="form-control" type="date" th:field="*{dateCreation}" id="dateCreation" 
 	   		placeholder="date de création"/>
-	   <button  type="submit">Valider</button>
+	   		</div>
+	   <button  type="submit" class="btn btn-light">Valider</button>
+	   
 	</form>
  </div>
 </div>
