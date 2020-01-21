@@ -9,10 +9,9 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<table>
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th th:text="Id"></th>
 					<th th:text="Creation"></th>
 					<th th:text="Auteur"></th>
 					<th th:text="Cloture"></th>
@@ -24,10 +23,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="f : ${listefiches}">
-					<td th:unless="${f.etat}"><a
-						th:href="'/modifierFiche/'+${f.id}" th:text="${f.id}"></a></td>
-					<td th:if="${f.etat}" th:text="${f.id}"></td>
+				<tr th:each="f : ${listefiches}" th:href="'/modifierFiche/'+${f.id}" th:classappend="${f.etat} ? table-secondary : table-light">
 					<td th:text="${f.dateCreation}"></td>
 					<td th:text="${f.user.lastname}"></td>
 					<td th:text="${f.dateCloture}"></td>
@@ -35,8 +31,14 @@
 					<td th:text="${f.client.name}"></td>
 					<td th:text="${f.prix+(f.prix*f.tva)}"></td>
 					<td th:text="${f.description}"></td>
-					<td><a th:unless="${f.etat}" class="btn btn-outline-danger"
-						th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a></td>
+					<td>
+						<a th:unless="${f.etat}" class="btn btn-outline-secondary"
+						th:href="'/fiches/'+${f.id}" th:text="Modif"></a>
+						<a th:unless="${f.etat}" class="btn btn-outline-danger"
+						th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a>
+						
+						<h5><span th:if="${f.etat}" th:text="Clôt" class="badge badge-pill badge-secondary"></span></h5>
+					</td>
 				</tr>
 			</tbody>
 		</table>

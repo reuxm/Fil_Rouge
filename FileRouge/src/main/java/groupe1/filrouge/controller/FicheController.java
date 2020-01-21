@@ -77,7 +77,7 @@ public class FicheController {
 		return readAllFiches( pmodel );
 	}
 	
-	@GetMapping("/modifierFiche/{id}")
+	@GetMapping("/fiches/{id}")
 	public String updateFiche( Model pmodel, @PathVariable Integer id ) {
 		Fiche f = service.rechercheFicheId( id );
 		FicheForm form = new FicheForm();
@@ -143,6 +143,5 @@ public class FicheController {
 		
 		fService.create( facture );
 	}
-	
 	
 }
