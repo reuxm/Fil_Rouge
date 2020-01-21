@@ -6,15 +6,16 @@
 <body>
 	<div class="container">
 		<div class="row">
+		
 			<div class="col-12">
-
+			
 				<div class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
-				
+				<div class="container">
 					
 				<div class="navbar-header">
+				<a class="navbar-brand" href="#" th:href="@{/}">
 				<img th:src="@{/img/logo.jpg}" class="logo" th:href="@{/}" />
-				<a class="navbar-brand" href="#" th:href="@{/}"> Menu</a>
-
+				 </a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +30,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Entretiens Véhicules </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" th:href="@{/afficherTache}"> Visualisation Tâches</a>
-							<a class="dropdown-item" href="#" th:href="@{/afficherCreerTache}">Ajout Tâches</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" th:href="@{/fiches}">Creation Fiches</a>
-							<a class="dropdown-item" href="#" th:href="@{/creerFiche}">Modification Fiches</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherCreerTache}">Gestion Tâches</a>
+							<a class="dropdown-item" href="#" th:href="@{/fiches}">Gestion Fiches</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherPiecesUtilisees}">Pièces utilisées</a>
 					</div></li>
 					<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -43,9 +42,17 @@
 							<a class="dropdown-item" href="#" th:href="@{/afficherCreerPiece}">Creation Devis</a>
 							<a class="dropdown-item" href="#" th:href="@{/afficherCreerVéhicule}">Validation Devis</a>
 
-					</div></li>
-					
-							
+					</div></li>						
+
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Gestion Utilisateurs </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" th:href="@{/afficherCreerClient}"> Gestion Clients</a> 
+							<div class="dropdown-divider"></div>
+						    <a class="dropdown-item" href="#" th:href="@{/afficherCreerUser}"> Gestion Personnel</a>
+						</div></li>
 					<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -59,21 +66,13 @@
 
 
 						</div></li>
-
 							</ul>
-							<form class="form-inline my-2 my-lg-0">
-								<input class="form-control mr-sm-2" type="search"
-									placeholder="Search" aria-label="Search">
-								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit">Search</button>
-							</form>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 </body>
 </html>
