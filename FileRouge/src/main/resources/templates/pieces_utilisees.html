@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion Des Pièces'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<table class="table table-striped table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Id tâche</th>
+					<th scope="col">Libelle pièce</th>
+					<th scope="col">Quantité utilisée</th>
+					<th scope="col">Quantité restante</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:scope="row" th:each="tache : ${listetache}">
+					<td th:text="${tache.id}"></td>
+					<td th:text="${tache.piece.libelle}" />
+					<td th:text="${tache.qte}" />
+					<td th:text="${tache.piece.qte}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
+
+</body>
+</html>

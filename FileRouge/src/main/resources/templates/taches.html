@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  	<title th:text="'Gestion Des Taches'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	 <head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion des tâches'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+  </head>
+  <body>
+ 	<div th:replace="fragments/header :: header"></div>
+ 
+	    <div class="container">
+	    <form  action="#" th:action="@{/{action}(action=${action})}" 
+		  th:object="${tacheform}"   method="post"  >
+		  
+			 <table class="table w-auto" >
+			 <thead>
+			 	<tr>
+			 	<th> id </th>
+			 	<th>Fiche</th>
+			 	<th>Utilisateur</th>
+			 	<th>Priorite</th>
+			 	<th>Piece</th>
+			 	<th>Quantité</th>				
+			 	<th>Commentaire</th>
+
+	
+			 	</tr>
+			 </thead>
+			 <tbody>
+			 	<tr th:each="tache : ${listetache}" th:unless="${tache.etat}">
+			 		<td >
+			 		<a	th:href="@{/afficherModifierTache/{id}(id=${tache.id})}" 
+			 		th:text="${tache.id}"></a></td>
+			 		<td th:text="${tache.fiche.client.firstname + ' '+  #dates.format(tache.fiche.dateCreation, 'dd/MM')}"/>
+			 		<td th:text="${tache.user.firstname}"/>
+			 		<td th:text="${tache.priorite.libelle}"/>
+			 		<td th:text="${tache.piece.libelle}"/>
+			 		<td th:text="${tache.qte}"/>
+			 		<td th:text="${tache.commentaire}" />
+					<td th:text="${tache.etat}" hidden=true />
+			 		
+			 	</tr>
+			  
+			 </tbody>
+		 </table>
+
+		</form>
+	<div class="border p-4 m-2"  th:if="${action == 'CreerTache'}"> 		
+
+	 <h3 th:if="${action == 'CreerTache'}">Ajout d'une tâche</h3>
+	 
+		  <form action="#" th:action="@{/{action}(action=${action})}" 
+		  th:object="${tacheform}"   method="post"  >
+		  <div class="form-group " >
+		  		<input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"/>
+		  		</div>
+		  		
+		   		<div class="form-group">
+		   		<label for="fiche">Fiche</label>
+		   	    <select th:field="*{fiche}" required class="form-control" >
+		   	    
+		   	    <option value="" selected hidden=true id="fiche">Selection fiche</option>
+			    <option th:each="fiche :${listefiche}" 
+			    	th:value="${fiche.id}" th:utext="${fiche.client.firstname + ' ' + #dates.format(fiche.dateCreation, 'dd/MMM/yyyy')}"/>
+			    </select>
+
+			    </div>
+			    <div class="form-group">
+			    <label for="user">Utilisateur</label>
+			    
+			    <select th:field="*{user}" required id="user" class="form-control">
+			    <option value="" selected hidden=true>Selection utilisateur</option>
+			    <option th:each="user :${listeuser}" 
+			    	th:value="${user.id}" th:utext="${user.firstname}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="priorite">Priorité</label>
+			    <select th:field="*{priorite}" id="priorite" class="form-control">
+			    <option value="" selected hidden=true>Selection priorité</option>
+			    <option th:each="priorite :${listepriorite}" 
+			    	th:value="${priorite.id}" th:utext="${priorite.libelle}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="piece">Pièce</label>
+			    <select th:field="*{piece}" required id="piece" class="form-control">
+			    <option value="" selected="selected" hidden=true>Selection pièces</option>
+			    <option th:each="piece :${listepiece}" th:value="${piece.id}" th:utext="${piece.libelle}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="qte">Quantitée</label>
+		   		<input type="number" th:field="*{qte}" class="form-control" id="qte" placeholder="Quantitée" required/>
+		   		</div>
+				 <div class="form-group">
+		    	<label for="com">Commentaire</label>
+			
+		   		<textarea class="form-control" th:field="*{commentaire}" id="com" placeholder="Commentaire" required></textarea>
+		   		</div>
+		 <button class="btn btn-outline-success" type="submit">Valider</button>
+		</form>
+	 </div>
+
+   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+    </div>
+    </body>
+
+</html>

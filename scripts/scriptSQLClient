@@ -1,0 +1,1 @@
+ALTER TABLE client ADD cloturer BIT NOT NULL DEFAULT 0 
