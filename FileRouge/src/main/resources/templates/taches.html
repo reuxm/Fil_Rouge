@@ -81,7 +81,7 @@
 			    </div>
 			    <div class="form-group">
 			    <label for="priorite">Priorité</label>
-			    <select th:field="*{priorite}" id="priorite" class="form-control">
+			    <select th:field="*{priorite}" id="priorite" required class="form-control">
 			    <option value="" selected hidden=true>Selection priorité</option>
 			    <option th:each="priorite :${listepriorite}" 
 			    	th:value="${priorite.id}" th:utext="${priorite.libelle}"/>
@@ -101,7 +101,7 @@
 				 <div class="form-group">
 		    	<label for="com">Commentaire</label>
 			
-		   		<textarea class="form-control" th:field="*{commentaire}" id="com" placeholder="Commentaire" required></textarea>
+		   		<textarea class="form-control" th:field="*{commentaire}" id="com" placeholder="Commentaire"></textarea>
 		   		</div>
 		 <button class="btn btn-outline-success" type="submit">Valider</button>
 		</form>

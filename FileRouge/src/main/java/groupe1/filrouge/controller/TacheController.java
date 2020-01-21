@@ -167,7 +167,7 @@ public class TacheController {
 				System.err.println("ERRR : "+e.getMessage()+" "+e.toString());
 			}
 		}
-		return this.getAfficheTache(pmodel);
+		return this.getAffiche(pmodel);
 	}
 	
 }
