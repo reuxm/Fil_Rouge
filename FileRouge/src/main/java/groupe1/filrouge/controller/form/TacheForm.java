@@ -1,6 +1,7 @@
 package groupe1.filrouge.controller.form;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
 
 public class TacheForm {
 	
@@ -9,7 +10,7 @@ public class TacheForm {
 	@NotEmpty 
 	private String commentaire;
 	
-
+	@PositiveOrZero(message="La quantité ne peux pas être négative")
 	private Integer qte;
 	
 	private Boolean etat;

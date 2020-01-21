@@ -27,8 +27,7 @@ public class PieceController {
 	
 	private Piece convertForm(PieceForm pieceform) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date madate = sdf.parse(pieceform.getDateCreation());
-		
+		Date madate = sdf.parse(pieceform.getDateCreation());		
 		Piece ppiece = new Piece();
 		ppiece.setId(pieceform.getId());
 		ppiece.setLibelle(pieceform.getLibelle());
@@ -113,7 +112,8 @@ public class PieceController {
 			try
 			{
 				Piece ppiece = convertForm(pieceform);
-				servicePiece.modifierPiece(ppiece);
+				servicePiece.modifierPiece(ppiece);	
+
 			}
 			catch(Exception e) {
 				System.err.println(e.getMessage());
