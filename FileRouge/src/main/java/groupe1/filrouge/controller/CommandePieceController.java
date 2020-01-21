@@ -84,6 +84,9 @@ public class CommandePieceController {
 				System.err.println(e.getMessage());
 			}
 		}
+		else {
+			pmodel.addAttribute("errors", presult.getAllErrors());
+		}
 		return this.getAffiche(pmodel);
 	}
 	
