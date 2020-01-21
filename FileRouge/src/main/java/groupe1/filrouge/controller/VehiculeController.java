@@ -42,9 +42,13 @@ public class VehiculeController {
 		List<Vehicule> lVehicules = serviceVehicule.rechercheVehicule();
 		pmodel.addAttribute("listevehicule", lVehicules);
 		pmodel.addAttribute("action", "CreerVehicule");
-		VehiculeForm vehiculeform = new VehiculeForm();
-		vehiculeform.setId(0);
-		pmodel.addAttribute("vehiculeform",vehiculeform);
+		
+		if(!pmodel.containsAttribute("errors")) {
+			VehiculeForm vehiculeform = new VehiculeForm();
+			vehiculeform.setId(0);
+			pmodel.addAttribute("vehiculeform",vehiculeform);
+		}
+		
 		return "vehicules";
 	}
 	

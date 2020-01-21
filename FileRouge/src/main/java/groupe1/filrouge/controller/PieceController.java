@@ -42,9 +42,13 @@ public class PieceController {
 		List<Piece> lPieces = servicePiece.recherchePiece();
 		pmodel.addAttribute("listepiece", lPieces);
 		pmodel.addAttribute("action", "CreerPiece");
-		PieceForm pieceform = new PieceForm();
-		pieceform.setId(0);
-		pmodel.addAttribute("pieceform",pieceform);
+		
+		if(!pmodel.containsAttribute("errors")) {
+			PieceForm pieceform = new PieceForm();
+			pieceform.setId(0);
+			pmodel.addAttribute("pieceform",pieceform);
+		}
+		
 		return "pieces";
 	}
 

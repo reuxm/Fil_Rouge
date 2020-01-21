@@ -61,9 +61,13 @@ public class CommandePieceController {
 		pmodel.addAttribute("listepieces", lpieces);
 		pmodel.addAttribute("listeusers", lusers);
 		pmodel.addAttribute("action", "CreerCommandePiece");
-		CommandePieceForm cmdpieceform = new CommandePieceForm();
-		cmdpieceform.setId(0);
-		pmodel.addAttribute("cmdpieceform",cmdpieceform);
+		
+		if(!pmodel.containsAttribute("errors")) {
+			CommandePieceForm cmdpieceform = new CommandePieceForm();
+			cmdpieceform.setId(0);
+			pmodel.addAttribute("cmdpieceform",cmdpieceform);
+		}
+		
 		return "commandes_piece";
 	}
 	
