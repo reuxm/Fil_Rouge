@@ -1,6 +1,7 @@
 package groupe1.filrouge.controller.form;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
 
 public class VehiculeForm {
 	private Integer id;
@@ -8,8 +9,8 @@ public class VehiculeForm {
 	@NotEmpty
 	private String modele;
 	
-	@NotEmpty
-	private String qte;
+	@PositiveOrZero(message = "La quantité doit être positive !")
+	private Integer qte;
 	
 	private Float prixHT;
 	
@@ -32,11 +33,11 @@ public class VehiculeForm {
 		this.modele = modele;
 	}
 
-	public String getQte() {
+	public Integer getQte() {
 		return qte;
 	}
 
-	public void setQte(String qte) {
+	public void setQte(Integer qte) {
 		this.qte = qte;
 	}
 

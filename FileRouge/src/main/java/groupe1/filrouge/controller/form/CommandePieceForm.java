@@ -1,10 +1,13 @@
 package groupe1.filrouge.controller.form;
 
+import javax.validation.constraints.PositiveOrZero;
+
 public class CommandePieceForm {
 	private Integer id;
 	private Integer id_user;
 	private Integer id_piece;
 	
+	@PositiveOrZero(message = "La quantité doit être positive !")
 	private Integer qte;
 	
 	private String dateCreation;
