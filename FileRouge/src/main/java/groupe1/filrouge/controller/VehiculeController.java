@@ -46,6 +46,8 @@ public class VehiculeController {
 		if(!pmodel.containsAttribute("errors")) {
 			VehiculeForm vehiculeform = new VehiculeForm();
 			vehiculeform.setId(0);
+			Date dateJour = new Date();
+			vehiculeform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(dateJour));
 			pmodel.addAttribute("vehiculeform",vehiculeform);
 		}
 		
