@@ -43,56 +43,44 @@
 			</tbody>
 		</table>
 
-		<button type="button" class="btn btn-outline-dark" data-toggle="modal"
-			data-target="#exampleModal" th:text="Nouvelle"></button>
+		<form th:object="${form}" action="#" th:action="fiches" method="post" class="border p-4 m-2">
+			<h3 class="modal-title" th:text="'Formulaire d\'ajout'"></h3>
 
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-				<form th:object="${form}" action="#" th:action="fiches" method="post">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Nouvelle fiche</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<label th:text="Description"></label>
-						<textarea name="description" placeholder="description" class="form-control"></textarea>
-						
-						<label th:text="Priorite"></label>
-						<select name="priorite" class="form-control" required>
-							<option value="" th:text="Priorite" selected hidden=true />
-							<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
-						</select>
-						
-						<label th:text="Client"></label>
-						<select name="client" required class="form-control">
-							<option value="" selected hidden=true />
-							<option th:each="c : ${listClients}" th:value="${c.id}" th:text="${c.name}" />
-						</select>
-	
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label th:text="'Prix HT'"></label>
-								<input name="prix" type="number" th:value="0"  step="0.01" class="form-control"/>
-							</div>
-							<div class="form-group col-md-6">
-								<label th:text="TVA"></label>
-								<input name="tva" type="number" th:value="0.2"  step="0.01" class="form-control"/>
-							</div>
-						</div>
-	
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-outline-success" th:text="Valider"></button>
-					</div>
-				</form>
+			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+				<span th:text="${e.defaultMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<label th:text="Description"></label>
+			<textarea name="description" placeholder="description" class="form-control" th:text="${description}"></textarea>
+			
+			<label th:text="Priorite"></label>
+			<select name="priorite" class="form-control" required>
+				<option value="" th:text="Priorite" selected hidden=true />
+				<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" th:selected="${prio} == ${p.id}" />
+			</select>
+			
+			<label th:text="Client"></label>
+			<select name="client" required class="form-control">
+				<option value="" selected hidden=true th:text="Client" />
+				<option th:each="c : ${listClients}" th:value="${c.id}" th:text="${c.name}" th:selected="${client} == ${c.id}" />
+			</select>
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label th:text="'Prix HT'"></label>
+					<input name="prix" type="number" th:value="${prix==null ? 0 : prix}"  step="0.01" class="form-control"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label th:text="TVA"></label>
+					<input name="tva" type="number" th:value="${tva==null ? 0.2 : tva}"  step="0.01" class="form-control"/>
 				</div>
 			</div>
-		</div>
+
+			<button type="submit" class="btn btn-outline-success" th:text="Valider"></button>
+		</form>
 
 	</div>
 	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA

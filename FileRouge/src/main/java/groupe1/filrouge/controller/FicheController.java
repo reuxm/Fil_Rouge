@@ -74,6 +74,14 @@ public class FicheController {
 			
 			service.creerFiche( fiche );
 		}
+		else {
+			pmodel.addAttribute( "errors", presult.getAllErrors() );
+			pmodel.addAttribute( "description", form.getDescription() );
+			pmodel.addAttribute( "prio", form.getPriorite() );
+			pmodel.addAttribute( "client", form.getClient() );
+			pmodel.addAttribute( "prix", form.getPrix() );
+			pmodel.addAttribute( "tva", form.getTva() );
+		}
 		return readAllFiches( pmodel );
 	}
 	
@@ -116,8 +124,7 @@ public class FicheController {
 			service.modifierFiche( fiche );
 		}
 		else {
-			presult.getAllErrors().stream().forEach(e->System.err.println( e ) );
-			System.err.println(form);
+			
 		}
 		return readAllFiches( pmodel );
 	}

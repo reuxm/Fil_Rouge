@@ -15,10 +15,10 @@ public class FicheForm {
 	@NotEmpty
 	private String client;
 	
-	@PositiveOrZero
+	@PositiveOrZero( message="Le prix ne peux pas être négatif" )
 	private Float prix;
 	
-	@PositiveOrZero
+	@PositiveOrZero( message="La TVA ne peux pas être négative" )
 	private Float tva;
 	
 	private String cloturer;
