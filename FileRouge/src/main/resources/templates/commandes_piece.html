@@ -7,7 +7,13 @@
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
-		<table class="table table-hover" th:unless="${action == 'ModifierCommandePiece'}">
+
+				<div class=" m-4  d-flex justify-content-end">
+		    <form class="form-inline">
+		    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+		    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+		  </form></div>
+      <table class="table table-hover" th:unless="${action == 'ModifierCommandePiece'}">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -47,6 +53,7 @@
 					<select required id="user" class="form-control" th:field="*{id_user}">
 						<option value="" selected hidden>Sélection créateur</option>
 						<option th:each="puser :${listeusers}" th:value="${puser.id}" th:utext="${puser.firstname}" />
+
 					</select>
 				</div>
 				<div class="form-group">
@@ -60,7 +67,9 @@
 					<label for="qte">Quantité</label> 
 					<input class="form-control" type="number" th:field="*{qte}" id="qte" placeholder="Quantité" />
 				</div>
-				<button type="submit" class="btn btn-outline-success">Valider</button>
+
+				<button class="btn btn-outline-success" type="submit">Valider</button>
+
 			</form>
 		</div>
 	</div>
