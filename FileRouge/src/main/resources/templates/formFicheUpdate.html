@@ -8,17 +8,27 @@
 
 <div th:replace="fragments/header :: header"></div>
 
-<form th:object="${form}" action="#" th:action="'../validModifFiche'" method="post" class="container">
+<form th:object="${form}" action="#" th:action="'../fiches/'+${id}" method="post" class="container">
+	<h3 th:text="'Formulaire de modification'"></h3>
+
+	<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+		<span th:text="${e.defaultMessage}"></span>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+			
 	<input type="hidden" th:value="${id}" name="id"/>
 	<input type="hidden" th:value="${client}" name="client"/>
 	
 	<label th:text="Description"></label>
-	<textarea name="description" th:text="${description}" class="form-control"></textarea>
+	<textarea name="description" th:text="${newdescription==null ? description : newdescription}" class="form-control"></textarea>
 	
 	<label th:text="Priorite"></label>
 	<select name="priorite" class="form-control" required>
 		<option value="" selected hidden=true th:text="Priorite" />
-		<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
+		<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}"
+			th:selected="(${newprio != null} and ${newprio} == ${p.id}) or (${newprio == null} and ${priorite} == ${p.id})" />
 	</select>
 	
 	<div class="form-row">
@@ -37,6 +47,7 @@
 		<label th:text="Cloturer" for="cloture" class="form-check-label"></label>
 	</div>
 	
+	<a th:href="@{/fiches}" th:text="Retour" class="btn btn-outline-secondary"></a>
 	<button type="submit" th:text="Valider" class="btn btn-outline-success"></button>
 </form>
 
