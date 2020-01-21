@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import groupe1.filrouge.controller.form.FicheForm;
-import groupe1.filrouge.controller.form.FicheFormUpdate;
+import groupe1.filrouge.entity.FactureFiche;
 import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceClient;
+import groupe1.filrouge.service.IServiceFactureFiche;
 import groupe1.filrouge.service.IServiceFiche;
 import groupe1.filrouge.service.IServicePriorite;
 import groupe1.filrouge.service.IServiceUser;
@@ -36,6 +37,9 @@ public class FicheController {
 	
 	@Autowired
 	private IServiceUser uService;
+	
+	@Autowired
+	private IServiceFactureFiche fService;
 	
 	@GetMapping("/fiches")
 	public String readAllFiches( Model pmodel ) {
@@ -68,6 +72,8 @@ public class FicheController {
 				Integer.parseInt( form.getClient() ) 
 			) );
 			fiche.setDescription( form.getDescription() );
+			fiche.setPrix( form.getPrix() );
+			fiche.setTva( form.getTva() );
 			
 			service.creerFiche( fiche );
 		}
@@ -77,20 +83,23 @@ public class FicheController {
 	@GetMapping("/modifierFiche/{id}")
 	public String updateFiche( Model pmodel, @PathVariable Integer id ) {
 		Fiche f = service.rechercheFicheId( id );
-		FicheFormUpdate form = new FicheFormUpdate();
-		form.setId( id+"" );
+		FicheForm form = new FicheForm();
+		form.setId( id );
+		pmodel.addAttribute("client", f.getClient().getId() );
 		pmodel.addAttribute( "form", form );
 		pmodel.addAttribute( "priorite", f.getPriorite().getLibelle() );
 		pmodel.addAttribute( "description", f.getDescription() );
+		pmodel.addAttribute( "prix", f.getPrix() );
+		pmodel.addAttribute( "tva", f.getTva() );
 		pmodel.addAttribute( "listPriorites", pService.recherchePriorite() );
 		return "formFicheUpdate";
 	}
 
 	@PostMapping("/validModifFiche")
-	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheFormUpdate form, BindingResult presult ) {
+	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();
-			Fiche original = service.rechercheFicheId( Integer.parseInt( form.getId() ) );
+			Fiche original = service.rechercheFicheId( form.getId() );
 			fiche.setId( original.getId() );
 			fiche.setDateCreation(  original.getDateCreation() );
 			fiche.setUser( original.getUser() );
@@ -100,13 +109,18 @@ public class FicheController {
 				Integer.parseInt( form.getPriorite() ) 
 			) );
 			fiche.setDescription( form.getDescription() );
+			fiche.setPrix( form.getPrix() );
+			fiche.setTva( form.getTva() );
 			
 			if( form.getCloturer()!=null && form.getCloturer().equals("on") ) {
-				fiche.setEtat( true );
-				fiche.setDateCloture( new Date() );
+				clore(fiche);
 			}
 			
 			service.modifierFiche( fiche );
+		}
+		else {
+			presult.getAllErrors().stream().forEach(e->System.err.println( e ) );
+			System.err.println(form);
 		}
 		return readAllFiches( pmodel );
 	}
@@ -114,10 +128,23 @@ public class FicheController {
 	@GetMapping("/clotureFiche/{id}")
 	public String clotureFiche(Model pmodel, @PathVariable Integer id) {
 		Fiche fiche = service.rechercheFicheId( id );
-		fiche.setEtat( true );
-		fiche.setDateCloture( new Date() );
+		clore(fiche);
 		service.modifierFiche( fiche );
 		return readAllFiches( pmodel );
+	}
+
+	private void clore(Fiche fiche) {
+		fiche.setEtat( true );
+		Date date = new Date();
+		fiche.setDateCloture( date );
+		
+		FactureFiche facture = new FactureFiche();
+		facture.setDateCreation( date );
+		facture.setFiche( fiche );
+		facture.setPrixHT( fiche.getPrix() );
+		facture.setTVA( fiche.getTva() );
+		
+		fService.create( facture );
 	}
 	
 	

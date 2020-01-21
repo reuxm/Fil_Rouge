@@ -25,6 +25,8 @@ public class FactureController {
 	@Autowired
 	private IServiceFactureDevis serviceD;
 	
+	// Facture fiche
+	
 	@GetMapping("/facturesFiche")
 	public List<FactureFiche> readAllF() {
 		return serviceF.list();
@@ -39,6 +41,8 @@ public class FactureController {
 	public void createF( @RequestBody FactureFiche f ) {
 		serviceF.create( f );
 	}
+	
+	// Facture devis
 	
 	@GetMapping("/facturesDevis")
 	public List<FactureDevis> readAllD() {
