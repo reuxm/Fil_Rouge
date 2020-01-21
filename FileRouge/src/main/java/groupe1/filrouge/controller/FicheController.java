@@ -45,20 +45,17 @@ public class FicheController {
 	public String readAllFiches( Model pmodel ) {
 		List<Fiche> lf = service.rechercheFiche();
 		pmodel.addAttribute( "listefiches", lf );
-		return "fiches";
-	}
-	
-	@GetMapping("/creerFiche")
-	public String createFiche( Model pmodel ) {
+		
 		FicheForm form = new FicheForm();
 		form.setId(0);
 		pmodel.addAttribute( "form", form );
 		pmodel.addAttribute( "listPriorites", pService.recherchePriorite() );
 		pmodel.addAttribute( "listClients", cService.list() );
-		return "formFiche";
+		
+		return "fiches";
 	}
 
-	@PostMapping("/validCreerFiche")
+	@PostMapping("/fiches")
 	public String validCreate( Model pmodel, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();
