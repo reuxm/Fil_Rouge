@@ -16,7 +16,7 @@
 	<textarea name="description" th:text="${description}" class="form-control"></textarea>
 	
 	<label th:text="Priorite"></label>
-	<select name="priorite" class="form-control">
+	<select name="priorite" class="form-control" required>
 		<option value="" selected hidden=true th:text="Priorite" />
 		<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
 	</select>
