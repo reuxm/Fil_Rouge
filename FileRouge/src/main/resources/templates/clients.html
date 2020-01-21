@@ -56,36 +56,44 @@
 
 	  <form action="#" th:action="@{/{action}(action=${action})}" 
 	  th:object="${clientform}"   method="post">
+	  <div th:each="e:${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+	  <span th:text="${e.defaultMessage}"></span>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	  </button>
+	  </div>
 	  		<div class="form-group ">
 	  		<input class="form-control" type="hidden" th:field="*{id}" th:value="*{id}"/>
 	  		</div>
 	  		<div class="form-group ">
 	    	<label for="name">Nom</label>
-	   		<input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Nom"/>
+	   		<input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Nom" required/>
 	   		</div>
 	   		<div class="form-group ">
 	   		<label for="firstname">Prenom</label>
-	   		<input type="text" class="form-control" th:field="*{firstname}" id="firstname" placeholder="Prenom"/>
+	   		<input type="text" class="form-control" th:field="*{firstname}" id="firstname" placeholder="Prenom" required/>
 	   		</div>
 	   		<div class="form-group ">
 	   		<label for="adresse">Adresse</label>
-	   		<input type="text" class="form-control" th:field="*{adresse}" id="adresse" placeholder="Adresse"/>
+	   		<input type="text" class="form-control" th:field="*{adresse}" id="adresse" placeholder="Adresse" required/>
 	   		</div>
 	   		<div class="form-group ">
 	   		<label for="codePostal">CodePostal</label>
-	   		<input type="text" class="form-control" th:field="*{codePostal}" id="codePostal" placeholder="Code Postal"/>
-	   		</div>
+	   		<input type="text" class="form-control" th:field="*{codePostal}" id="codePostal" placeholder="Code Postal" required/>
+	   		 
+	   		<div th:if="${#fields.hasErrors('codePostal')}" th:errors="*{codePostal}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+	   		</div></div>
 	   		<div class="form-group ">
 	   		<label for="ville">Ville</label>
-	   		<input type="text" class="form-control" th:field="*{ville}" id="ville" placeholder="Ville"/>
+	   		<input type="text" class="form-control" th:field="*{ville}" id="ville" placeholder="Ville" required/>
 	   		</div>
 	   		<div class="form-group ">
 	   		<label for="telephone">Telephone</label>
-	   		<input type="text" class="form-control" th:field="*{telephone}" id="telephone" placeholder="Numéro de télephone"/>
+	   		<input type="text" class="form-control" th:field="*{telephone}" id="telephone" placeholder="Numéro de télephone" required/>
 	   		</div>
 	   		<div class="form-group ">
 	   		<label for="mobile">Mobile</label>
-	   		<input type="text" th:field="*{mobile}" id="mobile" class="form-control" placeholder="Numéro de mobile"/>
+	   		<input type="text" th:field="*{mobile}" id="mobile" class="form-control" placeholder="Numéro de mobile" />
    			</div>
    			<div class="form-group ">
    			<input type="checkbox" id="cloturer" name="Cloturer" th:field="*{cloturer}" hidden checked value="true" />

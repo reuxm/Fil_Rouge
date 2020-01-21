@@ -38,6 +38,7 @@
  <h2 th:if="${action == 'ModifierVehicule'}">
  <a	th:href="@{/afficherCreerVehicule}" th:text="'Formulaire de Mofication'"></a>
  </h2>
+ 
  <h2 th:unless="${action == 'ModifierVehicule'}">Formulaire d'Ajout</h2>
  
  <div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
@@ -49,8 +50,6 @@
 
 	  <form action="#" th:action="@{/{action}(action=${action})}" 
 	  th:object="${vehiculeform}"   method="post">
-	  
-	        <div class="form-group">
 	  		<input  class="form-control" type="hidden" th:field="*{id}" th:value="*{id}"/>
 	    	</div>
 	    	
@@ -77,6 +76,7 @@
 	   <button  type="submit" class="btn btn-outline-success">Valider</button>
 	   
 	</form>
+	
  </div>
 </div>
 
