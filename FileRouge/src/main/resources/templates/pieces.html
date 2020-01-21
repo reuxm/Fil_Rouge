@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/headerload :: load">
-  	<title th:text="'Gestion Des Pièces'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="'Gestion Des Pièces'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/header :: header"></div>
 
-    <div class="container">
-	 <table th:unless="${action == 'ModifierPiece'}">
-	 <thead>
-	 	<tr>
-	 	<th>Id</th>
-	 	<th>Libelle</th>
-	 	<th>Quantité</th>
-	 	<th>Date de création</th>
-	 	<th>Supprimer</th>
-	 	</tr>
-	 </thead>
-	 <tbody>
-	 	<tr th:each="piece : ${listepiece}">
-	 		<td >
-	 		<a	th:href="@{/afficherModifierPiece/{id}(id=${piece.id})}" th:text="${piece.id}"></a></td>
-	 		<td th:text="${piece.libelle}"/>
-	 		<td th:text="${piece.qte}"/>
-	 		<td th:text="${piece.dateCreation}"/>
-	 		<td >
-	 		<a th:href="@{/SupprimerPiece/{id}(id=${piece.id})}" th:text="'Supprimer'"></a></td>
-	 	</tr>
-	 </tbody>
- </table>
- 
- <h2 th:if="${action == 'ModifierPiece'}">
- <a	th:href="@{/afficherCreerPiece}" th:text="'Formulaire de Mofication'"></a>
- </h2>
- <h2 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h2>
- 
- <div>
-	  <form action="#" th:action="@{/{action}(action=${action})}" 
-	  th:object="${pieceform}"   method="post">
-	  		<input type="hidden" th:field="*{id}" th:value="*{id}"/>
-	    	<label for="libelle">Libelle</label>
-	   		<input type="text" th:field="*{libelle}" id="libelle" placeholder="libellé"/>
-	   		<label for="qte">Quantité</label>
-	   		<input type="text" th:field="*{qte}" id="qte" 
-	   		placeholder="quantité"/>
-	   		<label for="dateCreation">Date de création</label>
-	   		<input type="date" th:field="*{dateCreation}" id="dateCreation" 
-	   		placeholder="date de création"/>
-	   <button  type="submit">Valider</button>
-	</form>
- </div>
-</div>
+	<div class="container">
+		<table class="table table-hover"
+			th:unless="${action == 'ModifierPiece'}">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Libelle</th>
+					<th>Quantité</th>
+					<th>Date de création</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="piece : ${listepiece}">
+					<td><a
+						th:href="@{/afficherModifierPiece/{id}(id=${piece.id})}"
+						th:text="${piece.id}"></a></td>
+					<td th:text="${piece.libelle}" />
+					<td th:text="${piece.qte}" />
+					<td th:text="${piece.dateCreation}" />
+					<td><a th:href="@{/SupprimerPiece/{id}(id=${piece.id})}"
+						th:text="'Supprimer'"></a></td>
+				</tr>
+			</tbody>
+		</table>
 
-<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+		<div class="border p-4 m-2">
+			<h3 th:if="${action == 'ModifierPiece'}">
+				<a th:href="@{/afficherCreerPiece}"
+					th:text="'Formulaire de Mofication'"></a>
+			</h3>
+			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h3>
+			<form action="#" th:action="@{/{action}(action=${action})}" th:object="${pieceform}" method="post">
+				<input type="hidden" th:field="*{id}" th:value="*{id}" />
+				<div class="form-group">
+					<label for="libelle">Libelle</label>
+					<input class="form-control" type="text" th:field="*{libelle}" id="libelle" placeholder="libellé" /> 
+				</div>
+				<div class="form-group">
+					<label for="qte">Quantité</label> 
+					<input class="form-control" type="text" th:field="*{qte}" id="qte" placeholder="quantité" />
+				</div>
+				<div class="form-group">
+				<label for="dateCreation">Date de création</label>
+				<input class="form-control" type="date" th:field="*{dateCreation}" id="dateCreation" placeholder="date de création" />
+				</div>
+				<button type="submit" class="btn btn-outline-secondary">Valider</button>
+			</form>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
 
 </body>
 </html>
