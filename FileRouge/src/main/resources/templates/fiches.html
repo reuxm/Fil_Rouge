@@ -17,7 +17,7 @@
 					<th th:text="Cloture"></th>
 					<th th:text="Priorite"></th>
 					<th th:text="Client"></th>
-					<th th:text="Prix"></th>
+					<th th:text="'Prix TTC'"></th>
 					<th th:text="Description"></th>
 					<th></th>
 				</tr>
@@ -44,7 +44,7 @@
 		</table>
 
 		<form th:object="${form}" action="#" th:action="fiches" method="post" class="border p-4 m-2">
-			<h3 class="modal-title" th:text="'Formulaire d\'ajout'"></h3>
+			<h3 th:text="'Formulaire d\'ajout'"></h3>
 
 			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
 				<span th:text="${e.defaultMessage}"></span>

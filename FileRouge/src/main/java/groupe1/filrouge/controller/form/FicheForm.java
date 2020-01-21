@@ -9,10 +9,10 @@ public class FicheForm {
 
 	private String description;
 
-	@NotEmpty
+	@NotEmpty( message="veuillez indiquer une priorite" )
 	private String priorite;
 
-	@NotEmpty
+	@NotEmpty( message="la fiche n'est pas liee a un client" )
 	private String client;
 	
 	@PositiveOrZero( message="Le prix ne peux pas être négatif" )

@@ -90,9 +90,9 @@ public class FicheController {
 		Fiche f = service.rechercheFicheId( id );
 		FicheForm form = new FicheForm();
 		form.setId( id );
-		pmodel.addAttribute("client", f.getClient().getId() );
+		pmodel.addAttribute( "client", f.getClient().getId() );
 		pmodel.addAttribute( "form", form );
-		pmodel.addAttribute( "priorite", f.getPriorite().getLibelle() );
+		pmodel.addAttribute( "priorite", f.getPriorite().getId() );
 		pmodel.addAttribute( "description", f.getDescription() );
 		pmodel.addAttribute( "prix", f.getPrix() );
 		pmodel.addAttribute( "tva", f.getTva() );
@@ -100,8 +100,8 @@ public class FicheController {
 		return "formFicheUpdate";
 	}
 
-	@PostMapping("/validModifFiche")
-	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
+	@PostMapping("/fiches/{id}")
+	public String validUpdate( Model pmodel,  @PathVariable Integer id, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();
 			Fiche original = service.rechercheFicheId( form.getId() );
@@ -124,7 +124,13 @@ public class FicheController {
 			service.modifierFiche( fiche );
 		}
 		else {
+			pmodel.addAttribute( "errors", presult.getAllErrors() );
+			pmodel.addAttribute( "newdescription", form.getDescription() );
+			pmodel.addAttribute( "newprio", form.getPriorite() );
+			pmodel.addAttribute( "newprix", form.getPrix() );
+			pmodel.addAttribute( "newtva", form.getTva() );
 			
+			return updateFiche( pmodel, id );
 		}
 		return readAllFiches( pmodel );
 	}
