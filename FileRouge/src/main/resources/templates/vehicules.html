@@ -17,7 +17,6 @@
 	 	<th scope="col">Quantité</th>
 	 	<th scope="col">Prix HT</th>
 	 	<th scope="col">Date de création</th>
-	 	<th scope="col">Supprimer</th>
 	 	</tr>
 	 </thead>
 	 <tbody>
@@ -28,8 +27,6 @@
 	 		<td th:text="${vehicule.qte}"/>
 	 		<td th:text="${vehicule.prixHT}"/>
 	 		<td th:text="${vehicule.dateCreation}"/>
-	 		<td >
-	 		<a th:href="@{/SupprimerVehicule/{id}(id=${vehicule.id})}" th:text="'Supprimer'"></a></td>
 	 	</tr>
 	 </tbody>
  </table>
