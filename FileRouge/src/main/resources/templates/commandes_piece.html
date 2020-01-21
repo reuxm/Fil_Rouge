@@ -45,6 +45,14 @@
 			</h2>
 			<h2 th:unless="${action == 'ModifierCommandePiece'}">Formulaire
 				d'Ajout</h2>
+				
+			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+				<span th:text="${e.defaultMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
 			<form action="#" th:action="@{/{action}(action=${action})}"
 				th:object="${cmdpieceform}" method="post">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />

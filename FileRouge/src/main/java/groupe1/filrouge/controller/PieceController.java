@@ -58,7 +58,7 @@ public class PieceController {
 			PieceForm pieceform = new PieceForm();
 			pieceform.setId(ppiece.getId());
 			pieceform.setLibelle(ppiece.getLibelle());
-			pieceform.setQte(String.valueOf(ppiece.getQte()));
+			pieceform.setQte(ppiece.getQte());
 			pieceform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(ppiece.getDateCreation()));
 			pmodel.addAttribute("pieceform", pieceform);
 		}
@@ -94,6 +94,7 @@ public class PieceController {
 		else
 		{
 			System.err.println(presult);
+			pmodel.addAttribute("errors", presult.getAllErrors());
 		}
 		return this.getAffiche(pmodel);
 	}
@@ -110,9 +111,12 @@ public class PieceController {
 			{
 				Piece ppiece = convertForm(pieceform);
 				servicePiece.modifierPiece(ppiece);	
+
 			}
 			catch(Exception e) {
 				System.err.println(e.getMessage());
+				pmodel.addAttribute("errors", presult.getAllErrors());
+				return this.getAfficheMod(pieceform.getId(), pmodel);
 			}
 		}
 		return this.getAffiche(pmodel);

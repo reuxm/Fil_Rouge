@@ -59,7 +59,7 @@ public class VehiculeController {
 			VehiculeForm vehiculeform = new VehiculeForm();
 			vehiculeform.setId(pvehicule.getId());
 			vehiculeform.setModele(pvehicule.getModele());
-			vehiculeform.setQte(String.valueOf(pvehicule.getQte()));
+			vehiculeform.setQte(pvehicule.getQte());
 			vehiculeform.setPrixHT(pvehicule.getPrixHT());
 			vehiculeform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(pvehicule.getDateCreation()));
 			pmodel.addAttribute("vehiculeform", vehiculeform);
@@ -95,6 +95,7 @@ public class VehiculeController {
 		}
 		else
 		{
+			pmodel.addAttribute("errors", presult.getAllErrors());
 			System.err.println(presult);
 		}
 		return this.getAffiche(pmodel);

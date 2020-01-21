@@ -40,6 +40,14 @@
 					th:text="'Formulaire de Mofication'"></a>
 			</h3>
 			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h3>
+			
+			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+				<span th:text="${e.defaultMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
 			<form action="#" th:action="@{/{action}(action=${action})}" th:object="${pieceform}" method="post">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 				<div class="form-group">
@@ -48,13 +56,13 @@
 				</div>
 				<div class="form-group">
 					<label for="qte">Quantité</label> 
-					<input class="form-control" type="text" th:field="*{qte}" id="qte" placeholder="quantité" />
+					<input class="form-control" type="number" th:field="*{qte}" id="qte" placeholder="quantité" />
 				</div>
 				<div class="form-group">
 				<label for="dateCreation">Date de création</label>
 				<input class="form-control" type="date" th:field="*{dateCreation}" id="dateCreation"/>
 				</div>
-				<button type="submit" class="btn btn-outline-secondary">Valider</button>
+				<button type="submit" class="btn btn-outline-success">Valider</button>
 			</form>
 		</div>
 	</div>
