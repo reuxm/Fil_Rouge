@@ -10,6 +10,7 @@
 
 <form th:object="${form}" action="#" th:action="'../validModifFiche'" method="post" class="container">
 	<input type="hidden" th:value="${id}" name="id"/>
+	<input type="hidden" th:value="${client}" name="client"/>
 	<table>
 		<tr>
 			<td th:text="Description"></td>
@@ -23,6 +24,18 @@
 				<select name="priorite">
 					<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" />
 				</select>
+			</td>
+		</tr>
+		<tr>
+			<td th:text="Prix"></td>
+			<td>
+				<input name="prix" type="number" th:value="${prix}"  step="0.01"/>
+			</td>
+		</tr>
+		<tr>
+			<td th:text="Tva"></td>
+			<td>
+				<input name="tva" type="number" th:value="${tva}"  step="0.01"/>
 			</td>
 		</tr>
 		<tr>

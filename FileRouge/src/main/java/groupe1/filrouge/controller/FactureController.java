@@ -1,6 +1,5 @@
 package groupe1.filrouge.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import groupe1.filrouge.entity.FactureDevis;
 import groupe1.filrouge.entity.FactureFiche;
-import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceFactureDevis;
 import groupe1.filrouge.service.IServiceFactureFiche;
-import groupe1.filrouge.service.IServiceFiche;
 
 @RestController
 @RequestMapping("/Rest/entity")
@@ -27,10 +24,6 @@ public class FactureController {
 	
 	@Autowired
 	private IServiceFactureDevis serviceD;
-	
-	@Autowired
-	private IServiceFiche serviceFiche;
-	
 	
 	// Facture fiche
 	
@@ -47,17 +40,6 @@ public class FactureController {
 	@PostMapping("/factureFiche")
 	public void createF( @RequestBody FactureFiche f ) {
 		serviceF.create( f );
-	}
-	
-	@GetMapping("/fiche/{id}/facture")
-	public void factureFromFiche( @PathVariable("id") int ficheId ) {
-		Fiche fiche = serviceFiche.rechercheFicheId( ficheId );
-		FactureFiche facture = new FactureFiche();
-		
-		facture.setDateCreation( new Date() );
-		facture.setFiche( fiche );
-		
-		serviceF.create( facture );
 	}
 	
 	// Facture devis

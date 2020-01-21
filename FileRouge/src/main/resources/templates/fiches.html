@@ -32,8 +32,8 @@
 					<td th:text="${f.dateCloture}"></td>
 					<td th:text="${f.priorite.libelle}"></td>
 					<td th:text="${f.client.name}"></td>
-					<td th:text="${f.description}"></td>
 					<td th:text="${f.prix+(f.prix*f.tva)}"></td>
+					<td th:text="${f.description}"></td>
 					<td><a th:unless="${f.etat}" th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a></td>
 				</tr>
 			</tbody>
