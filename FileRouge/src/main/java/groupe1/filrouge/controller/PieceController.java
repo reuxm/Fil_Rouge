@@ -45,6 +45,8 @@ public class PieceController {
 		if(!pmodel.containsAttribute("errors")) {
 			PieceForm pieceform = new PieceForm();
 			pieceform.setId(0);
+			Date dateJour = new Date();
+			pieceform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(dateJour));
 			pmodel.addAttribute("pieceform",pieceform);
 		}
 		
