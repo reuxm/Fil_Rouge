@@ -17,7 +17,6 @@
 					<th>Libelle</th>
 					<th>Quantité</th>
 					<th>Date de création</th>
-					<th>Supprimer</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,8 +27,6 @@
 					<td th:text="${piece.libelle}" />
 					<td th:text="${piece.qte}" />
 					<td th:text="${piece.dateCreation}" />
-					<td><a th:href="@{/SupprimerPiece/{id}(id=${piece.id})}"
-						th:text="'Supprimer'"></a></td>
 				</tr>
 			</tbody>
 		</table>
