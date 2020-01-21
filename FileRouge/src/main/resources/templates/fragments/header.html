@@ -12,28 +12,6 @@
 					th:fragment="header">
 					<div class="container">
 						<div class="navbar-header">
-				<img th:src="@{/img/logo.jpg}" class="logo" />
-			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="navbar-nav mr-auto">
-					<li th:classappend="${module == 'home' ? 'active' : ''}"><a
-						class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
-					<li th:classappend="${module == 'client' ? 'active' : ''}"><a
-
-					class="navbar-brand"
-						href="#" th:href="@{/afficherCreerClient}">Gérer de Client</a></li>
-
-					<li th:classappend="${module == 'commande' ? 'active' : ''}">
-						<a class="navbar-brand" href="#" th:href="@{/afficherCreerCommandePiece}">Gérer
-							Commande</a>
-					</li>
-					<li th:classappend="${module == 'fiche' ? 'active' : ''}"><a
-						class="navbar-brand" href="#" th:href="@{/fiches}">Gérer Fiche</a></li>
-					<li th:classappend="${module == 'Devis' ? 'active' : ''}"><a
-
-						class="navbar-brand" href="#" th:href="@{/devis}">Gérer Devis</a></li>
-
-
 							<img th:src="@{/img/logo.jpg}" class="logo" />
 						</div>
 						<div class="collapse navbar-collapse">
@@ -41,45 +19,32 @@
 								<li th:classappend="${module == 'home' ? 'active' : ''}"><a
 									class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
 								<li th:classappend="${module == 'client' ? 'active' : ''}"><a
-									class="navbar-brand" href="#" th:href="@{/client}">Gérer de
-										Client</a></li>
+									class="navbar-brand" href="#" th:href="@{/afficherCreerClient}">Gérer
+										de Client</a></li>
+
 								<li th:classappend="${module == 'commande' ? 'active' : ''}">
-									<a class="navbar-brand" href="#" th:href="@{/commande}">Gérer
-										Commande</a>
+									<a class="navbar-brand" href="#"
+									th:href="@{/afficherCreerCommandePiece}">Gérer Commande</a>
 								</li>
 								<li th:classappend="${module == 'fiche' ? 'active' : ''}"><a
-									class="navbar-brand" href="#" th:href="@{/fiche}">Gérer
+									class="navbar-brand" href="#" th:href="@{/fiches}">Gérer
 										Fiche</a></li>
 								<li th:classappend="${module == 'Devis' ? 'active' : ''}"><a
 									class="navbar-brand" href="#" th:href="@{/devis}">Gérer
 										Devis</a></li>
 
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-									role="button" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> Gestion Stock </a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="#"
-											th:href="@{/afficherCreerPiece}"> Pièces</a> <a
-											class="dropdown-item" href="#"
-											th:href="@{/afficherCreerVehicule}"> Véhicule</a>
-
-
-									</div></li>
-
 							</ul>
-							<form class="form-inline my-2 my-lg-0">
-								<input class="form-control mr-sm-2" type="search"
-									placeholder="Search" aria-label="Search">
-								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit">Search</button>
-							</form>
 						</div>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search"
+								placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0"
+								type="submit">Search</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 </body>
