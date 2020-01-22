@@ -16,30 +16,37 @@
 	    <div class="container">
 	    <form  action="#" th:action="@{/{action}(action=${action})}" 
 		  th:object="${devisform}" method="post"  >
-		  
-			 <table class="table w-auto" >
+		  	 
+		  	 <div class="custom-control custom-checkbox mr-sm-2">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherDevisClots" checked>
+		        <label class="custom-control-label" for="afficherCacherDevisClots">Cacher les devis clôts</label>
+			 </div>
+		  	 
+			 <table class="table table-hover" id="tableDevis">
 			 <thead>
 			 	<tr>
-			 	<th> id </th>
 			 	<th>Client</th>
 			 	<th>Vehicule</th>
 			 	<th>Utilisateur</th>
 			 	<th>Date de création</th>
 			 	<th>Etat</th>				
-
+				<th></th>
 	
 			 	</tr>
 			 </thead>
 			 <tbody>
-			 	<tr th:each="devis : ${listedevis}" th:unless="${devis.etat}">
-			 		<td >
-			 		<a	th:href="@{/afficherModifierdevis/{id}(id=${devis.id})}" 
-			 		th:text="${devis.id}"></a></td>
+			 	<tr th:each="devis : ${listedevis}" th:classappend="${(devis.etat ? 'table-secondary' : 'table-light') + ' ' + (devis.etat ? 'devisClot' : '')}">
 			 		<td th:text="${devis.client.firstname + ' '+  devis.client.name}"/>
 			 		<td th:text="${devis.vehicule.modele}"/>			 				 		
 			 		<td th:text="${devis.user.firstname + ' ' + devis.user.lastname}"/>
 			 		<td th:text="${devis.dateCreation}"/>
-			 		<td th:text="${devis.etat}" />	 		
+			 		<td><a th:unless="${devis.etat}" class="btn btn-outline-secondary"
+						th:href="'/afficherModifierdevis/'+${devis.id}" th:text="Modif"></a>
+
+						<h5>
+							<span th:if="${devis.etat}" th:text="Clôt"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
 			 	</tr>
 			  
 			 </tbody>
@@ -96,8 +103,15 @@
 		</form>
 	 </div>
 
-   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
     </div>
+    <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
     </body>
+
+<script>
+	$("#afficherCacherDevisClots").change(function() {
+		var self = this;
+		$("#tableDevis tr.devisClot").toggle(!self.checked);
+	}).change();
+</script>
 
 </html>
