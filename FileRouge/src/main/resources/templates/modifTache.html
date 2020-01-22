@@ -14,8 +14,7 @@
  	<div th:replace="fragments/header :: header"></div>
  
 	    <div class="container">
-		  <form action="#" th:action="@{/ModifierTache}" 
-		  th:object="${tacheform}"  method="post" >
+		  <form action="#" th:action="@{/ModifierTache}" th:object="${tacheform}"  method="post" >
 		  		<div class="form-group " >
 		  		<input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"/>
 		  		</div>

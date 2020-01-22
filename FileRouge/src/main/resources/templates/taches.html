@@ -15,7 +15,7 @@
  
 	    <div class="container">
 	    <form  action="#" th:action="@{/{action}(action=${action})}" 
-		  th:object="${tacheform}"   method="post"  >
+		  th:object="${tacheform}" method="post"  >
 		  
 			 <table class="table w-auto" >
 			 <thead>
@@ -102,8 +102,8 @@
 			    </select>
 			    </div>
 			    <div class="form-group">
-			    <label for="qte">Quantitée</label>
-		   		<input type="number" th:field="*{qte}" class="form-control" id="qte" placeholder="Quantitée" required/>
+			    <label for="qte">Quantité</label>
+		   		<input type="number" th:field="*{qte}" class="form-control" id="qte" placeholder="Quantité" required/>
 		   		</div>
 				 <div class="form-group">
 		    	<label for="com">Commentaire</label>
