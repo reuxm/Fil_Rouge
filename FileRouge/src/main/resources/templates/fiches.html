@@ -27,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="f : ${listefiches}" th:href="'/modifierFiche/'+${f.id}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
+				<tr th:each="f : ${listefiches}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
 					<td th:text="${f.dateCreation}"></td>
 					<td th:text="${f.user.lastname}"></td>
 					<td th:text="${f.dateCloture}"></td>
