@@ -32,7 +32,7 @@ public class ClientController {
 		pclient.setMobile(clientform.getMobile());
 		pclient.setTelephone(clientform.getTelephone());
 		pclient.setVille(clientform.getVille());
-		pclient.setCloturer(Boolean.parseBoolean(clientform.getCloturer()));
+		pclient.setCloturer(clientform.getCloturer());
 		return pclient;
 	}
 	
@@ -67,7 +67,7 @@ public class ClientController {
 			clientform.setCodePostal(client.getCodepostal());
 			clientform.setMobile(client.getMobile());
 			clientform.setTelephone(client.getTelephone());	
-			clientform.setCloturer(client.getCloturer().toString());
+			clientform.setCloturer(client.getCloturer());
 			pmodel.addAttribute("clientform", clientform);
 		}
 		return "clients";

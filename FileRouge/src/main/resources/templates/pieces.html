@@ -13,28 +13,27 @@
 			th:unless="${action == 'ModifierPiece'}">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Libelle</th>
 					<th>Quantité</th>
 					<th>Date de création</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="piece : ${listepiece}">
-					<td><a
-						th:href="@{/afficherModifierPiece/{id}(id=${piece.id})}"
-						th:text="${piece.id}"></a></td>
 					<td th:text="${piece.libelle}" />
 					<td th:text="${piece.qte}" />
 					<td th:text="${piece.dateCreation}" />
+					<td>
+						<a class="btn btn-outline-secondary" th:href="'/afficherModifierPiece/'+${piece.id}" th:text="Modif"></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="border p-4 m-2">
 			<h3 th:if="${action == 'ModifierPiece'}">
-				<a th:href="@{/afficherCreerPiece}"
-					th:text="'Formulaire de Mofication'"></a>
+				Formulaire de modification
 			</h3>
 			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h3>
 
@@ -64,6 +63,7 @@
 						class="form-control" type="date" th:field="*{dateCreation}"
 						id="dateCreation" />
 				</div>
+				<a th:unless="${action != 'ModifierPiece'}" th:href="@{/afficherCreerPiece}" th:text="Retour" class="btn btn-outline-secondary"></a>
 				<button type="submit" class="btn btn-outline-success">Valider</button>
 			</form>
 		</div>

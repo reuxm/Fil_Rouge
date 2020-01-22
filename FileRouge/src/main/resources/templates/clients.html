@@ -14,10 +14,15 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<table class="table" th:unless="${action == 'ModifierClient' }">
+	
+		<div class="custom-control custom-checkbox mr-sm-2">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherClientsClots" checked>
+		        <label class="custom-control-label" for="afficherCacherClientsClots">Cacher les anciens clients</label>
+		</div>
+	
+		<table class="table table-hover" id="tableClients" th:unless="${action == 'ModifierClient' }">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nom</th>
 					<th>Prenom</th>
 					<th>Adresse</th>
@@ -25,15 +30,12 @@
 					<th>Ville</th>
 					<th>Telephone</th>
 					<th>Mobile</th>
-					<th>Cloturé</th>
+					<th></th>
 
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="client : ${listeclient}">
-					<td><a
-						th:href="@{/afficherModifierClient/{id}(id=${client.id})}"
-						th:text="${client.id}"></a></td>
+				<tr th:each="client : ${listeclient}"  th:classappend="${(client.cloturer ? 'table-secondary' : 'table-light') + ' ' + (client.cloturer ? 'clientClot' : '')}">
 					<td th:text="${client.name}" />
 					<td th:text="${client.firstname}" />
 					<td th:text="${client.adresse}" />
@@ -41,15 +43,20 @@
 					<td th:text="${client.ville}" />
 					<td th:text="${client.telephone}" />
 					<td th:text="${client.mobile}" />
-					<td th:text="${client.cloturer}" />
+					<td><a th:unless="${client.cloturer}" class="btn btn-outline-secondary"
+						th:href="'/afficherModifierClient/'+${client.id}" th:text="Modif"></a>
+
+						<h5>
+							<span th:if="${client.cloturer}" th:text="Clôt"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="border p-4 m-2">
 			<h3 th:if="${action == 'ModifierClient'}">
-				<a th:href="@{/afficherCreerClient}"
-					th:text="'Formulaire de Modification'"></a>
+				Formulaire de modification
 			</h3>
 			<h3 th:unless="${action == 'ModifierClient'}">Formulaire d'Ajout</h3>
 
@@ -84,7 +91,7 @@
 						placeholder="Adresse" required />
 				</div>
 				<div class="form-group ">
-					<label for="codePostal">CodePostal</label> <input type="text"
+					<label for="codePostal">Code Postal</label> <input type="text"
 						class="form-control" th:field="*{codePostal}" id="codePostal"
 						placeholder="Code Postal" required />
 
@@ -110,8 +117,10 @@
 				</div>
 				<div class="form-group ">
 					<input type="checkbox" id="cloturer" name="Cloturer"
-						th:field="*{cloturer}" checked value="true" />
+						th:field="*{cloturer}" value="true" />
+					<label for="cloturer">Cloturer</label>
 				</div>
+				<a th:unless="${action != 'ModifierClient'}" th:href="@{/afficherCreerClient}" th:text="Retour" class="btn btn-outline-secondary"></a>
 				<button class="btn btn-outline-success" type="submit">Valider</button>
 			</form>
 		</div>
@@ -121,5 +130,12 @@
 	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
 		Application Web Gestion de Garage</div>
 </body>
+
+<script>
+	$("#afficherCacherClientsClots").change(function() {
+		var self = this;
+		$("#tableClients tr.clientClot").toggle(!self.checked);
+	}).change();
+</script>
 
 </html>
