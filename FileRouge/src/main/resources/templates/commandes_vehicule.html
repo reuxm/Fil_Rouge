@@ -7,41 +7,60 @@
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
-	
-	<div class=" m-4  d-flex justify-content-end">
-		    <form class="form-inline">
-		    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-		    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
-		  </form></div>
-		  
-		  <table class="table table-hover" th:unless="${action == 'ModifierCommandeVehicule'}">
+
+		<div class=" m-4  d-flex justify-content-end">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2 " type="search"
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+
+		<div class="custom-control custom-checkbox mr-sm-2 ">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherCommandesVehiculeCloses" checked>
+		        <label class="custom-control-label" for="afficherCacherCommandesVehiculeCloses">Cacher les commandes cloturées</label>
+		</div>
+		<table class="table table-hover"
+			th:unless="${action == 'ModifierCommandeVehicule'}" id="tableCommandeVehicule">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Date de création</th>
-					<th>Date de cloture</th>
-					<th>Etat</th>
 					<th>Créateur</th>
 					<th>Vehicule</th>
-                    <th>Quantité</th>
-			
+					<th>Quantité</th>
+					<th>Date de cloture</th>
+					<th></th>
+					
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cmdvehicule : ${listecmdvehicules}">
-					<td><a
-						th:href="@{/afficherModifierCommandeVehicule/{id}(id=${cmdvehicule.id})}"
-						th:text="${cmdvehicule.id}"></a></td>
-						<td th:text="${cmdvehicule.dateCreation}" />
-						<td th:text="${cmdvehicule.dateCloture}" />
-						<td th:text="${cmdvehicule.etat}" />
-						<td th:text="${cmdvehicule.devis.user.firstname}" />
+				<tr th:each="cmdvehicule : ${listecmdvehicules}" th:classappend="${(cmdvehicule.etat ? 'table-secondary' : 'table-light') + ' ' + (cmdvehicule.etat ? 'commandeClose' : '')}">
+
+					<td th:text="${cmdvehicule.dateCreation}" />
+					<td th:text="${cmdvehicule.devis.user.firstname}" />
 					<td th:text="${cmdvehicule.devis.vehicule.modele}" />
 					<td th:text="${cmdvehicule.devis.vehicule.qte}" />
+					<td th:text="${cmdvehicule.dateCloture}" />
+					<td><a th:unless="${cmdvehicule.etat}" class="btn btn-outline-secondary"
+						th:href="'/fiches/'+${cmdvehicule.id}" th:text="Modif"></a> <a
+						th:unless="${cmdvehicule.etat}" class="btn btn-outline-danger"
+						th:href="'/clotureCommandeVehicule/'+${cmdvehicule.id}" th:text="Cloturer"></a>
+
+						<h5>
+							<span th:if="${cmdvehicule.etat}" th:text="Clôt"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
 				</tr>
 			</tbody>
 		</table>
+
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
+<script>
+	$("#afficherCacherCommandesVehiculeCloses").change(function() {
+		var self = this;
+		$("#tableCommandeVehicule tr.commandeClose").toggle(!self.checked);
+	}).change();
+</script>
 </html>

@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import groupe1.filrouge.controller.form.DevisForm;
 import groupe1.filrouge.entity.Client;
+import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Devis;
 
 
 import groupe1.filrouge.entity.User;
 import groupe1.filrouge.entity.Vehicule;
 import groupe1.filrouge.service.IServiceClient;
+import groupe1.filrouge.service.IServiceCommandeVehicule;
 import groupe1.filrouge.service.IServiceDevis;
 import groupe1.filrouge.service.IServiceUser;
 import groupe1.filrouge.service.IServiceVehicule;
@@ -41,6 +43,9 @@ public class DevisController {
 	
 	@Autowired
 	IServiceVehicule serviceVehicule;
+	
+	@Autowired
+	IServiceCommandeVehicule serviceCommande;
 	
 	private Devis convertForm(DevisForm devisform) throws ParseException {
 		Devis pdevis= new Devis();
@@ -149,6 +154,14 @@ public class DevisController {
 			{
 				Devis devis = convertForm(devisform);
 				serviceDevis.create(devis);
+				if(devis.getEtat()) {
+					CommandeVehicule commande = new CommandeVehicule();				
+					commande.setDateCreation(new Date());
+					commande.setDevis(devis);
+					commande.setEtat(false);
+					serviceCommande.create(commande);
+					
+				}
 			}
 			catch(Exception e) {
 				System.err.println("ERRR : "+e.getMessage()+" "+e.toString());
