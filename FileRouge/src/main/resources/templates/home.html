@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
- <head th:replace="fragments/headerload :: load">
-  	<title th:text="'Gestion De Mon Ecole'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-  </head>
-  <body>
- 	<div th:replace="fragments/header :: header"></div>
- 
-    <div class="container">
-    
-    
-    
-    
-    <img th:src="@{/img/home.jpeg}" class="home"/> 
- 
-      <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
-    </div>
-    </body>
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion De Mon Ecole'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+
+
+
+
+		<img th:src="@{/img/home.jpeg}" class="home" />
+
+
+	</div>
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
+</body>
 </html>

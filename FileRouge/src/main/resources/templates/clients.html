@@ -1,108 +1,125 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  	<title th:text="'Gestion Des Classes'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="'Gestion Des Classes'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	 <head th:replace="fragments/headerload :: load">
-  	<title th:text="'Gestion De Mon Ecole'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-  </head>
-  <body>
- 	<div th:replace="fragments/header :: header"></div>
- 
-    <div class="container">
-		 <table class="table" th:unless="${action == 'ModifierClient' }">
-		 <thead>
-		 	<tr>
-		 	<th>Id</th>
-		 	<th>Nom</th>
-		 	<th>Prenom</th>
-		 	<th>Adresse</th>
-		 	<th>Code Postal</th>
-		 	<th>Ville</th>
-		 	<th>Telephone</th>
-		 	<th>Mobile</th>
-			<th>Cloturé</th>
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion De Mon Ecole'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-		 	</tr>
-		 </thead>
-		 <tbody>
-		 	<tr th:each="client : ${listeclient}">
-		 		<td >
-		 		<a	th:href="@{/afficherModifierClient/{id}(id=${client.id})}" 
-		 		th:text="${client.id}"></a></td>
-		 		<td th:text="${client.name}"/>
-		 		<td th:text="${client.firstname}"/>
-		 		<td th:text="${client.adresse}"/>
-		 		<td th:text="${client.codePostal}"/>
-		 		<td th:text="${client.ville}"/>
-		 		<td th:text="${client.telephone}"/>
-		 		<td th:text="${client.mobile}"/>
-		 		<td th:text="${client.cloturer}"/>
-		 	</tr>
-		 </tbody>
-	 </table>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
 
- <div class="border p-4 m-2">	 		
- <h3 th:if="${action == 'ModifierClient'}">
- <a	th:href="@{/afficherCreerClient}" th:text="'Formulaire de Modification'"></a>
- </h3>
- <h3 th:unless="${action == 'ModifierClient'}">Formulaire d'Ajout</h3>
- 
+	<div class="container">
+		<table class="table" th:unless="${action == 'ModifierClient' }">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Adresse</th>
+					<th>Code Postal</th>
+					<th>Ville</th>
+					<th>Telephone</th>
+					<th>Mobile</th>
+					<th>Cloturé</th>
 
-	  <form action="#" th:action="@{/{action}(action=${action})}" 
-	  th:object="${clientform}"   method="post">
-	  <div th:each="e:${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
-	  <span th:text="${e.defaultMessage}"></span>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	  <span aria-hidden="true">&times;</span>
-	  </button>
-	  </div>
-	  		<div class="form-group ">
-	  		<input class="form-control" type="hidden" th:field="*{id}" th:value="*{id}"/>
-	  		</div>
-	  		<div class="form-group ">
-	    	<label for="name">Nom</label>
-	   		<input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Nom" required/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="firstname">Prenom</label>
-	   		<input type="text" class="form-control" th:field="*{firstname}" id="firstname" placeholder="Prenom" required/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="adresse">Adresse</label>
-	   		<input type="text" class="form-control" th:field="*{adresse}" id="adresse" placeholder="Adresse" required/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="codePostal">CodePostal</label>
-	   		<input type="text" class="form-control" th:field="*{codePostal}" id="codePostal" placeholder="Code Postal" required/>
-	   		 
-	   		<div th:if="${#fields.hasErrors('codePostal')}" th:errors="*{codePostal}" class="alert alert-danger alert-dismissible fade show" role="alert" >
-	   		</div></div>
-	   		<div class="form-group ">
-	   		<label for="ville">Ville</label>
-	   		<input type="text" class="form-control" th:field="*{ville}" id="ville" placeholder="Ville" required/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="telephone">Telephone</label>
-	   		<input type="text" class="form-control" th:field="*{telephone}" id="telephone" placeholder="Numéro de télephone" required/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="mobile">Mobile</label>
-	   		<input type="text" th:field="*{mobile}" id="mobile" class="form-control" placeholder="Numéro de mobile" />
-   			</div>
-   			<div class="form-group ">
-   			<input type="checkbox" id="cloturer" name="Cloturer" th:field="*{cloturer}" hidden checked value="true" />
-			</div>
-	   <button class="btn btn-outline-success" type="submit">Valider</button>
-	</form>
- </div>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="client : ${listeclient}">
+					<td><a
+						th:href="@{/afficherModifierClient/{id}(id=${client.id})}"
+						th:text="${client.id}"></a></td>
+					<td th:text="${client.name}" />
+					<td th:text="${client.firstname}" />
+					<td th:text="${client.adresse}" />
+					<td th:text="${client.codePostal}" />
+					<td th:text="${client.ville}" />
+					<td th:text="${client.telephone}" />
+					<td th:text="${client.mobile}" />
+					<td th:text="${client.cloturer}" />
+				</tr>
+			</tbody>
+		</table>
 
-   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
-    </div>
-    </body>
+		<div class="border p-4 m-2">
+			<h3 th:if="${action == 'ModifierClient'}">
+				<a th:href="@{/afficherCreerClient}"
+					th:text="'Formulaire de Modification'"></a>
+			</h3>
+			<h3 th:unless="${action == 'ModifierClient'}">Formulaire d'Ajout</h3>
+
+
+			<form action="#" th:action="@{/{action}(action=${action})}"
+				th:object="${clientform}" method="post">
+				<div th:each="e:${errors}"
+					class="alert alert-danger alert-dismissible fade show" role="alert">
+					<span th:text="${e.defaultMessage}"></span>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="form-group ">
+					<input class="form-control" type="hidden" th:field="*{id}"
+						th:value="*{id}" />
+				</div>
+				<div class="form-group ">
+					<label for="name">Nom</label> <input type="text"
+						class="form-control" th:field="*{name}" id="name"
+						placeholder="Nom" required />
+				</div>
+				<div class="form-group ">
+					<label for="firstname">Prenom</label> <input type="text"
+						class="form-control" th:field="*{firstname}" id="firstname"
+						placeholder="Prenom" required />
+				</div>
+				<div class="form-group ">
+					<label for="adresse">Adresse</label> <input type="text"
+						class="form-control" th:field="*{adresse}" id="adresse"
+						placeholder="Adresse" required />
+				</div>
+				<div class="form-group ">
+					<label for="codePostal">CodePostal</label> <input type="text"
+						class="form-control" th:field="*{codePostal}" id="codePostal"
+						placeholder="Code Postal" required />
+
+					<div th:if="${#fields.hasErrors('codePostal')}"
+						th:errors="*{codePostal}"
+						class="alert alert-danger alert-dismissible fade show"
+						role="alert"></div>
+				</div>
+				<div class="form-group ">
+					<label for="ville">Ville</label> <input type="text"
+						class="form-control" th:field="*{ville}" id="ville"
+						placeholder="Ville" required />
+				</div>
+				<div class="form-group ">
+					<label for="telephone">Telephone</label> <input type="text"
+						class="form-control" th:field="*{telephone}" id="telephone"
+						placeholder="Numéro de télephone" required />
+				</div>
+				<div class="form-group ">
+					<label for="mobile">Mobile</label> <input type="text"
+						th:field="*{mobile}" id="mobile" class="form-control"
+						placeholder="Numéro de mobile" />
+				</div>
+				<div class="form-group ">
+					<input type="checkbox" id="cloturer" name="Cloturer"
+						th:field="*{cloturer}" hidden checked value="true" />
+				</div>
+				<button class="btn btn-outline-success" type="submit">Valider</button>
+			</form>
+		</div>
+
+
+	</div>
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
+</body>
 
 </html>
