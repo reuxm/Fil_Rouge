@@ -129,6 +129,7 @@ public class PieceController {
 			pmodel.addAttribute("errors", presult.getAllErrors());
 			return this.getAfficheMod(pieceform.getId(), pmodel);
 		}
+		
 		return this.getAffiche(pmodel);
 	}
 	
