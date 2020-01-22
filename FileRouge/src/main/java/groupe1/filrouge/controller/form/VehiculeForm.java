@@ -12,6 +12,7 @@ public class VehiculeForm {
 	@PositiveOrZero(message = "La quantité doit être positive !")
 	private Integer qte;
 	
+	@PositiveOrZero( message="Le prix doit être positif !" )
 	private Float prixHT;
 	
 	@NotEmpty

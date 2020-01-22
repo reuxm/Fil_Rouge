@@ -25,7 +25,7 @@ public class ClientForm {
 	@NotEmpty
 	private String telephone;
 	
-	@Pattern(regexp="\\d{10}", message="Attention le numéro de mobilce doit être composé de 10 chiffres")
+	@Pattern(regexp="\\d{10}|", message="Attention le numéro de mobilce doit être composé de 10 chiffres")
 	private String mobile;
 
 	

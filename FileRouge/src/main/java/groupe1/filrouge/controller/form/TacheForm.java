@@ -13,7 +13,7 @@ public class TacheForm {
 	@PositiveOrZero(message="La quantité ne peux pas être négative")
 	private Integer qte;
 	
-	private Boolean etat;
+	private Boolean etat = false;
 	
 
 	private Integer user;

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion Des Commandes De Pièces'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+	
+	<div class=" m-4  d-flex justify-content-end">
+		    <form class="form-inline">
+		    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+		    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+		  </form></div>
+		  
+		  <table class="table table-hover" th:unless="${action == 'ModifierCommandeVehicule'}">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Date de création</th>
+					<th>Date de cloture</th>
+					<th>Etat</th>
+					<th>Créateur</th>
+					<th>Vehicule</th>
+                    <th>Quantité</th>
+			
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cmdvehicule : ${listecmdvehicules}">
+					<td><a
+						th:href="@{/afficherModifierCommandeVehicule/{id}(id=${cmdvehicule.id})}"
+						th:text="${cmdvehicule.id}"></a></td>
+						<td th:text="${cmdvehicule.dateCreation}" />
+						<td th:text="${cmdvehicule.dateCloture}" />
+						<td th:text="${cmdvehicule.etat}" />
+						<td th:text="${cmdvehicule.devis.user.firstname}" />
+					<td th:text="${cmdvehicule.devis.vehicule.modele}" />
+					<td th:text="${cmdvehicule.devis.vehicule.qte}" />
+				</tr>
+			</tbody>
+		</table>
+		
+		
+	
+	<div th:replace="fragments/footer :: footer"></div>
+	</div>
+</body>
+</html>
