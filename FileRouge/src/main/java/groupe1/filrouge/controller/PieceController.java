@@ -120,8 +120,14 @@ public class PieceController {
 			catch(Exception e) {
 				System.err.println(e.getMessage());
 				pmodel.addAttribute("errors", presult.getAllErrors());
+				pmodel.addAttribute("pieceform",pieceform);
 				return this.getAfficheMod(pieceform.getId(), pmodel);
 			}
+		}
+		else {
+			System.err.println(presult);
+			pmodel.addAttribute("errors", presult.getAllErrors());
+			return this.getAfficheMod(pieceform.getId(), pmodel);
 		}
 		return this.getAffiche(pmodel);
 	}
