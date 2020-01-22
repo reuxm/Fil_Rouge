@@ -32,6 +32,8 @@ public class CommandePiece {
 	@Column( name="quantite", nullable=false )
 	private Integer qte;
 	
+	@Column(name="etat",nullable=false)
+	private Boolean etat;
 	@Temporal(TemporalType.DATE)
 	@Column( name="date_creation", nullable=false )
 	private Date dateCreation;
@@ -86,6 +88,14 @@ public class CommandePiece {
 
 	public void setDateCloture(Date dateCloture) {
 		this.dateCloture = dateCloture;
+	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
 	}
 	
 }

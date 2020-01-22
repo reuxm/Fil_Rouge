@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import groupe1.filrouge.controller.form.CommandePieceForm;
 import groupe1.filrouge.entity.CommandePiece;
+import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Piece;
 import groupe1.filrouge.entity.User;
 import groupe1.filrouge.service.IServiceCommandePiece;
@@ -45,6 +46,7 @@ public class CommandePieceController {
 		pcmdpiece.setId(cmdpieceform.getId());
 		pcmdpiece.setQte(cmdpieceform.getQte());
 		pcmdpiece.setDateCreation(madate);
+		pcmdpiece.setEtat(cmdpieceform.getEtat());
 		Piece ppiece = servicePiece.recherchePieceId(cmdpieceform.getId_piece());
 		pcmdpiece.setPiece(ppiece);
 		User puser = serviceUser.rechercheUserId(cmdpieceform.getId_user());
@@ -119,9 +121,19 @@ public class CommandePieceController {
 			cmdpieceform.setId_piece(Integer.valueOf(pcmdpiece.getPiece().getId()));
 			cmdpieceform.setId_user(Integer.valueOf(pcmdpiece.getUser().getId()));
 			cmdpieceform.setQte(Integer.valueOf(pcmdpiece.getQte()));
+			cmdpieceform.setEtat(pcmdpiece.getEtat());
 			pmodel.addAttribute("cmdpieceform", cmdpieceform);
 		}
 		return "commandes_piece";
+	}
+	@GetMapping("/clotureCommandePiece/{id}")
+	public String clotureCommande(Model pmodel, @PathVariable Integer id) {
+		CommandePiece commande = serviceCommandePiece.find(id);
+		commande.setEtat(true);
+		Date date = new Date();
+		commande.setDateCloture(date);
+		serviceCommandePiece.update(commande);
+		return this.getAffiche(pmodel);
 	}
 	
 	@PostMapping("/ModifierCommandePiece")

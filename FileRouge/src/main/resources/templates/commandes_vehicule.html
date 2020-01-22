@@ -34,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cmdvehicule : ${listecmdvehicules}" th:classappend="${(cmdvehicule.etat ? 'table-secondary' : 'table-light') + ' ' + (cmdvehicule.etat ? 'commandeClose' : '')}">
+				<tr th:each="cmdvehicule : ${listecmdvehicules}" th:classappend="${(cmdvehicule.livre ? 'table-secondary' : 'table-light') + ' ' + (cmdvehicule.livre ? 'commandeClose' : '')}">
 
 					<td th:text="${cmdvehicule.dateCreation}" />
 					<td th:text="${cmdvehicule.devis.user.firstname}" />
@@ -42,12 +42,12 @@
 					<td th:text="${cmdvehicule.devis.vehicule.qte}" />
 					<td th:text="${cmdvehicule.dateCloture}" />
 					<td><a th:unless="${cmdvehicule.etat}" class="btn btn-outline-secondary"
-						th:href="'/fiches/'+${cmdvehicule.id}" th:text="Modif"></a> <a
-						th:unless="${cmdvehicule.etat}" class="btn btn-outline-danger"
-						th:href="'/clotureCommandeVehicule/'+${cmdvehicule.id}" th:text="Cloturer"></a>
+						th:href="'/clotureCommandeVehicule/'+${cmdvehicule.id}" th:text="Prêt"></a>
+						 <a th:unless="${!cmdvehicule.etat or cmdvehicule.livre}" class="btn btn-outline-success"
+						th:href="'/livreCommandeVehicule/'+${cmdvehicule.id}" th:text="Livré"></a>
 
 						<h5>
-							<span th:if="${cmdvehicule.etat}" th:text="Clôt"
+							<span th:if="${cmdvehicule.livre}" th:text="Livré"
 								class="badge badge-pill badge-secondary"></span>
 						</h5></td>
 				</tr>
