@@ -17,7 +17,7 @@
 	    <form  action="#" th:action="@{/{action}(action=${action})}" 
 		  th:object="${tacheform}"   method="post"  >
 		  
-			 <table class="table w-auto" >
+			 <table class="table" >
 			 <thead>
 			 	<tr>
 			 	<th> id </th>
@@ -36,7 +36,7 @@
 			 		<td >
 			 		<a	th:href="@{/afficherModifierTache/{id}(id=${tache.id})}" 
 			 		th:text="${tache.id}"></a></td>
-			 		<td th:text="${tache.fiche.client.firstname + ' '+  #dates.format(tache.fiche.dateCreation, 'dd/MM')}"/>
+			 		<td th:text="${tache.fiche.client.firstname + ' ' +  #dates.format(tache.fiche.dateCreation, 'dd/MM')}"/>
 			 		<td th:text="${tache.user.firstname}"/>
 			 		<td th:text="${tache.priorite.libelle}"/>
 			 		<td th:text="${tache.piece.libelle}"/>

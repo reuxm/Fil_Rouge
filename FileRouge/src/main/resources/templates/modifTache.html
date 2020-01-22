@@ -63,14 +63,12 @@
 			
 		   		<textarea class="form-control" th:field="*{commentaire}" id="com" placeholder="Commentaire" ></textarea>
 		   		</div>
-		   <button  type="submit">Valider</button>
+		   <button type="submit" class="btn btn-outline-success">Valider</button>
 		  
 		</form>
+		
+		<div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
 	 </div>
-
-
-	 
-   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
 
     </body>
 

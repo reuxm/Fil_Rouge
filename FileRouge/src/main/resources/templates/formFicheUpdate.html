@@ -7,7 +7,7 @@
 <body>
 
 <div th:replace="fragments/header :: header"></div>
-
+<div class="container">
 <form th:object="${form}" action="#" th:action="'../fiches/'+${id}" method="post" class="container">
 	<h3 th:text="'Formulaire de modification'"></h3>
 
@@ -52,5 +52,6 @@
 </form>
 
 <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+</div>
 </body>
 </html>

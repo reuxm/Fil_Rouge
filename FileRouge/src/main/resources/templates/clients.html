@@ -14,7 +14,7 @@
  	<div th:replace="fragments/header :: header"></div>
  
     <div class="container">
-		 <table class="table w-auto" th:unless="${action == 'ModifierClient' }">
+		 <table class="table" th:unless="${action == 'ModifierClient' }">
 		 <thead>
 		 	<tr>
 		 	<th>Id</th>
@@ -25,7 +25,7 @@
 		 	<th>Ville</th>
 		 	<th>Telephone</th>
 		 	<th>Mobile</th>
-			<th>Cloturer</th>
+			<th>Cloturé</th>
 
 		 	</tr>
 		 </thead>
@@ -42,7 +42,6 @@
 		 		<td th:text="${client.telephone}"/>
 		 		<td th:text="${client.mobile}"/>
 		 		<td th:text="${client.cloturer}"/>
-		 		<td >
 		 	</tr>
 		 </tbody>
 	 </table>
