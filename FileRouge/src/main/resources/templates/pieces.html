@@ -37,35 +37,39 @@
 					th:text="'Formulaire de Mofication'"></a>
 			</h3>
 			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h3>
-			
-			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+
+			<div th:each="e : ${errors}"
+				class="alert alert-danger alert-dismissible fade show" role="alert">
 				<span th:text="${e.defaultMessage}"></span>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			
-			<form action="#" th:action="@{/{action}(action=${action})}" th:object="${pieceform}" method="post">
+
+			<form action="#" th:action="@{/{action}(action=${action})}"
+				th:object="${pieceform}" method="post">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 				<div class="form-group">
-					<label for="libelle">Libelle</label>
-					<input class="form-control" type="text" th:field="*{libelle}" id="libelle" placeholder="libellé" /> 
+					<label for="libelle">Libelle</label> <input class="form-control"
+						type="text" th:field="*{libelle}" id="libelle"
+						placeholder="libellé" />
 				</div>
 				<div class="form-group">
-					<label for="qte">Quantité</label> 
-					<input class="form-control" type="number" th:field="*{qte}" id="qte" placeholder="quantité" />
+					<label for="qte">Quantité</label> <input class="form-control"
+						type="number" th:field="*{qte}" id="qte" placeholder="quantité" />
 				</div>
 				<div class="form-group">
-				<label for="dateCreation">Date de création</label>
-				<input class="form-control" type="date" th:field="*{dateCreation}" id="dateCreation"/>
+					<label for="dateCreation">Date de création</label> <input
+						class="form-control" type="date" th:field="*{dateCreation}"
+						id="dateCreation" />
 				</div>
 				<button type="submit" class="btn btn-outline-success">Valider</button>
 			</form>
 		</div>
-	</div>
 
+	</div>
 	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
 		Application Web Gestion de Garage</div>
-
 </body>
 </html>

@@ -9,10 +9,12 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		
-		<label>Cacher les fiches closes</label>
-		<input type="checkbox" id="afficherCacherFichesCloses"/>
-		
+
+		<div class="custom-control custom-checkbox mr-sm-2">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherTachesCloses" checked>
+		        <label class="custom-control-label" for="afficherCacherTachesCloses">Cacher les tâches closes</label>
+		</div>
+
 		<table class="table table-hover" id="tableFiches">
 			<thead>
 				<tr>
@@ -27,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="f : ${listefiches}" th:href="'/modifierFiche/'+${f.id}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
+				<tr th:each="f : ${listefiches}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
 					<td th:text="${f.dateCreation}"></td>
 					<td th:text="${f.user.lastname}"></td>
 					<td th:text="${f.dateCloture}"></td>
@@ -35,66 +37,75 @@
 					<td th:text="${f.client.name}"></td>
 					<td th:text="${f.prix+(f.prix*f.tva)}"></td>
 					<td th:text="${f.description}"></td>
-					<td>
-						<a th:unless="${f.etat}" class="btn btn-outline-secondary"
-						th:href="'/fiches/'+${f.id}" th:text="Modif"></a>
-						<a th:unless="${f.etat}" class="btn btn-outline-danger"
+					<td><a th:unless="${f.etat}" class="btn btn-outline-secondary"
+						th:href="'/fiches/'+${f.id}" th:text="Modif"></a> <a
+						th:unless="${f.etat}" class="btn btn-outline-danger"
 						th:href="'/clotureFiche/'+${f.id}" th:text="Cloturer"></a>
-						
-						<h5><span th:if="${f.etat}" th:text="Clôt" class="badge badge-pill badge-secondary"></span></h5>
-					</td>
+
+						<h5>
+							<span th:if="${f.etat}" th:text="Clôt"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
 				</tr>
 			</tbody>
 		</table>
 
-		<form th:object="${form}" action="#" th:action="fiches" method="post" class="border p-4 m-2">
+		<form th:object="${form}" action="#" th:action="fiches" method="post"
+			class="border p-4 m-2">
 			<h3 th:text="'Formulaire d\'ajout'"></h3>
 
-			<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+			<div th:each="e : ${errors}"
+				class="alert alert-danger alert-dismissible fade show" role="alert">
 				<span th:text="${e.defaultMessage}"></span>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 
 			<label th:text="Description"></label>
-			<textarea name="description" placeholder="description" class="form-control" th:text="${description}"></textarea>
-			
-			<label th:text="Priorite"></label>
-			<select name="priorite" class="form-control" required>
+			<textarea name="description" placeholder="description"
+				class="form-control" th:text="${description}"></textarea>
+
+			<label th:text="Priorite"></label> <select name="priorite"
+				class="form-control" required>
 				<option value="" th:text="Priorite" selected hidden=true />
-				<option th:each="p : ${listPriorites}" th:value="${p.id}" th:text="${p.libelle}" th:selected="${prio} == ${p.id}" />
-			</select>
-			
-			<label th:text="Client"></label>
-			<select name="client" required class="form-control">
+				<option th:each="p : ${listPriorites}" th:value="${p.id}"
+					th:text="${p.libelle}" th:selected="${prio} == ${p.id}" />
+			</select> <label th:text="Client"></label> <select name="client" required
+				class="form-control">
 				<option value="" selected hidden=true th:text="Client" />
-				<option th:each="c : ${listClients}" th:value="${c.id}" th:text="${c.name}" th:selected="${client} == ${c.id}" />
+				<option th:each="c : ${listClients}" th:value="${c.id}"
+					th:text="${c.name}" th:selected="${client} == ${c.id}" />
 			</select>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label th:text="'Prix HT'"></label>
-					<input name="prix" type="number" th:value="${prix==null ? 0 : prix}"  step="0.01" class="form-control"/>
+					<label th:text="'Prix HT'"></label> <input name="prix"
+						type="number" th:value="${prix==null ? 0 : prix}" step="0.01"
+						class="form-control" />
 				</div>
 				<div class="form-group col-md-6">
-					<label th:text="TVA"></label>
-					<input name="tva" type="number" th:value="${tva==null ? 0.2 : tva}"  step="0.01" class="form-control"/>
+					<label th:text="TVA"></label> <input name="tva" type="number"
+						th:value="${tva==null ? 0.2 : tva}" step="0.01"
+						class="form-control" />
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-outline-success" th:text="Valider"></button>
+			<button type="submit" class="btn btn-outline-success"
+				th:text="Valider"></button>
 		</form>
 
+
 	</div>
-	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
-		Application Web Gestion de Garage</div>
+	<div th:replace="fragments/footer :: footer">&copy; 2020
+		DTAApplication Web Gestion de Garage</div>
 </body>
 
 <script>
-	$("#afficherCacherFichesCloses").change(function(){
-	    var self = this;
-	    $("#tableFiches tr.ficheClose").toggle(!self.checked); 
+	$("#afficherCacherFichesCloses").change(function() {
+		var self = this;
+		$("#tableFiches tr.ficheClose").toggle(!self.checked);
 	}).change();
 </script>
 </html>

@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  	<title th:text="'Gestion Des Taches'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="'Gestion Des Taches'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	 <head th:replace="fragments/headerload :: load">
-  	<title th:text="'Gestion des taches'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-  </head>
-  <body>
- 	<div th:replace="fragments/header :: header"></div>
- 
-	    <div class="container">
-		  <form action="#" th:action="@{/ModifierTache}" 
-		  th:object="${tacheform}"  method="post" >
-		  		<div class="form-group " >
-		  		<input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"/>
-		  		</div>
-		  		
-		   		<div class="form-group">
-		   		<label for="fiche">Fiche</label>
-		   	    <select th:field="*{fiche}"  class="form-control" th:value="*{fiche}" th:disabled="true" >
-		   	    
-			    <option th:each="fiche :${listefiche}" 
-			    	th:value="${fiche.id}" th:text="${fiche.client.firstname + ' ' + #dates.format(fiche.dateCreation, 'dd/MMM/yyyy')}"/>
-			    </select>
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion des taches'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-			    </div>
-			    <div class="form-group">
-			    <label for="user">Utilisateur</label>
-			    <select th:field="*{user}"  id="user" th:value="*{user}" disabled  class="form-control">
-			    <option th:each="user :${listeuser}" 
-			    	th:value="${user.id}" th:text="${user.firstname}"/>
-			    </select>
-			    </div>
-			    <div class="form-group">
-			    <label for="priorite">Priorité</label>
-			    <select th:field="*{priorite}" id="priorite" th:value="*{priorite}" disabled class="form-control">
-			    <option th:each="priorite :${listepriorite}" 
-			    	th:value="${priorite.id}" th:text="${priorite.libelle}"/>
-			    </select>
-			    </div>
-			    <div class="form-group">
-			    <label for="piece">Pièce</label>
-			    <select th:field="*{piece}" disabled id="piece" class="form-control" th:value="*{piece}">
-			    <option  th:each="piece :${listepiece}" 
-			    
-			    	th:value="${piece.id}" th:text="${piece.libelle}"/>
-			    </select>
-			    </div>
-			    <div class="form-group">
-		   		<input type="number" th:field="*{qte}" disabled th:value="*{qte}" id="qte" placeholder="Quantitée" />
-		   		</div>
-		   		<div class="form-check">
-		   		<label for="etat">Terminé</label>		
-	   			<input type="checkbox" id="etat" name="Etat" th:field="*{etat}" checked  />
-				 </div>
-				 <div class="form-group">
-		    	<label for="com">Commentaire</label>
-			
-		   		<textarea class="form-control" th:field="*{commentaire}" id="com" placeholder="Commentaire" ></textarea>
-		   		</div>
-		   <button  type="submit">Valider</button>
-		  
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form action="#" th:action="@{/ModifierTache}"
+			th:object="${tacheform}" method="post">
+			<div class="form-group ">
+				<input type="hidden" th:field="*{id}" th:value="*{id}"
+					class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="fiche">Fiche</label> <select th:field="*{fiche}"
+					class="form-control" th:value="*{fiche}" th:disabled="true">
+
+					<option th:each="fiche :${listefiche}" th:value="${fiche.id}"
+						th:text="${fiche.client.firstname + ' ' + #dates.format(fiche.dateCreation, 'dd/MMM/yyyy')}" />
+				</select>
+
+			</div>
+			<div class="form-group">
+				<label for="user">Utilisateur</label> <select th:field="*{user}"
+					id="user" th:value="*{user}" disabled class="form-control">
+					<option th:each="user :${listeuser}" th:value="${user.id}"
+						th:text="${user.firstname}" />
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="priorite">Priorité</label> <select
+					th:field="*{priorite}" id="priorite" th:value="*{priorite}"
+					disabled class="form-control">
+					<option th:each="priorite :${listepriorite}"
+						th:value="${priorite.id}" th:text="${priorite.libelle}" />
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="piece">Pièce</label> <select th:field="*{piece}"
+					disabled id="piece" class="form-control" th:value="*{piece}">
+					<option th:each="piece :${listepiece}" th:value="${piece.id}"
+						th:text="${piece.libelle}" />
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="number" th:field="*{qte}" disabled th:value="*{qte}"
+					id="qte" placeholder="Quantitée" />
+			</div>
+			<div class="form-check">
+				<label for="etat">Terminé</label> <input type="checkbox" id="etat"
+					name="Etat" th:field="*{etat}" checked />
+			</div>
+			<div class="form-group">
+				<label for="com">Commentaire</label>
+
+				<textarea class="form-control" th:field="*{commentaire}" id="com"
+					placeholder="Commentaire"></textarea>
+			</div>
+			<button type="submit" class="btn btn-outline-success">Valider</button>
+
 		</form>
-	 </div>
 
-
-	 
-   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
-
-    </body>
+	</div>
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
+</body>
 
 </html>
