@@ -56,7 +56,7 @@ public class CommandeVehicule {
 		return etat;
 	}
 
-	public void setEtatDevis(Boolean etat) {
+	public void setEtat(Boolean etat) {
 		this.etat= etat;
 	}
 
