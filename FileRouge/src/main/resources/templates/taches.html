@@ -71,7 +71,9 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
+				<div class="form-group">
+					<input type="hidden" th:field="*{id}" th:value="*{id}" />
+				</div>
 				<div class="form-group">
 					<label for="fiche">Fiche</label> <select th:field="*{fiche}"
 						required class="form-control">

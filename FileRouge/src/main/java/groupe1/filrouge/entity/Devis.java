@@ -88,4 +88,10 @@ public class Devis {
 		this.etat = etat;
 	}
 
+	@Override
+	public String toString() {
+		return "Devis [id=" + id + ", client=" + client + ", vehicule=" + vehicule + ", user=" + user
+				+ ", dateCreation=" + dateCreation + ", etat=" + etat + "]";
+	}
+
 }

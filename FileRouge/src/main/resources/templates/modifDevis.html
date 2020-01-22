@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  	<title th:text="'Gestion Des Devis'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	 <head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion des devis'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+  </head>
+  <body>
+ 	<div th:replace="fragments/header :: header"></div>
+ 
+	    <div class="container">
+		  <form action="#" th:action="@{/ModifierDevis}" 
+		  th:object="${devisform}"  method="post" >
+		  <div class="form-group " >
+		  
+		  		<input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"/>
+		  		</div>
+		  		
+		   		<div class="form-group">
+		   		<label for="client">Client</label>
+		   	    <select th:field="*{client}" required class="form-control" th:disabled="true" >
+		   	    
+		   	    <option value="" selected hidden=true id="client">Selection Client</option>
+			    <option th:each="client :${listeclient}" 
+			    	th:value="${client.id}" th:utext="${client.firstname + ' ' + client.name }"/>
+			    </select>
+		   		<label for="vehicule">Vehicule</label>
+		   	    <select th:field="*{vehicule}" required class="form-control" th:disabled="true"  >
+		   	    
+		   	    <option value="" selected hidden=true id="vehicule">Selection Véhicule</option>
+			    <option th:each="vehicule :${listevehicule}" 
+			    	th:value="${vehicule.id}" th:utext="${vehicule.modele}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="user">Utilisateur</label>
+			    
+			    <select th:field="*{user}" required id="user" class="form-control" th:disabled="true" >
+			    <option value="" selected hidden=true>Selection utilisateur</option>
+			    <option th:each="user :${listeuser}" 
+			    	th:value="${user.id}" th:utext="${user.firstname +' ' + user.lastname}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="date">Date de Création</label>
+		   		<input type="date" th:field="*{dateCreation}" th:disabled="true" class="form-control" id="date" placeholder="DateCreation" required/>
+		   		</div>
+		   		<div class="form-check">
+		   		<label for="etat">Validé</label>		
+	   			<input type="checkbox" id="etat" name="etat" th:field="*{etat}" checked  />
+				 </div>
+
+		 <button class="btn btn-outline-success" type="submit">Valider</button>
+		</form>
+	 </div>
+
+
+	 
+   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+
+    </body>
+
+</html>
