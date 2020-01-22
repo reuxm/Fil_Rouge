@@ -9,7 +9,11 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<table class="table table-hover">
+		
+		<label>Cacher les fiches closes</label>
+		<input type="checkbox" id="afficherCacherFichesCloses"/>
+		
+		<table class="table table-hover" id="tableFiches">
 			<thead>
 				<tr>
 					<th th:text="Creation"></th>
@@ -23,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="f : ${listefiches}" th:href="'/modifierFiche/'+${f.id}" th:classappend="${f.etat} ? table-secondary : table-light">
+				<tr th:each="f : ${listefiches}" th:href="'/modifierFiche/'+${f.id}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
 					<td th:text="${f.dateCreation}"></td>
 					<td th:text="${f.user.lastname}"></td>
 					<td th:text="${f.dateCloture}"></td>
@@ -86,4 +90,11 @@
 	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
 		Application Web Gestion de Garage</div>
 </body>
+
+<script>
+	$("#afficherCacherFichesCloses").change(function(){
+	    var self = this;
+	    $("#tableFiches tr.ficheClose").toggle(!self.checked); 
+	}).change();
+</script>
 </html>
