@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import groupe1.filrouge.controller.form.CommandeVehiculeForm;
 import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Devis;
+import groupe1.filrouge.entity.FactureFiche;
+import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceCommandeVehicule;
 import groupe1.filrouge.service.IServiceDevis;
 
@@ -128,6 +130,16 @@ public class CommandeVehiculeController {
 		}
 		return "commandes_vehicule";
 	}
+	@GetMapping("/clotureCommandeVehicule/{id}")
+	public String clotureCommande(Model pmodel, @PathVariable Integer id) {
+		CommandeVehicule commande = serviceCommandeVehicule.find(id);
+		commande.setEtat( true );
+		Date date = new Date();
+		commande.setDateCloture(date);
+		serviceCommandeVehicule.update(commande);
+		return this.getAffiche(pmodel);
+	}
+
 
 	@PostMapping("/ModifierCommandeVehicule")
 	public String modifieCommandeVehicule(
