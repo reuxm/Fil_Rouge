@@ -9,34 +9,33 @@
 	<div th:replace="fragments/header :: header"></div>
 
 	<div class="container">
-		<table class="table"
+		<table class="table table-hover"
 			th:unless="${action == 'ModifierVehicule'}">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
 					<th scope="col">Modèle</th>
 					<th scope="col">Quantité</th>
 					<th scope="col">Prix HT</th>
 					<th scope="col">Date de création</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:scope="row" th:each="vehicule : ${listevehicule}">
-					<td><a
-						th:href="@{/afficherModifierVehicule/{id}(id=${vehicule.id})}"
-						th:text="${vehicule.id}"></a></td>
 					<td th:text="${vehicule.modele}" />
 					<td th:text="${vehicule.qte}" />
 					<td th:text="${vehicule.prixHT}" />
 					<td th:text="${vehicule.dateCreation}" />
+					<td>
+						<a class="btn btn-outline-secondary" th:href="'/afficherModifierVehicule/'+${vehicule.id}" th:text="Modif"></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="border p-4 m-2">
 			<h2 th:if="${action == 'ModifierVehicule'}">
-				<a th:href="@{/afficherCreerVehicule}"
-					th:text="'Formulaire de Mofication'"></a>
+				Formulaire de modification
 			</h2>
 
 			<h2 th:unless="${action == 'ModifierVehicule'}">Formulaire
@@ -76,6 +75,7 @@
 						class="form-control" type="date" th:field="*{dateCreation}"
 						id="dateCreation" placeholder="date de création" />
 				</div>
+				<a th:unless="${action != 'ModifierVehicule'}" th:href="@{/afficherCreerVehicule}" th:text="Retour" class="btn btn-outline-secondary"></a>
 				<button type="submit" class="btn btn-outline-success">Valider</button>
 
 			</form>

@@ -27,9 +27,8 @@ public class ClientForm {
 	
 	@Pattern(regexp="\\d{10}|", message="Attention le numéro de mobilce doit être composé de 10 chiffres")
 	private String mobile;
-
 	
-	private String cloturer="false";
+	private Boolean cloturer = false;
 	
 	public Integer getId() {
 		return id;
@@ -95,11 +94,11 @@ public class ClientForm {
 		this.mobile = mobile;
 	}
 
-	public String getCloturer() {
+	public Boolean getCloturer() {
 		return cloturer;
 	}
 
-	public void setCloturer(String cloturer) {
+	public void setCloturer(Boolean cloturer) {
 		this.cloturer = cloturer;
 	}
 	

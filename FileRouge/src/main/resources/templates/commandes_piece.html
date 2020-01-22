@@ -19,7 +19,6 @@
 			th:unless="${action == 'ModifierCommandePiece'}">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Créateur</th>
 					<th>Pièce</th>
 					<th>Quantité</th>
@@ -28,9 +27,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="cmdpiece : ${listecmdpieces}">
-					<td><a
-						th:href="@{/afficherModifierCommandePiece/{id}(id=${cmdpiece.id})}"
-						th:text="${cmdpiece.id}"></a></td>
 					<td th:text="${cmdpiece.user.firstname}" />
 					<td th:text="${cmdpiece.piece.libelle}" />
 					<td th:text="${cmdpiece.qte}" />

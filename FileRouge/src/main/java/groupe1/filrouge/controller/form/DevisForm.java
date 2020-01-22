@@ -8,7 +8,7 @@ public class DevisForm {
 
 	private String dateCreation;
 	
-	private Boolean etat;
+	private Boolean etat = false;
 	
 	private Integer user;
 	
