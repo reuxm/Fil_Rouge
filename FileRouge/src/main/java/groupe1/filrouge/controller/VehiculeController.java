@@ -26,8 +26,7 @@ public class VehiculeController {
 	
 	private Vehicule convertForm(VehiculeForm vehiculeform) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date madate = sdf.parse(vehiculeform.getDateCreation());
-		
+		Date madate = sdf.parse(vehiculeform.getDateCreation());	
 		Vehicule pvehicule = new Vehicule();
 		pvehicule.setId(vehiculeform.getId());
 		pvehicule.setModele(vehiculeform.getModele());
@@ -122,6 +121,12 @@ public class VehiculeController {
 			catch(Exception e) {
 				System.err.println(e.getMessage());
 			}
+		}
+		else
+		{
+			pmodel.addAttribute("errors", presult.getAllErrors());
+			System.err.println(presult);
+			return this.getAfficheMod(vehiculeform.getId(), pmodel);
 		}
 		return this.getAffiche(pmodel);
 	}

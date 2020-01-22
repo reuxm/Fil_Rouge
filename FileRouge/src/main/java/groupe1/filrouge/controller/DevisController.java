@@ -63,7 +63,6 @@ public class DevisController {
 		
 		pdevis.setEtat(devisform.getEtat());
 		System.out.println(pdevis);
-		System.out.println("/////////////////////////////////////////////////////////////////////////");
 		return pdevis;
 	}
 	
@@ -143,13 +142,11 @@ public class DevisController {
 			 BindingResult presult,
 			Model pmodel)
 	{
-		System.out.println("/////////////////////////////////////////////////////////////////////////");
 		System.out.println(presult);
 		System.out.println(devisform);	
 		if(!presult.hasErrors()) {
 			try
 			{
-				System.out.println("/////////////////////////////////////////////////////////////////////////");
 				Devis devis = convertForm(devisform);
 				serviceDevis.create(devis);
 			}
