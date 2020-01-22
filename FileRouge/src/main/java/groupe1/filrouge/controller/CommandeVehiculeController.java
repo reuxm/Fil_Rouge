@@ -62,10 +62,24 @@ public class CommandeVehiculeController {
 			cmdvehiculeform.setId(0);
 			pmodel.addAttribute("cmdvehiculeform", cmdvehiculeform);
 		}
-
 		return "commandes_vehicule";
 	}
-
+	@GetMapping("/afficherCommandeVehiculeVeille")
+	public String getAfficheVeille(Model pmodel) {
+		List<CommandeVehicule> lcmdvehicules = serviceCommandeVehicule.listVeille();
+		List<Devis> ldevis = serviceDevis.list();
+		pmodel.addAttribute("listecmdvehicules", lcmdvehicules);
+		pmodel.addAttribute("listedevis", ldevis);
+		if (!pmodel.containsAttribute("errors")) {
+			CommandeVehiculeForm cmdvehiculeform = new CommandeVehiculeForm();
+			cmdvehiculeform.setId(0);
+			pmodel.addAttribute("cmdvehiculeform", cmdvehiculeform);
+		}
+		return "commandes_vehicule";
+	}
+	
+	
+	
 	@PostMapping("/CreerCommandeVehicule")
 	public String ajoutCommandeVehicule(
 			@Valid @ModelAttribute(name = "cmdvehiculeform") CommandeVehiculeForm cmdvehiculeform,

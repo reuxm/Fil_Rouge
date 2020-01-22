@@ -11,5 +11,6 @@ public interface IServiceCommandeVehicule {
 	void create( CommandeVehicule c );
 	void update( CommandeVehicule c );
 	void delete( CommandeVehicule c );
+	List<CommandeVehicule> listVeille();
 
 }
