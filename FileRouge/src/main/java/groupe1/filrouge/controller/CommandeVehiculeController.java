@@ -45,6 +45,7 @@ public class CommandeVehiculeController {
 		pcmdvehicule.setDateCreation(madate);
 		pcmdvehicule.setDateCloture(madate);
 		pcmdvehicule.setEtat(false);
+		pcmdvehicule.setLivre(cmdvehiculeform.getLivre());
 		Devis pdevis = serviceDevis.find(cmdvehiculeform.getId_devis());
 		pcmdvehicule.setDevis(pdevis);
 
@@ -125,7 +126,7 @@ public class CommandeVehiculeController {
 			cmdvehiculeform.setDateCloture(new SimpleDateFormat("yyyy-MM-dd").format(pcmdvehicule.getDateCloture()));
 			cmdvehiculeform.setId_devis(Integer.valueOf(pcmdvehicule.getDevis().getId()));
 			cmdvehiculeform.setEtat(pcmdvehicule.getEtat());
-
+			cmdvehiculeform.setLivre(pcmdvehicule.getLivre());
 			pmodel.addAttribute("cmdvehiculeform", cmdvehiculeform);
 		}
 		return "commandes_vehicule";
@@ -134,13 +135,19 @@ public class CommandeVehiculeController {
 	public String clotureCommande(Model pmodel, @PathVariable Integer id) {
 		CommandeVehicule commande = serviceCommandeVehicule.find(id);
 		commande.setEtat( true );
+		serviceCommandeVehicule.update(commande);
+		return this.getAffiche(pmodel);
+	}
+	@GetMapping("/livreCommandeVehicule/{id}")
+	public String livreCommande(Model pmodel, @PathVariable Integer id) {
+		CommandeVehicule commande = serviceCommandeVehicule.find(id);
+		commande.setLivre( true );
 		Date date = new Date();
 		commande.setDateCloture(date);
 		serviceCommandeVehicule.update(commande);
 		return this.getAffiche(pmodel);
 	}
-
-
+	
 	@PostMapping("/ModifierCommandeVehicule")
 	public String modifieCommandeVehicule(
 			@Valid @ModelAttribute(name = "cmdvehiculeform") CommandeVehiculeForm cmdvehiculeform,

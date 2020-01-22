@@ -9,6 +9,8 @@ public class CommandeVehiculeForm {
 
 	private Boolean etat;
 
+	private Boolean livre=false;
+	
 	private String dateCreation;
 
 	private String dateCloture;
@@ -51,6 +53,14 @@ public class CommandeVehiculeForm {
 
 	public void setDateCloture(String dateCloture) {
 		this.dateCloture = dateCloture;
+	}
+
+	public Boolean getLivre() {
+		return livre;
+	}
+
+	public void setLivre(Boolean livre) {
+		this.livre = livre;
 	}
 	
 	

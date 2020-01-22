@@ -9,9 +9,8 @@ public class CommandePieceForm {
 	
 	@PositiveOrZero(message = "La quantité doit être positive !")
 	private Integer qte;
-	
 	private String dateCreation;
-
+	private Boolean etat=false;
 	public Integer getId() {
 		return id;
 	}
@@ -51,5 +50,15 @@ public class CommandePieceForm {
 	public void setDateCreation(String dateCreation) {
 		this.dateCreation = dateCreation;
 	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
+	}
+
+
 
 }
