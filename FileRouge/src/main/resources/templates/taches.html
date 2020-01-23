@@ -21,6 +21,7 @@
 			<table class="table table-hover" id="tableTaches">
 				<thead>
 					<tr>
+						<th>Libelle</th>
 						<th>Fiche</th>
 						<th>Utilisateur</th>
 						<th>Priorite</th>
@@ -32,6 +33,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="tache : ${listetache}" th:classappend="${(tache.etat ? 'table-secondary' : 'table-light') + ' ' + (tache.etat ? 'tacheClose' : '')}">
+						<td th:text="${tache.libelle}" />
 						<td
 							th:text="${tache.fiche.client.firstname + ' ' +  #dates.format(tache.fiche.dateCreation, 'dd/MM')}" />
 						<td th:text="${tache.user.firstname + ' ' + tache.user.lastname}" />
@@ -69,6 +71,12 @@
 				</div>
 				<div class="form-group">
 					<input type="hidden" th:field="*{id}" th:value="*{id}" />
+				</div>
+				<div class="form-group">
+				<label for="libelle">Nom de la tâche </label>
+				<input type="text" class=form-control id="libelle" th:field="*{libelle}" placeholder="libelle" required />
+				
+				
 				</div>
 				<div class="form-group">
 					<label for="fiche">Fiche</label> <select th:field="*{fiche}"
