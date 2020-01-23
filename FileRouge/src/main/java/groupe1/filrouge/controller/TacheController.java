@@ -51,12 +51,14 @@ public class TacheController {
 			ptache.setPriorite(servicePriorite.recherchePrioriteId(tacheform.getPriorite()));
 			ptache.setPiece(servicePiece.recherchePieceId(tacheform.getPiece()));
 			ptache.setUser(serviceUser.rechercheUserId(tacheform.getUser()));
+			ptache.setLibelle(tacheform.getLibelle());
 		}
 		else
 		{
 			ptache = service.rechercheTacheId(tacheform.getId());
 			
 		}
+		
 		ptache.setCommentaire(tacheform.getCommentaire());
 		
 		ptache.setEtat(tacheform.getEtat());
@@ -129,6 +131,7 @@ public class TacheController {
 			tacheform.setPriorite(tache.getPriorite().getId());
 			tacheform.setPiece(tache.getPiece().getId());
 			tacheform.setQte(tache.getQte());
+			tacheform.setLibelle(tache.getLibelle());
 			pmodel.addAttribute("tacheform", tacheform);
 		}
 		return "ModifTache";

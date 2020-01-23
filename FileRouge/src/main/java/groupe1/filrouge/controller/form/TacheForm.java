@@ -1,7 +1,7 @@
 package groupe1.filrouge.controller.form;
 
 
-import javax.validation.constraints.NotEmpty;
+
 import javax.validation.constraints.PositiveOrZero;
 
 public class TacheForm {
@@ -23,7 +23,7 @@ public class TacheForm {
 
 	private Integer fiche;
 	
-
+	private String libelle;
 	private Integer priorite;
 	
 
@@ -97,6 +97,14 @@ public class TacheForm {
 	public String toString() {
 		return "TacheForm [id=" + id + ", commentaire=" + commentaire + ", qte=" + qte + ", etat=" + etat + ", user="
 				+ user + ", fiche=" + fiche + ", priorite=" + priorite + ", piece=" + piece + "]";
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 	
 	
