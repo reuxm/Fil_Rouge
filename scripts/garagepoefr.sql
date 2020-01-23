@@ -231,7 +231,7 @@ CREATE TABLE `users` (
   `lastname` varchar(50) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `login` varchar(15) NOT NULL,
-  `pwd` varchar(10) NOT NULL
+  `pwd` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
