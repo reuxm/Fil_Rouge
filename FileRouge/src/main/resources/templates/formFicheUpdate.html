@@ -28,7 +28,7 @@
 				th:text="${newdescription==null ? description : newdescription}"
 				class="form-control"></textarea>
 
-			<label th:text="Priorite"></label> <select name="priorite"
+			<label th:text="Priorité"></label> <select name="priorite"
 				class="form-control" required>
 				<option value="" selected hidden=true th:text="Priorite" />
 				<option th:each="p : ${listPriorites}" th:value="${p.id}"
@@ -39,11 +39,11 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label th:text="'Prix HT'"></label> <input name="prix"
-						type="number" th:value="${prix}" step="0.01" class="form-control" />
+						type="number" th:value="${prix}" step="0.01" class="form-control" required />
 				</div>
 				<div class="form-group col-md-6">
 					<label th:text="TVA"></label> <input name="tva" type="number"
-						th:value="${tva}" step="0.01" class="form-control" />
+						th:value="${tva}" step="0.01" class="form-control" disabled />
 				</div>
 			</div>
 

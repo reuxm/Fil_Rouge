@@ -25,9 +25,9 @@
 			<thead>
 				<tr>
 					<th>Date de création</th>
-					<th>Créateur</th>
+					<th>Auteur</th>
+					<th>Client</th>
 					<th>Vehicule</th>
-					<th>Quantité</th>
 					<th>Date de cloture</th>
 					<th></th>
 					
@@ -37,13 +37,13 @@
 				<tr th:each="cmdvehicule : ${listecmdvehicules}" th:classappend="${(cmdvehicule.livre ? 'table-secondary' : 'table-light') + ' ' + (cmdvehicule.livre ? 'commandeClose' : '')}">
 
 					<td th:text="${cmdvehicule.dateCreation}" />
-					<td th:text="${cmdvehicule.devis.user.firstname}" />
+					<td th:text="${cmdvehicule.devis.user.firstname + ' ' + cmdvehicule.devis.user.lastname}" />
+					<td th:text="${cmdvehicule.devis.client.firstname + ' ' + cmdvehicule.devis.client.name}" />
 					<td th:text="${cmdvehicule.devis.vehicule.modele}" />
-					<td th:text="${cmdvehicule.devis.vehicule.qte}" />
 					<td th:text="${cmdvehicule.dateCloture}" />
 					<td><a th:unless="${cmdvehicule.etat}" class="btn btn-outline-secondary"
 						th:href="'/clotureCommandeVehicule/'+${cmdvehicule.id}" th:text="Prêt"></a>
-						 <a th:unless="${!cmdvehicule.etat or cmdvehicule.livre}" class="btn btn-outline-success"
+						 <a th:unless="${!cmdvehicule.etat or cmdvehicule.livre or veille}" class="btn btn-outline-success"
 						th:href="'/livreCommandeVehicule/'+${cmdvehicule.id}" th:text="Livré"></a>
 
 						<h5>
