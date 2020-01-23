@@ -29,6 +29,5 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/matthias/.m2/repository/org/mindrot/jbcrypt/0.3m/jbcrypt-0.3m-sources.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
