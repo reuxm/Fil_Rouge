@@ -15,7 +15,7 @@
 		        <label class="custom-control-label" for="afficherCacherFichesCloses">Cacher les fiches closes</label>
 		</div>
 
-		<table class="table table-hover" id="tableFiches">
+		<table class="table table-hover table-wrapper-scroll" id="tableFiches">
 			<thead>
 				<tr>
 					<th th:text="Creation"></th>
@@ -79,18 +79,11 @@
 					th:text="${c.name}" th:selected="${client} == ${c.id}" />
 			</select>
 
-			<div class="form-row">
-				<div class="form-group col-md-6">
+				<div class="form-group">
 					<label th:text="'Prix HT'"></label> <input name="prix"
 						type="number" th:value="${prix==null ? 0 : prix}" step="0.01"
 						class="form-control" required />
 				</div>
-				<div class="form-group col-md-6">
-					<label th:text="TVA"></label> <input name="tva" type="number"
-						th:value="${tva==null ? 0.2 : tva}" step="0.01"
-						class="form-control" disabled />
-				</div>
-			</div>
 
 			<button type="submit" class="btn btn-outline-success"
 				th:text="Valider"></button>
