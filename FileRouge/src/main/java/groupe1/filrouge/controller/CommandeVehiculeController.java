@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import groupe1.filrouge.controller.form.CommandeVehiculeForm;
 import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Devis;
-import groupe1.filrouge.entity.FactureFiche;
-import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceCommandeVehicule;
 import groupe1.filrouge.service.IServiceDevis;
 
@@ -67,6 +65,7 @@ public class CommandeVehiculeController {
 		}
 		return "commandes_vehicule";
 	}
+
 	@GetMapping("/afficherCommandeVehiculeVeille")
 	public String getAfficheVeille(Model pmodel) {
 		List<CommandeVehicule> lcmdvehicules = serviceCommandeVehicule.listVeille();
@@ -80,9 +79,7 @@ public class CommandeVehiculeController {
 		}
 		return "commandes_vehicule";
 	}
-	
-	
-	
+
 	@PostMapping("/CreerCommandeVehicule")
 	public String ajoutCommandeVehicule(
 			@Valid @ModelAttribute(name = "cmdvehiculeform") CommandeVehiculeForm cmdvehiculeform,
@@ -118,7 +115,7 @@ public class CommandeVehiculeController {
 		pmodel.addAttribute("listecmdvehicules", null);
 		pmodel.addAttribute("action", "ModifierCommandeVehicule");
 		if (pmodel.containsAttribute("cmdvehiculeform") == false) {
-			
+
 			CommandeVehiculeForm cmdvehiculeform = new CommandeVehiculeForm();
 
 			cmdvehiculeform.setId(pcmdvehicule.getId());
@@ -131,23 +128,25 @@ public class CommandeVehiculeController {
 		}
 		return "commandes_vehicule";
 	}
+
 	@GetMapping("/clotureCommandeVehicule/{id}")
 	public String clotureCommande(Model pmodel, @PathVariable Integer id) {
 		CommandeVehicule commande = serviceCommandeVehicule.find(id);
-		commande.setEtat( true );
+		commande.setEtat(true);
 		serviceCommandeVehicule.update(commande);
 		return this.getAffiche(pmodel);
 	}
+
 	@GetMapping("/livreCommandeVehicule/{id}")
 	public String livreCommande(Model pmodel, @PathVariable Integer id) {
 		CommandeVehicule commande = serviceCommandeVehicule.find(id);
-		commande.setLivre( true );
+		commande.setLivre(true);
 		Date date = new Date();
 		commande.setDateCloture(date);
 		serviceCommandeVehicule.update(commande);
 		return this.getAffiche(pmodel);
 	}
-	
+
 	@PostMapping("/ModifierCommandeVehicule")
 	public String modifieCommandeVehicule(
 			@Valid @ModelAttribute(name = "cmdvehiculeform") CommandeVehiculeForm cmdvehiculeform,

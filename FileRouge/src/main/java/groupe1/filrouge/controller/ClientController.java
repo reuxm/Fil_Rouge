@@ -28,7 +28,7 @@ public class ClientController {
 		pclient.setFirstname(clientform.getFirstname());
 		pclient.setName(clientform.getName());	
 		pclient.setAdresse(clientform.getAdresse());
-		pclient.setCodepostal(clientform.getCodePostal());
+		pclient.setCodePostal(clientform.getCodePostal());
 		pclient.setMobile(clientform.getMobile());
 		pclient.setTelephone(clientform.getTelephone());
 		pclient.setVille(clientform.getVille());
@@ -64,7 +64,7 @@ public class ClientController {
 			clientform.setFirstname(client.getFirstname());
 			clientform.setName(client.getName());
 			clientform.setVille(client.getVille());
-			clientform.setCodePostal(client.getCodepostal());
+			clientform.setCodePostal(client.getCodePostal());
 			clientform.setMobile(client.getMobile());
 			clientform.setTelephone(client.getTelephone());	
 			clientform.setCloturer(client.getCloturer());
