@@ -107,6 +107,7 @@ public class FicheController {
 			Fiche original = service.rechercheFicheId( form.getId() );
 			fiche.setId( original.getId() );
 			fiche.setDateCreation(  original.getDateCreation() );
+			fiche.setEtat(original.getEtat() );
 			fiche.setUser( original.getUser() );
 			fiche.setClient( original.getClient() );
 			
