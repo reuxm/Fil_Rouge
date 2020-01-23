@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+<meta charset="UTF-8">
+<title th:text="Profils"></title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="container">
+
+		<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+			<span th:text="${e.defaultMessage}"></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	
+		<table class="table">
+			<thead>
+				<tr >
+					<th th:text="Nom" ></th>
+					<th th:text="Prenom" ></th>
+					<th th:text="Login" ></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="u : ${users}">
+				<td th:text=${u.lastname} ></td>
+				<td th:text=${u.firstname} ></td>
+				<td th:text=${u.login} ></td>
+				<td class="col-3">
+					<a th:href="'/profils/'+${pid}" th:text="${pname}" class="badge badge-secondary"></a>
+					<a class="btn btn-outline-danger" th:href="'/profils/'+${pid}+'/'+${u.id}" th:text="'Retirer le role'"></a>
+				</td>
+			</tr>
+			
+			</tbody>
+		</table>
+		
+		
+		<a th:href="@{/users}" th:text="'Retour aux utilisateurs'" class="btn btn-outline-secondary"></a>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

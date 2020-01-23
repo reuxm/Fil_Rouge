@@ -78,12 +78,6 @@ public class FicheForm {
 	public void setCloturer(String cloturer) {
 		this.cloturer = cloturer;
 	}
-
-	@Override
-	public String toString() {
-		return "FicheForm [id=" + id + ", description=" + description + ", priorite=" + priorite + ", client=" + client
-				+ ", prix=" + prix + ", tva=" + tva + ", cloturer=" + cloturer + "]";
-	}
 	
 	
 }

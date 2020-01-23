@@ -79,10 +79,12 @@ public class User {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstname + ", lastName=" + lastname + ", login=" + login
-				+ ", password=" + password + "]";
+	public Collection<Profil> getProfils() {
+		return profils;
+	}
+
+	public void setProfils(Collection<Profil> profils) {
+		this.profils = profils;
 	}
 	
 }
