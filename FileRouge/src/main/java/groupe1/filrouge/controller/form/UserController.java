@@ -1,6 +1,7 @@
 package groupe1.filrouge.controller.form;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -133,5 +134,45 @@ public class UserController {
 			return updateUser( pmodel, id );
 		}
 		return readAllUsers( pmodel );
+	}
+	
+	@GetMapping("/profils/{id}")
+	public String listParProfil( Model pmodel, @PathVariable Integer id ) {
+		List<String> errors = new ArrayList<String>();
+		Profil profil = pService.rechercheProfilId( id );
+		
+		if( profil != null ) {
+			pmodel.addAttribute( "users", profil.getUsers() );
+			pmodel.addAttribute( "pid", profil.getId() );
+			pmodel.addAttribute( "pname", profil.getName() );
+		}
+		else {
+			errors.add( "profil inexistant" );
+		}
+		pmodel.addAttribute( "errors", errors );	
+		
+		return "profils";
+	}
+	
+	@GetMapping("/profils/{id}/{userid}")
+	public String removeProfil( Model pmodel, @PathVariable Integer id , @PathVariable Integer userid ) {
+		List<String> errors = new ArrayList<String>();
+		Profil profil = pService.rechercheProfilId( id );
+		User user = service.rechercheUserId( userid );
+
+		if( profil == null ) {
+			errors.add( "profil inexistant" );
+		}
+		if( user == null ) {
+			errors.add( "utilisateur inexistant" );
+		}
+		
+		if( errors.size() == 0 ) {
+			user.getProfils().remove( profil );
+			service.modifierUser( user );
+		}
+		
+		pmodel.addAttribute( "errors", errors );	
+		return listParProfil( pmodel, id );
 	}
 }

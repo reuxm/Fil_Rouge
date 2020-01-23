@@ -16,8 +16,8 @@
 				<th th:text="Prenom" ></th>
 				<th th:text="Login" ></th>
 				<th th:text="Profils" class="col-lg-4"></th>
+				<th></th>
 			</tr>
-				<td></td>
 		</thead>
 		<tbody>
 			<tr th:each="u : ${users}">
@@ -25,7 +25,7 @@
 				<td th:text=${u.firstname} ></td>
 				<td th:text=${u.login} ></td>
 				<td class="col-lg-4">
-					<div th:each="p : ${u.profils}" th:text="${p.name}" class="badge badge-secondary"></div>
+					<a th:each="p : ${u.profils}" th:href="'/profils/'+${p.id}" th:text="${p.name}" class="badge badge-secondary mr-1"></a>
 				</td>
 				<td>
 					<a class="btn btn-outline-secondary"
