@@ -8,9 +8,9 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
@@ -29,5 +29,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/matthias/.m2/repository/org/mindrot/jbcrypt/0.3m/jbcrypt-0.3m-sources.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

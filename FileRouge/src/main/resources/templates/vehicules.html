@@ -39,7 +39,7 @@
 			</h2>
 
 			<h2 th:unless="${action == 'ModifierVehicule'}">Formulaire
-				d'Ajout</h2>
+				d'ajout</h2>
 
 			<div th:each="e : ${errors}"
 				class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -57,17 +57,17 @@
 
 				<div class="form-group">
 					<label for="modele">Modèle</label> <input class="form-control"
-						type="text" th:field="*{modele}" id="modele" placeholder="modèle" />
+						type="text" th:field="*{modele}" id="modele" placeholder="Modèle" required/>
 				</div>
 
 				<div class="form-group">
 					<label for="qte">Quantité</label> <input class="form-control"
-						type="number" th:field="*{qte}" id="qte" required placeholder="quantité" />
+						type="number" th:field="*{qte}" id="qte" required placeholder="Quantité" />
 				</div>
 
 				<div class="form-group">
 					<label for="prixHT">Prix HT</label> <input class="form-control"
-						type="text" th:field="*{prixHT}" id="prixHT" placeholder="prix HT" />
+						type="text" th:field="*{prixHT}" id="prixHT" placeholder="Prix HT" required/>
 				</div>
 
 				<div class="form-group">

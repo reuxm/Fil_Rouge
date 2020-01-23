@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title th:text="'Gestion Des Classes'"></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
 <body>
 <head th:replace="fragments/headerload :: load">
 <title th:text="'Gestion De Mon Ecole'"></title>
@@ -24,11 +20,11 @@
 			<thead>
 				<tr>
 					<th>Nom</th>
-					<th>Prenom</th>
+					<th>Prénom</th>
 					<th>Adresse</th>
-					<th>Code Postal</th>
+					<th>Code postal</th>
 					<th>Ville</th>
-					<th>Telephone</th>
+					<th>Téléphone</th>
 					<th>Mobile</th>
 					<th></th>
 
@@ -47,7 +43,7 @@
 						th:href="'/afficherModifierClient/'+${client.id}" th:text="Modif"></a>
 
 						<h5>
-							<span th:if="${client.cloturer}" th:text="Clôt"
+							<span th:if="${client.cloturer}" th:text="Fermé"
 								class="badge badge-pill badge-secondary"></span>
 						</h5></td>
 				</tr>
@@ -58,7 +54,7 @@
 			<h3 th:if="${action == 'ModifierClient'}">
 				Formulaire de modification
 			</h3>
-			<h3 th:unless="${action == 'ModifierClient'}">Formulaire d'Ajout</h3>
+			<h3 th:unless="${action == 'ModifierClient'}">Formulaire d'ajout</h3>
 
 
 			<form action="#" th:action="@{/{action}(action=${action})}"
@@ -81,9 +77,9 @@
 						placeholder="Nom" required />
 				</div>
 				<div class="form-group ">
-					<label for="firstname">Prenom</label> <input type="text"
+					<label for="firstname">Prénom</label> <input type="text"
 						class="form-control" th:field="*{firstname}" id="firstname"
-						placeholder="Prenom" required />
+						placeholder="Prénom" required />
 				</div>
 				<div class="form-group ">
 					<label for="adresse">Adresse</label> <input type="text"
@@ -106,9 +102,9 @@
 						placeholder="Ville" required />
 				</div>
 				<div class="form-group ">
-					<label for="telephone">Telephone</label> <input type="text"
+					<label for="telephone">Téléphone</label> <input type="text"
 						class="form-control" th:field="*{telephone}" id="telephone"
-						placeholder="Numéro de télephone" required />
+						placeholder="Numéro de téléphone" required />
 				</div>
 				<div class="form-group ">
 					<label for="mobile">Mobile</label> <input type="text"
@@ -118,7 +114,7 @@
 				<div class="form-group ">
 					<input type="checkbox" id="cloturer" name="Cloturer"
 						th:field="*{cloturer}" value="true" />
-					<label for="cloturer">Cloturer</label>
+					<label for="cloturer">Fermer</label>
 				</div>
 				<a th:unless="${action != 'ModifierClient'}" th:href="@{/afficherCreerClient}" th:text="Retour" class="btn btn-outline-secondary"></a>
 				<button class="btn btn-outline-success" type="submit">Valider</button>

@@ -1,10 +1,15 @@
 package groupe1.filrouge.entity;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 /**
  * @author Matiace
@@ -27,6 +32,13 @@ public class Profil {
 	 */
 	@Column(name="name", length = 50, nullable = false)
 	private String name;
+  
+	@ManyToMany
+	@JoinTable(name="profil_user",
+	joinColumns= @JoinColumn(name = "id_profil"),
+	inverseJoinColumns= @JoinColumn(name="id_user") ) 
+	private Collection<User> users;
+
 	/**
 	 * 
 	 * @return <b> L'Id Profil </b>
@@ -55,5 +67,13 @@ public class Profil {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Collection<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
+
 }

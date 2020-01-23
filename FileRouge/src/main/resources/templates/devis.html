@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  	<title th:text="'Gestion Des Devis'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
 <body>
 	 <head th:replace="fragments/headerload :: load">
   	<title th:text="'Gestion des devis'"></title>
@@ -55,7 +51,7 @@
 		</form>
 	<div class="border p-4 m-2"  th:if="${action == 'CreerDevis'}"> 		
 
-	 <h3 th:if="${action == 'CreerDevis'}">Ajout d'une tâche</h3>
+	 <h3 th:if="${action == 'CreerDevis'}">Formulaire d'ajout</h3>
 	 
 		  <form action="#" th:action="@{/{action}(action=${action})}" 
 		  th:object="${devisform}"   method="post"  >
@@ -74,14 +70,14 @@
 		   		<label for="client">Client</label>
 		   	    <select th:field="*{client}" required class="form-control" >
 		   	    
-		   	    <option value="" selected hidden=true id="client">Selection Client</option>
+		   	    <option value="" selected hidden=true id="client">Sélection client</option>
 			    <option th:each="client :${listeclient}" 
 			    	th:value="${client.id}" th:utext="${client.firstname + ' ' + client.name }"/>
 			    </select>
-		   		<label for="vehicule">Vehicule</label>
+		   		<label for="vehicule">Véhicule</label>
 		   	    <select th:field="*{vehicule}" required class="form-control" >
 		   	    
-		   	    <option value="" selected hidden=true id="vehicule">Selection Véhicule</option>
+		   	    <option value="" selected hidden=true id="vehicule">Sélection véhicule</option>
 			    <option th:each="vehicule :${listevehicule}" 
 			    	th:value="${vehicule.id}" th:utext="${vehicule.modele}"/>
 			    </select>
@@ -90,13 +86,13 @@
 			    <label for="user">Utilisateur</label>
 			    
 			    <select th:field="*{user}" required id="user" class="form-control">
-			    <option value="" selected hidden=true>Selection utilisateur</option>
+			    <option value="" selected hidden=true>Sélection utilisateur</option>
 			    <option th:each="user :${listeuser}" 
 			    	th:value="${user.id}" th:utext="${user.firstname +' ' + user.lastname}"/>
 			    </select>
 			    </div>
 			    <div class="form-group">
-			    <label for="date">Date de Création</label>
+			    <label for="date">Date de création</label>
 		   		<input type="date" th:field="*{dateCreation}" class="form-control" id="date" placeholder="DateCreation" required/>
 		   		</div>
 		 <button class="btn btn-outline-success" type="submit">Valider</button>

@@ -31,6 +31,9 @@ public class Tache {
 	/**
 	 * JAVADOC la quantité des taches
 	 */
+	@Column(name="libelle")
+	private String libelle;
+
 	@Column( name="qte", nullable=true )
 	private Integer qte;
 	/**
@@ -126,13 +129,21 @@ public class Tache {
 	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
+	public String getLibelle() {
+		return libelle;
+	}
 
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
 	@Override
 	public String toString() {
 		return "Tache [id=" + id + ", commentaire=" + commentaire + ", qte=" + qte + ", etat=" + etat + ", user=" + user
 				+ ", fiche=" + fiche + ", priorite=" + priorite + ", piece=" + piece + "]";
 	}
-	
+
+
 	
 	
 }

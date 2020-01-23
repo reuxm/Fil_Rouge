@@ -6,7 +6,6 @@ import javax.validation.constraints.PositiveOrZero;
 public class PieceForm {
 	private Integer id;
 	
-	@NotEmpty
 	private String libelle;
 	
 	@PositiveOrZero(message = "La quantité doit être positive !")

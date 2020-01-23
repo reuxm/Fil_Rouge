@@ -159,6 +159,7 @@ public class DevisController {
 					commande.setDateCreation(new Date());
 					commande.setDevis(devis);
 					commande.setEtat(false);
+					commande.setLivre(false);
 					serviceCommande.create(commande);
 					
 				}
