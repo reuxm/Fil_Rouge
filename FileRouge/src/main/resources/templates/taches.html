@@ -59,7 +59,7 @@
 		</form>
 		<div class="border p-4 m-2" th:if="${action == 'CreerTache'}">
 
-			<h3 th:if="${action == 'CreerTache'}">Ajout d'une tâche</h3>
+			<h3 th:if="${action == 'CreerTache'}">Formulaire d'ajout</h3>
 
 			<form action="#" th:action="@{/{action}(action=${action})}"
 				th:object="${tacheform}" method="post">
@@ -78,7 +78,7 @@
 					<label for="fiche">Fiche</label> <select th:field="*{fiche}"
 						required class="form-control">
 
-						<option value="" selected hidden=true id="fiche">Selection
+						<option value="" selected hidden=true id="fiche">Sélection
 							fiche</option>
 						<option th:each="fiche :${listefiche}" th:value="${fiche.id}"
 							th:utext="${fiche.client.firstname + ' ' + #dates.format(fiche.dateCreation, 'dd/MMM/yyyy')}" />
@@ -88,7 +88,7 @@
 				<div class="form-group">
 					<label for="user">Utilisateur</label> <select th:field="*{user}"
 						required id="user" class="form-control">
-						<option value="" selected hidden=true>Selection
+						<option value="" selected hidden=true>Sélection
 							utilisateur</option>
 						<option th:each="user :${listeuser}" th:value="${user.id}"
 							th:utext="${user.firstname + ' ' + user.lastname}" />
@@ -97,7 +97,7 @@
 				<div class="form-group">
 					<label for="priorite">Priorité</label> <select
 						th:field="*{priorite}" id="priorite" required class="form-control">
-						<option value="" selected hidden=true>Selection priorité</option>
+						<option value="" selected hidden=true>Sélection priorité</option>
 						<option th:each="priorite :${listepriorite}"
 							th:value="${priorite.id}" th:utext="${priorite.libelle}" />
 					</select>
@@ -112,9 +112,9 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="qte">Quantitée</label> <input type="number"
+					<label for="qte">Quantité</label> <input type="number"
 						th:field="*{qte}" class="form-control" id="qte"
-						placeholder="Quantitée" required />
+						placeholder="Quantité" required />
 				</div>
 				<div class="form-group">
 					<label for="com">Commentaire</label>

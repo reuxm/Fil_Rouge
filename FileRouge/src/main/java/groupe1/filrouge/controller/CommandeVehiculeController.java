@@ -58,6 +58,7 @@ public class CommandeVehiculeController {
 		List<Devis> ldevis = serviceDevis.list();
 		pmodel.addAttribute("listecmdvehicules", lcmdvehicules);
 		pmodel.addAttribute("listedevis", ldevis);
+		pmodel.addAttribute("veille", false);
 		pmodel.addAttribute("action", "CreerCommandeVehicule");
 
 		if (!pmodel.containsAttribute("errors")) {
@@ -73,6 +74,7 @@ public class CommandeVehiculeController {
 		List<Devis> ldevis = serviceDevis.list();
 		pmodel.addAttribute("listecmdvehicules", lcmdvehicules);
 		pmodel.addAttribute("listedevis", ldevis);
+		pmodel.addAttribute("veille", true);
 		if (!pmodel.containsAttribute("errors")) {
 			CommandeVehiculeForm cmdvehiculeform = new CommandeVehiculeForm();
 			cmdvehiculeform.setId(0);

@@ -30,7 +30,12 @@ public class PieceController {
 		Date madate = sdf.parse(pieceform.getDateCreation());		
 		Piece ppiece = new Piece();
 		ppiece.setId(pieceform.getId());
-		ppiece.setLibelle(pieceform.getLibelle());
+		if (pieceform.getLibelle() != null) {
+			ppiece.setLibelle(pieceform.getLibelle());
+		}
+		else {
+			ppiece = servicePiece.recherchePieceId(pieceform.getId());
+		}
 		ppiece.setQte(Integer.valueOf(pieceform.getQte()));
 		ppiece.setDateCreation(madate);
 		return ppiece;
