@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="cmdpiece : ${listecmdpieces}" th:classappend="${(cmdpiece.etat ? 'table-secondary' : 'table-light') + ' ' + (cmdpiece.etat ? 'commandeClose' : '')}">
-					<td th:text="${cmdpiece.user.firstname}" />
+					<td th:text="${cmdpiece.user.login}" />
 					<td th:text="${cmdpiece.piece.libelle}" />
 					<td th:text="${cmdpiece.qte}" />
 					<td><a th:unless="${cmdpiece.etat}" class="btn btn-outline-secondary"
