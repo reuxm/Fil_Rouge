@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+<meta charset="UTF-8">
+<title th:text="Users"></title>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<form th:object="${form}" action="#" th:action="'../users/'+${id}" method="post" class="container">
+		<h3 th:text="'Formulaire de modification'"></h3>
+
+		<div th:each="e : ${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+			<span th:text="${e.defaultMessage}"></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		
+		<div class="form-group">
+			<label th:text="Nom"></label>
+			<input type="text" name="nom" class="form-control" th:value="${nom}" required/>
+		</div>
+		
+		<div class="form-group">
+			<label th:text="Prenom"></label>
+			<input type="text" name="prenom" class="form-control" required th:value="${prenom}" />
+		</div>
+		
+		<div class="form-group">
+			<label th:text="Login"></label>
+			<input type="text" class="form-control" th:value="${login}" disabled />
+			<input type="hidden" name="login" th:value="${login}" />
+		</div>
+		
+		<div class="form-group">
+			<label th:text="'Mot de passe'"></label>
+			<input type="password" name="pass1" class="form-control" />
+		</div>
+		
+		<div class="form-group">
+			<label th:text="'Repter le mot de passe'"></label>
+			<input type="password" name="pass2" class="form-control" />
+		</div>
+		
+		<div class="form-group">
+			<label th:text="Profils"></label>
+			<div th:each="p : ${profils}" class="form-check">
+				<input type="checkbox" th:name="'profils['+${p.id-1}+']'" th:id="'profil'+${p.id}" class="form-check-input"  
+				th:checked="${profil[p.id-1]} or (${newprofil} != null and ${newprofil[p.id-1]})" />
+				<label th:text="${p.name}" th:for="'profil'+${p.id}" class="form-check-label"></label>
+			</div>
+		</div>
+			
+		<a th:href="@{/users}" th:text="Retour" class="btn btn-outline-secondary"></a>
+		<button type="submit" th:text="Valider" class="btn btn-outline-success"></button>
+	</form>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -17,6 +17,7 @@
 				<th th:text="Login" ></th>
 				<th th:text="Profils" class="col-lg-4"></th>
 			</tr>
+				<td></td>
 		</thead>
 		<tbody>
 			<tr th:each="u : ${users}">
@@ -25,6 +26,10 @@
 				<td th:text=${u.login} ></td>
 				<td class="col-lg-4">
 					<div th:each="p : ${u.profils}" th:text="${p.name}" class="badge badge-secondary"></div>
+				</td>
+				<td>
+					<a class="btn btn-outline-secondary"
+						th:href="'/users/'+${u.id}" th:text="Modif"></a>
 				</td>
 			</tr>
 		</tbody>
