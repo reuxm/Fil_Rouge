@@ -35,7 +35,7 @@
 			<h3 th:if="${action == 'ModifierPiece'}">
 				Formulaire de modification
 			</h3>
-			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'Ajout</h3>
+			<h3 th:unless="${action == 'ModifierPiece'}">Formulaire d'ajout</h3>
 
 			<div th:each="e : ${errors}"
 				class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -50,13 +50,13 @@
 				th:object="${pieceform}" method="post">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 				<div class="form-group">
-					<label for="libelle">Libelle</label> <input class="form-control"
-						type="text" th:field="*{libelle}" required id="libelle"
-						placeholder="libellé" />
+					<label for="libelle">Libellé</label> <input class="form-control"
+						type="text" th:field="*{libelle}" th:required="${action != 'ModifierPiece'}" id="libelle"
+						placeholder="Libellé" th:disabled="${action == 'ModifierPiece'}" />
 				</div>
 				<div class="form-group">
 					<label for="qte">Quantité</label> <input class="form-control"
-						type="number" th:field="*{qte}" id="qte" required placeholder="quantité" />
+						type="number" th:field="*{qte}" id="qte" required placeholder="Quantité" />
 				</div>
 				<div class="form-group">
 					<label for="dateCreation">Date de création</label> <input

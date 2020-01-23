@@ -18,8 +18,7 @@ public class FicheForm {
 	@PositiveOrZero( message="Le prix ne peux pas être négatif" )
 	private Float prix;
 	
-	@PositiveOrZero( message="La TVA ne peux pas être négative" )
-	private Float tva;
+	private Float tva = 0.2f;
 	
 	private String cloturer;
 

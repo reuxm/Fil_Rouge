@@ -14,7 +14,7 @@
 		        <input type="checkbox" class="custom-control-input" id="afficherCacherFichesCloses" checked>
 		        <label class="custom-control-label" for="afficherCacherFichesCloses">Cacher les fiches closes</label>
 		</div>
-
+		
 		<table class="table table-hover" id="tableFiches">
 			<thead>
 				<tr>
@@ -31,10 +31,10 @@
 			<tbody>
 				<tr th:each="f : ${listefiches}" th:classappend="${(f.etat ? 'table-secondary' : 'table-light') + ' ' + (f.etat ? 'ficheClose' : '')}">
 					<td th:text="${f.dateCreation}"></td>
-					<td th:text="${f.user.lastname}"></td>
+					<td th:text="${f.user.login}"></td>
 					<td th:text="${f.dateCloture}"></td>
 					<td th:text="${f.priorite.libelle}"></td>
-					<td th:text="${f.client.name}"></td>
+					<td th:text="${f.client.name + ' ' + f.client.firstname}"></td>
 					<td th:text="${f.prix+(f.prix*f.tva)}"></td>
 					<td th:text="${f.description}"></td>
 					<td><a th:unless="${f.etat}" class="btn btn-outline-secondary"
@@ -49,7 +49,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		
 		<form th:object="${form}" action="#" th:action="fiches" method="post"
 			class="border p-4 m-2">
 			<h3 th:text="'Formulaire d\'ajout'"></h3>
@@ -64,12 +64,12 @@
 			</div>
 
 			<label th:text="Description"></label>
-			<textarea name="description" placeholder="description"
+			<textarea name="description" placeholder="Description"
 				class="form-control" th:text="${description}"></textarea>
 
-			<label th:text="Priorite"></label> <select name="priorite"
+			<label th:text="Priorité"></label> <select name="priorite"
 				class="form-control" required>
-				<option value="" th:text="Priorite" selected hidden=true />
+				<option value="" th:text="Priorité" selected hidden=true />
 				<option th:each="p : ${listPriorites}" th:value="${p.id}"
 					th:text="${p.libelle}" th:selected="${prio} == ${p.id}" />
 			</select> <label th:text="Client"></label> <select name="client" required
@@ -79,18 +79,11 @@
 					th:text="${c.name}" th:selected="${client} == ${c.id}" />
 			</select>
 
-			<div class="form-row">
-				<div class="form-group col-md-6">
+				<div class="form-group">
 					<label th:text="'Prix HT'"></label> <input name="prix"
 						type="number" th:value="${prix==null ? 0 : prix}" step="0.01"
-						class="form-control" />
+						class="form-control" required />
 				</div>
-				<div class="form-group col-md-6">
-					<label th:text="TVA"></label> <input name="tva" type="number"
-						th:value="${tva==null ? 0.2 : tva}" step="0.01"
-						class="form-control" />
-				</div>
-			</div>
 
 			<button type="submit" class="btn btn-outline-success"
 				th:text="Valider"></button>
