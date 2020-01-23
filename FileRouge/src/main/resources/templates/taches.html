@@ -35,7 +35,7 @@
 					<tr th:each="tache : ${listetache}" th:classappend="${(tache.etat ? 'table-secondary' : 'table-light') + ' ' + (tache.etat ? 'tacheClose' : '')}">
 						<td th:text="${tache.libelle}" />
 						<td
-							th:text="${tache.fiche.client.firstname + ' ' +  #dates.format(tache.fiche.dateCreation, 'dd/MM')}" />
+							th:text="${tache.fiche.client.name + ' ' +  #dates.format(tache.fiche.dateCreation, 'dd/MM')}" />
 						<td th:text="${tache.user.firstname + ' ' + tache.user.lastname}" />
 						<td th:text="${tache.priorite.libelle}" />
 						<td th:text="${tache.piece.libelle}" />
