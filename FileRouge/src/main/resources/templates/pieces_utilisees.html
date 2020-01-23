@@ -12,7 +12,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col">Id tâche</th>
+					<th scope="col">Libelle tâche</th>
 					<th scope="col">Libelle pièce</th>
 					<th scope="col">Quantité utilisée</th>
 					<th scope="col">Quantité restante</th>
@@ -20,7 +20,7 @@
 			</thead>
 			<tbody>
 				<tr th:scope="row" th:each="tache : ${listetache}">
-					<td th:text="${tache.id}"></td>
+					<td th:text="${tache.libelle}"></td>
 					<td th:text="${tache.piece.libelle}" />
 					<td th:text="${tache.qte}" />
 					<td th:text="${tache.piece.qte}" />

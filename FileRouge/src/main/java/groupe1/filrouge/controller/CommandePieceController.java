@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import groupe1.filrouge.controller.form.CommandePieceForm;
 import groupe1.filrouge.entity.CommandePiece;
-import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Piece;
 import groupe1.filrouge.entity.User;
 import groupe1.filrouge.service.IServiceCommandePiece;
@@ -33,7 +32,7 @@ public class CommandePieceController {
 	IServicePiece servicePiece;
 	@Autowired
 	IServiceUser serviceUser;
-	
+
 	private CommandePiece convertForm(CommandePieceForm cmdpieceform) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date madate = new Date();
@@ -53,7 +52,7 @@ public class CommandePieceController {
 		pcmdpiece.setUser(puser);
 		return pcmdpiece;
 	}
-	
+
 	@GetMapping("/afficherCreerCommandePiece")
 	public String getAffiche(Model pmodel) {
 		List<CommandePiece> lcmdpieces = serviceCommandePiece.list();
@@ -63,50 +62,44 @@ public class CommandePieceController {
 		pmodel.addAttribute("listepieces", lpieces);
 		pmodel.addAttribute("listeusers", lusers);
 		pmodel.addAttribute("action", "CreerCommandePiece");
-		
-		if(!pmodel.containsAttribute("errors")) {
+
+		if (!pmodel.containsAttribute("errors")) {
 			CommandePieceForm cmdpieceform = new CommandePieceForm();
 			cmdpieceform.setId(0);
-			pmodel.addAttribute("cmdpieceform",cmdpieceform);
+			pmodel.addAttribute("cmdpieceform", cmdpieceform);
 		}
-		
+
 		return "commandes_piece";
 	}
-	
+
 	@PostMapping("/CreerCommandePiece")
-	public String ajoutCommandePiece( 
-			@Valid @ModelAttribute(name = "cmdpieceform") CommandePieceForm cmdpieceform,
-			BindingResult presult,
-			Model pmodel)
-	{
+	public String ajoutCommandePiece(@Valid @ModelAttribute(name = "cmdpieceform") CommandePieceForm cmdpieceform,
+			BindingResult presult, Model pmodel) {
 		System.err.println(presult);
-		if(!presult.hasErrors()) {
-			try
-			{
+		if (!presult.hasErrors()) {
+			try {
 				CommandePiece pcmdpiece = convertForm(cmdpieceform);
 				serviceCommandePiece.create(pcmdpiece);
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
-		}
-		else {
+		} else {
 			pmodel.addAttribute("errors", presult.getAllErrors());
 		}
 		return this.getAffiche(pmodel);
 	}
-	
+
 	@GetMapping("/SupprimerCommandePiece/{id}")
-	public String getSupprimer(@PathVariable final Integer id,Model pmodel) {
+	public String getSupprimer(@PathVariable final Integer id, Model pmodel) {
 		CommandePiece pcmdpiece = serviceCommandePiece.find(id);
-		if(pcmdpiece != null) {
+		if (pcmdpiece != null) {
 			serviceCommandePiece.delete(pcmdpiece);
 		}
 		return this.getAffiche(pmodel);
 	}
-	
+
 	@GetMapping("/afficherModifierCommandePiece/{id}")
-	public String getAfficheMod(@PathVariable final Integer id,Model pmodel) {
+	public String getAfficheMod(@PathVariable final Integer id, Model pmodel) {
 		CommandePiece pcmdpiece = serviceCommandePiece.find(id);
 		List<Piece> lpieces = servicePiece.recherchePiece();
 		List<User> lusers = serviceUser.rechercheUser();
@@ -114,7 +107,7 @@ public class CommandePieceController {
 		pmodel.addAttribute("listeusers", lusers);
 		pmodel.addAttribute("listecmdpieces", null);
 		pmodel.addAttribute("action", "ModifierCommandePiece");
-		if(pmodel.containsAttribute("cmdpieceform") == false) {
+		if (pmodel.containsAttribute("cmdpieceform") == false) {
 			CommandePieceForm cmdpieceform = new CommandePieceForm();
 			cmdpieceform.setId(pcmdpiece.getId());
 			cmdpieceform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(pcmdpiece.getDateCreation()));
@@ -126,6 +119,7 @@ public class CommandePieceController {
 		}
 		return "commandes_piece";
 	}
+
 	@GetMapping("/clotureCommandePiece/{id}")
 	public String clotureCommande(Model pmodel, @PathVariable Integer id) {
 		CommandePiece commande = serviceCommandePiece.find(id);
@@ -135,16 +129,15 @@ public class CommandePieceController {
 		serviceCommandePiece.update(commande);
 		return this.getAffiche(pmodel);
 	}
-	
+
 	@PostMapping("/ModifierCommandePiece")
-	public String modifieCommandePiece(@Valid @ModelAttribute(name = "cmdpieceform") CommandePieceForm cmdpieceform, BindingResult presult, Model pmodel) {
-		if(!presult.hasErrors()) {
-			try
-			{
+	public String modifieCommandePiece(@Valid @ModelAttribute(name = "cmdpieceform") CommandePieceForm cmdpieceform,
+			BindingResult presult, Model pmodel) {
+		if (!presult.hasErrors()) {
+			try {
 				CommandePiece pcmdpiece = convertForm(cmdpieceform);
 				serviceCommandePiece.update(pcmdpiece);
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 		}
