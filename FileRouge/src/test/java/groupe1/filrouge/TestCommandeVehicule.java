@@ -46,6 +46,7 @@ public class TestCommandeVehicule {
 		cmd.setDateCloture(new Date());
 		cmd.setDateCreation(new Date());
 		cmd.setEtat(true);
+		cmd.setLivre(false);
 		cmd.setDevis(serviceDevis.find(1));
 		
 		serviceCommandeVehicule.create(cmd);
