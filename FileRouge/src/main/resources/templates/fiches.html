@@ -14,8 +14,8 @@
 		        <input type="checkbox" class="custom-control-input" id="afficherCacherFichesCloses" checked>
 		        <label class="custom-control-label" for="afficherCacherFichesCloses">Cacher les fiches closes</label>
 		</div>
-
-		<table class="table table-hover table-wrapper-scroll" id="tableFiches">
+		
+		<table class="table table-hover" id="tableFiches">
 			<thead>
 				<tr>
 					<th th:text="Creation"></th>
@@ -49,7 +49,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		
 		<form th:object="${form}" action="#" th:action="fiches" method="post"
 			class="border p-4 m-2">
 			<h3 th:text="'Formulaire d\'ajout'"></h3>
