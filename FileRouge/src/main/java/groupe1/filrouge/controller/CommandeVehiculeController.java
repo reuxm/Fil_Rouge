@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import groupe1.filrouge.controller.form.CommandeVehiculeForm;
 import groupe1.filrouge.entity.CommandeVehicule;
 import groupe1.filrouge.entity.Devis;
+import groupe1.filrouge.entity.FactureDevis;
 import groupe1.filrouge.service.IServiceCommandeVehicule;
 import groupe1.filrouge.service.IServiceDevis;
+import groupe1.filrouge.service.IServiceFactureDevis;
 
 @Controller
 public class CommandeVehiculeController {
@@ -29,7 +31,9 @@ public class CommandeVehiculeController {
 	IServiceCommandeVehicule serviceCommandeVehicule;
 	@Autowired
 	IServiceDevis serviceDevis;
-
+	@Autowired
+	IServiceFactureDevis factureService;
+	
 	private CommandeVehicule convertForm(CommandeVehiculeForm cmdvehiculeform) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date madate = new Date();
@@ -146,7 +150,21 @@ public class CommandeVehiculeController {
 		Date date = new Date();
 		commande.setDateCloture(date);
 		serviceCommandeVehicule.update(commande);
+		
+		facture( commande, date );
+		
 		return this.getAffiche(pmodel);
+	}
+
+	private void facture(CommandeVehicule commande, Date date) {
+		FactureDevis facture = new FactureDevis();
+		facture.setDateCreation( date );
+		Devis devis = commande.getDevis();
+		facture.setDevis( devis );
+		facture.setPrixHT( devis.getVehicule().getPrixHT() );
+		facture.setTVA( 0.2f );
+		
+		factureService.create( facture );
 	}
 
 	@PostMapping("/ModifierCommandeVehicule")
