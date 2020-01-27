@@ -68,7 +68,7 @@ public class TestFiche {
 		service.rechercheFiche().stream().forEach(
 			f -> {
 				if( f.getDescription().equals("test") ) 
-					service.supprimerFiche( fiche );	
+					service.supprimerFiche( f );	
 				}
 		);
 		
@@ -105,7 +105,7 @@ public class TestFiche {
 		service.rechercheFiche().stream().forEach(
 			f -> {
 				if( f.getDescription().equals("test") ) 
-					service.supprimerFiche( fiche );	
+					service.supprimerFiche( f );	
 				}
 		);
 		
