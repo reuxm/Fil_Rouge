@@ -151,15 +151,20 @@ public class CommandeVehiculeController {
 		commande.setDateCloture(date);
 		serviceCommandeVehicule.update(commande);
 		
+		facture( commande, date );
+		
+		return this.getAffiche(pmodel);
+	}
+
+	private void facture(CommandeVehicule commande, Date date) {
 		FactureDevis facture = new FactureDevis();
 		facture.setDateCreation( date );
 		Devis devis = commande.getDevis();
 		facture.setDevis( devis );
 		facture.setPrixHT( devis.getVehicule().getPrixHT() );
 		facture.setTVA( 0.2f );
-		factureService.create( facture );
 		
-		return this.getAffiche(pmodel);
+		factureService.create( facture );
 	}
 
 	@PostMapping("/ModifierCommandeVehicule")
