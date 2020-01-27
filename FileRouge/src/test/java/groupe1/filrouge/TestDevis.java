@@ -50,7 +50,7 @@ public class TestDevis {
 		Devis pDevis = new Devis();
 		pDevis.setDatecreation(new Date());
 		pDevis.setEtat(true);	
-		pDevis.setClient(serviceClient.find(1));
+		pDevis.setClient(serviceClient.find(2));
 		pDevis.setVehicule(serviceVehicule.rechercheVehiculeId(1));
 		pDevis.setUser(serviceUser.rechercheUserId(1));
 		serviceDevis.create(pDevis);
@@ -66,7 +66,7 @@ public class TestDevis {
 		Devis pDevis = new Devis();
 		pDevis.setDatecreation(new Date());
 		pDevis.setEtat(true);	
-		pDevis.setClient(serviceClient.find(1));
+		pDevis.setClient(serviceClient.find(2));
 		pDevis.setVehicule(serviceVehicule.rechercheVehiculeId(1));
 		pDevis.setUser(serviceUser.rechercheUserId(1));
 		serviceDevis.create(pDevis);
@@ -88,7 +88,7 @@ public class TestDevis {
 		Devis pDevis = new Devis();
 		pDevis.setDatecreation(new Date());
 		pDevis.setEtat(true);	
-		pDevis.setClient(serviceClient.find(1));
+		pDevis.setClient(serviceClient.find(2));
 		pDevis.setVehicule(serviceVehicule.rechercheVehiculeId(1));
 		pDevis.setUser(serviceUser.rechercheUserId(1));
 		serviceDevis.create(pDevis);
