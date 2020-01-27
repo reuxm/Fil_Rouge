@@ -1,101 +1,137 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  	<title th:text="'Gestion Des Classes'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body>
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion De Mon Ecole'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 </head>
 <body>
-	 <head th:replace="fragments/headerload :: load">
-  	<title th:text="'Gestion De Mon Ecole'"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
 	
-  </head>
-  <body>
- 	<div th:replace="fragments/header :: header"></div>
- 
-    <div class="container">
-		 <table class="table w-auto" th:unless="${action == 'ModifierClient' }">
-		 <thead>
-		 	<tr>
-		 	<th>Id</th>
-		 	<th>Nom</th>
-		 	<th>Prenom</th>
-		 	<th>Adresse</th>
-		 	<th>Code Postal</th>
-		 	<th>Ville</th>
-		 	<th>Telephone</th>
-		 	<th>Mobile</th>
-			<th>Cloturer</th>
+		<div class="custom-control custom-checkbox mr-sm-2">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherClientsClots" checked>
+		        <label class="custom-control-label" for="afficherCacherClientsClots">Cacher les anciens clients</label>
+		</div>
+	
+		<table class="table table-hover" id="tableClients" th:unless="${action == 'ModifierClient' }">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Adresse</th>
+					<th>Code postal</th>
+					<th>Ville</th>
+					<th>Téléphone</th>
+					<th>Mobile</th>
+					<th></th>
 
-		 	</tr>
-		 </thead>
-		 <tbody>
-		 	<tr th:each="client : ${listeclient}">
-		 		<td >
-		 		<a	th:href="@{/afficherModifierClient/{id}(id=${client.id})}" 
-		 		th:text="${client.id}"></a></td>
-		 		<td th:text="${client.name}"/>
-		 		<td th:text="${client.firstname}"/>
-		 		<td th:text="${client.adresse}"/>
-		 		<td th:text="${client.codePostal}"/>
-		 		<td th:text="${client.ville}"/>
-		 		<td th:text="${client.telephone}"/>
-		 		<td th:text="${client.mobile}"/>
-		 		<td th:text="${client.cloturer}"/>
-		 		<td >
-		 	</tr>
-		 </tbody>
-	 </table>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="client : ${listeclient}"  th:classappend="${(client.cloturer ? 'table-secondary' : 'table-light') + ' ' + (client.cloturer ? 'clientClot' : '')}">
+					<td th:text="${client.name}" />
+					<td th:text="${client.firstname}" />
+					<td th:text="${client.adresse}" />
+					<td th:text="${client.codePostal}" />
+					<td th:text="${client.ville}" />
+					<td th:text="${client.telephone}" />
+					<td th:text="${client.mobile}" />
+					<td><a th:unless="${client.cloturer}" class="btn btn-outline-secondary"
+						th:href="'/afficherModifierClient/'+${client.id}" th:text="Modif"></a>
 
- <div class="border p-4 m-2">	 		
- <h3 th:if="${action == 'ModifierClient'}">
- <a	th:href="@{/afficherCreerClient}" th:text="'Formulaire de Modification'"></a>
- </h3>
- <h3 th:unless="${action == 'ModifierClient'}">Formulaire d'Ajout</h3>
- 
+						<h5>
+							<span th:if="${client.cloturer}" th:text="Fermé"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
+				</tr>
+			</tbody>
+		</table>
 
-	  <form action="#" th:action="@{/{action}(action=${action})}" 
-	  th:object="${clientform}"   method="post">
-	  		<div class="form-group ">
-	  		<input class="form-control" type="hidden" th:field="*{id}" th:value="*{id}"/>
-	  		</div>
-	  		<div class="form-group ">
-	    	<label for="name">Nom</label>
-	   		<input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Nom"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="firstname">Prenom</label>
-	   		<input type="text" class="form-control" th:field="*{firstname}" id="firstname" placeholder="Prenom"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="adresse">Adresse</label>
-	   		<input type="text" class="form-control" th:field="*{adresse}" id="adresse" placeholder="Adresse"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="codePostal">CodePostal</label>
-	   		<input type="text" class="form-control" th:field="*{codePostal}" id="codePostal" placeholder="Code Postal"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="ville">Ville</label>
-	   		<input type="text" class="form-control" th:field="*{ville}" id="ville" placeholder="Ville"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="telephone">Telephone</label>
-	   		<input type="text" class="form-control" th:field="*{telephone}" id="telephone" placeholder="Numéro de télephone"/>
-	   		</div>
-	   		<div class="form-group ">
-	   		<label for="mobile">Mobile</label>
-	   		<input type="text" th:field="*{mobile}" id="mobile" class="form-control" placeholder="Numéro de mobile"/>
-   			</div>
-   			<div class="form-group ">
-   			<input type="checkbox" id="cloturer" name="Cloturer" th:field="*{cloturer}" hidden checked value="true" />
-			</div>
-	   <button class="btn btn-outline-success" type="submit">Valider</button>
-	</form>
- </div>
+		<div class="border p-4 m-2">
+			<h3 th:if="${action == 'ModifierClient'}">
+				Formulaire de modification
+			</h3>
+			<h3 th:unless="${action == 'ModifierClient'}">Formulaire d'ajout</h3>
 
-   <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
-    </div>
-    </body>
+
+			<form action="#" th:action="@{/{action}(action=${action})}"
+				th:object="${clientform}" method="post">
+				<div th:each="e:${errors}"
+					class="alert alert-danger alert-dismissible fade show" role="alert">
+					<span th:text="${e.defaultMessage}"></span>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="form-group ">
+					<input class="form-control" type="hidden" th:field="*{id}"
+						th:value="*{id}" />
+				</div>
+				<div class="form-group ">
+					<label for="name">Nom</label> <input type="text"
+						class="form-control" th:field="*{name}" id="name"
+						placeholder="Nom" required />
+				</div>
+				<div class="form-group ">
+					<label for="firstname">Prénom</label> <input type="text"
+						class="form-control" th:field="*{firstname}" id="firstname"
+						placeholder="Prénom" required />
+				</div>
+				<div class="form-group ">
+					<label for="adresse">Adresse</label> <input type="text"
+						class="form-control" th:field="*{adresse}" id="adresse"
+						placeholder="Adresse" required />
+				</div>
+				<div class="form-group ">
+					<label for="codePostal">Code Postal</label> <input type="text"
+						class="form-control" th:field="*{codePostal}" id="codePostal"
+						placeholder="Code Postal" required />
+
+					<div th:if="${#fields.hasErrors('codePostal')}"
+						th:errors="*{codePostal}"
+						class="alert alert-danger alert-dismissible fade show"
+						role="alert"></div>
+				</div>
+				<div class="form-group ">
+					<label for="ville">Ville</label> <input type="text"
+						class="form-control" th:field="*{ville}" id="ville"
+						placeholder="Ville" required />
+				</div>
+				<div class="form-group ">
+					<label for="telephone">Téléphone</label> <input type="text"
+						class="form-control" th:field="*{telephone}" id="telephone"
+						placeholder="Numéro de téléphone" required />
+				</div>
+				<div class="form-group ">
+					<label for="mobile">Mobile</label> <input type="text"
+						th:field="*{mobile}" id="mobile" class="form-control"
+						placeholder="Numéro de mobile" />
+				</div>
+				<div class="form-group ">
+					<input type="checkbox" id="cloturer" name="Cloturer"
+						th:field="*{cloturer}" value="true" />
+					<label for="cloturer">Fermer</label>
+				</div>
+				<a th:unless="${action != 'ModifierClient'}" th:href="@{/afficherCreerClient}" th:text="Retour" class="btn btn-outline-secondary"></a>
+				<button class="btn btn-outline-success" type="submit">Valider</button>
+			</form>
+		</div>
+
+
+	</div>
+	<div th:replace="fragments/footer :: footer">&copy; 2020 DTA
+		Application Web Gestion de Garage</div>
+</body>
+
+<script>
+	$("#afficherCacherClientsClots").change(function() {
+		var self = this;
+		$("#tableClients tr.clientClot").toggle(!self.checked);
+	}).change();
+</script>
 
 </html>

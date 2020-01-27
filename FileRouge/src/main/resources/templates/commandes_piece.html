@@ -8,71 +8,98 @@
 	<div th:replace="fragments/header :: header"></div>
 	<div class="container">
 
-				<div class=" m-4  d-flex justify-content-end">
-		    <form class="form-inline">
-		    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-		    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
-		  </form></div>
-      <table class="table table-hover" th:unless="${action == 'ModifierCommandePiece'}">
+		<div class=" m-4  d-flex justify-content-end">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2 " type="search"
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+		<div class="custom-control custom-checkbox mr-sm-2 " th:unless="${action == 'ModifierCommandePiece'}">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherCommandesPiecesCloses" checked>
+		        <label class="custom-control-label" for="afficherCacherCommandesPiecesCloses">Cacher les commandes cloturées</label>
+		</div>
+		<table class="table table-hover"
+			th:unless="${action == 'ModifierCommandePiece'}" id="TableCommandePiece">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Créateur</th>
 					<th>Pièce</th>
 					<th>Quantité</th>
-					<th>Supprimer</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cmdpiece : ${listecmdpieces}">
-					<td><a
-						th:href="@{/afficherModifierCommandePiece/{id}(id=${cmdpiece.id})}"
-						th:text="${cmdpiece.id}"></a></td>
-					<td th:text="${cmdpiece.user.firstname}" />
+				<tr th:each="cmdpiece : ${listecmdpieces}" th:classappend="${(cmdpiece.etat ? 'table-secondary' : 'table-light') + ' ' + (cmdpiece.etat ? 'commandeClose' : '')}">
+					<td th:text="${cmdpiece.user.login}" />
 					<td th:text="${cmdpiece.piece.libelle}" />
 					<td th:text="${cmdpiece.qte}" />
-					<td><a
-						th:href="@{/SupprimerCommandePiece/{id}(id=${cmdpiece.id})}"
-						th:text="'Supprimer'"></a></td>
+					<td><a th:unless="${cmdpiece.etat}" class="btn btn-outline-secondary"
+						th:href="'/afficherModifierCommandePiece/'+${cmdpiece.id}" th:text="Modif"></a> <a
+						th:unless="${cmdpiece.etat}" class="btn btn-outline-danger"
+						th:href="'/clotureCommandePiece/'+${cmdpiece.id}" th:text="Cloturer"></a>
+						<h5>
+							<span th:if="${cmdpiece.etat}" th:text="Clôt" class="badge badge-pill badge-secondary"></span>
+						</h5></td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="border p-4 m-2">
-			<h2 th:if="${action == 'ModifierCommandePiece'}">
-				<a th:href="@{/afficherCreerCommandePiece}"
-					th:text="'Formulaire de Modification'"></a>
-			</h2>
+			<h3 th:if="${action == 'ModifierCommandePiece'}">
+				Formulaire de modification
+			</h3>
 			<h2 th:unless="${action == 'ModifierCommandePiece'}">Formulaire
 				d'Ajout</h2>
+
+			<div th:each="e : ${errors}"
+				class="alert alert-danger alert-dismissible fade show" role="alert">
+				<span th:text="${e.defaultMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
 			<form action="#" th:action="@{/{action}(action=${action})}"
 				th:object="${cmdpieceform}" method="post">
 				<input type="hidden" th:field="*{id}" th:value="*{id}" />
 				<div class="form-group">
-					<label for="user">Créateur</label> 
-					<select required id="user" class="form-control" th:field="*{id_user}">
-						<option value="" selected hidden>Sélection créateur</option>
-						<option th:each="puser :${listeusers}" th:value="${puser.id}" th:utext="${puser.firstname}" />
+					<label for="user">Auteur</label> <select required id="user"
+						class="form-control" th:field="*{id_user}">
+						<option value="" selected hidden>Sélection auteur</option>
+						<option th:each="puser :${listeusers}" th:value="${puser.id}"
+							th:utext="${puser.firstname}" />
 
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="piece">Pièce</label> 
-					<select id="piece" class="form-control" th:field="*{id_piece}" required>
-						<option value="" selected="selected" hidden="true">Sélection pièce</option>
-						<option th:each="ppiece :${listepieces}" th:value="${ppiece.id}" th:utext="${ppiece.libelle}" />
+					<label for="piece">Pièce</label> <select id="piece"
+						class="form-control" th:field="*{id_piece}" required>
+						<option value="" selected="selected" hidden="true">Sélection
+							pièce</option>
+						<option th:each="ppiece :${listepieces}" th:value="${ppiece.id}"
+							th:utext="${ppiece.libelle}" />
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="qte">Quantité</label> 
-					<input class="form-control" type="number" th:field="*{qte}" id="qte" placeholder="Quantité" />
+					<label for="qte">Quantité</label> <input class="form-control"
+						type="number" th:field="*{qte}" id="qte" placeholder="Quantité" required/>
 				</div>
-
+				<a th:unless="${action != 'ModifierCommandePiece'}" th:href="@{/afficherCreerCommandePiece}" th:text="Retour" class="btn btn-outline-secondary"></a>
 				<button class="btn btn-outline-success" type="submit">Valider</button>
 
 			</form>
 		</div>
+
+
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
+<script>
+	$("#afficherCacherCommandesPiecesCloses").change(function() {
+		var self = this;
+		$("#TableCommandePiece tr.commandeClose").toggle(!self.checked);
+	}).change();
+</script>
 </html>

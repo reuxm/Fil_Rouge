@@ -51,12 +51,14 @@ public class TacheController {
 			ptache.setPriorite(servicePriorite.recherchePrioriteId(tacheform.getPriorite()));
 			ptache.setPiece(servicePiece.recherchePieceId(tacheform.getPiece()));
 			ptache.setUser(serviceUser.rechercheUserId(tacheform.getUser()));
+			ptache.setLibelle(tacheform.getLibelle());
 		}
 		else
 		{
 			ptache = service.rechercheTacheId(tacheform.getId());
 			
 		}
+		
 		ptache.setCommentaire(tacheform.getCommentaire());
 		
 		ptache.setEtat(tacheform.getEtat());
@@ -77,9 +79,11 @@ public class TacheController {
 		pModel.addAttribute("listepiece", lpiece);	
 		pModel.addAttribute("listetache", ltache);	
 		pModel.addAttribute("action", "CreerTache");
-		TacheForm tacheform = new TacheForm();
-		tacheform.setId(0);
-		pModel.addAttribute("tacheform", tacheform);
+		if(!pModel.containsAttribute("errors")){
+			TacheForm tacheform = new TacheForm();
+			tacheform.setId(0);
+			pModel.addAttribute("tacheform", tacheform);
+		}
 		return "taches";
 	}
 	
@@ -127,6 +131,7 @@ public class TacheController {
 			tacheform.setPriorite(tache.getPriorite().getId());
 			tacheform.setPiece(tache.getPiece().getId());
 			tacheform.setQte(tache.getQte());
+			tacheform.setLibelle(tache.getLibelle());
 			pmodel.addAttribute("tacheform", tacheform);
 		}
 		return "ModifTache";
@@ -145,11 +150,17 @@ public class TacheController {
 			}
 			catch(Exception e) {
 				System.err.println(e.getMessage());
+
 			}
+		}
+		else {
+			pmodel.addAttribute("errors",presult.getAllErrors());
+			pmodel.addAttribute("tacheform",tacheform);
 		}
 		return this.getAffiche(pmodel);
 	
 	}
+	
 	@PostMapping("/ModifierTache")
 	public String modifieTache( 
 			@Valid @ModelAttribute(name = "tacheform") TacheForm tacheform,
@@ -167,7 +178,8 @@ public class TacheController {
 				System.err.println("ERRR : "+e.getMessage()+" "+e.toString());
 			}
 		}
-		return this.getAfficheTache(pmodel);
+
+		return this.getAffiche(pmodel);
 	}
 	
 }

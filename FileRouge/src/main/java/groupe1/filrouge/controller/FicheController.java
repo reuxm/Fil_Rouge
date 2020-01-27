@@ -74,6 +74,14 @@ public class FicheController {
 			
 			service.creerFiche( fiche );
 		}
+		else {
+			pmodel.addAttribute( "errors", presult.getAllErrors() );
+			pmodel.addAttribute( "description", form.getDescription() );
+			pmodel.addAttribute( "prio", form.getPriorite() );
+			pmodel.addAttribute( "client", form.getClient() );
+			pmodel.addAttribute( "prix", form.getPrix() );
+			pmodel.addAttribute( "tva", form.getTva() );
+		}
 		return readAllFiches( pmodel );
 	}
 	
@@ -82,9 +90,9 @@ public class FicheController {
 		Fiche f = service.rechercheFicheId( id );
 		FicheForm form = new FicheForm();
 		form.setId( id );
-		pmodel.addAttribute("client", f.getClient().getId() );
+		pmodel.addAttribute( "client", f.getClient().getId() );
 		pmodel.addAttribute( "form", form );
-		pmodel.addAttribute( "priorite", f.getPriorite().getLibelle() );
+		pmodel.addAttribute( "priorite", f.getPriorite().getId() );
 		pmodel.addAttribute( "description", f.getDescription() );
 		pmodel.addAttribute( "prix", f.getPrix() );
 		pmodel.addAttribute( "tva", f.getTva() );
@@ -92,13 +100,14 @@ public class FicheController {
 		return "formFicheUpdate";
 	}
 
-	@PostMapping("/validModifFiche")
-	public String validUpdate( Model pmodel, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
+	@PostMapping("/fiches/{id}")
+	public String validUpdate( Model pmodel,  @PathVariable Integer id, @Valid @ModelAttribute(name="form") FicheForm form, BindingResult presult ) {
 		if( !presult.hasErrors() ) {
 			Fiche fiche = new Fiche();
 			Fiche original = service.rechercheFicheId( form.getId() );
 			fiche.setId( original.getId() );
 			fiche.setDateCreation(  original.getDateCreation() );
+			fiche.setEtat(original.getEtat() );
 			fiche.setUser( original.getUser() );
 			fiche.setClient( original.getClient() );
 			
@@ -116,8 +125,13 @@ public class FicheController {
 			service.modifierFiche( fiche );
 		}
 		else {
-			presult.getAllErrors().stream().forEach(e->System.err.println( e ) );
-			System.err.println(form);
+			pmodel.addAttribute( "errors", presult.getAllErrors() );
+			pmodel.addAttribute( "newdescription", form.getDescription() );
+			pmodel.addAttribute( "newprio", form.getPriorite() );
+			pmodel.addAttribute( "newprix", form.getPrix() );
+			pmodel.addAttribute( "newtva", form.getTva() );
+			
+			return updateFiche( pmodel, id );
 		}
 		return readAllFiches( pmodel );
 	}

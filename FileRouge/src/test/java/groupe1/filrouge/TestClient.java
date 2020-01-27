@@ -42,7 +42,7 @@ public class TestClient {
 		pclient.setFirstname("Marie");
 		pclient.setName("Baumont");	
 		pclient.setAdresse("15b rue general André");
-		pclient.setCodepostal("38000");
+		pclient.setCodePostal("38000");
 		pclient.setMobile("0607843052");
 		pclient.setTelephone(" ");
 		pclient.setVille("Lyon");
@@ -61,7 +61,7 @@ public class TestClient {
 		pclient.setFirstname("Marie");
 		pclient.setName("Baumont");	
 		pclient.setAdresse("15b rue general André");
-		pclient.setCodepostal("38000");
+		pclient.setCodePostal("38000");
 		pclient.setMobile("0607843052");
 		pclient.setTelephone(" ");
 		pclient.setVille("Lyon");
@@ -71,7 +71,7 @@ public class TestClient {
 		pclient.setFirstname("Manon");
 		pclient.setName("Liversain");	
 		pclient.setAdresse("15 rue general André");
-		pclient.setCodepostal("69008");
+		pclient.setCodePostal("69008");
 		pclient.setMobile("0607003052");
 		pclient.setTelephone("123");
 		pclient.setVille("Lyon 8");
@@ -91,7 +91,7 @@ public class TestClient {
 		pclient.setFirstname("Marie");
 		pclient.setName("Baumont");	
 		pclient.setAdresse("15b rue general André");
-		pclient.setCodepostal("38000");
+		pclient.setCodePostal("38000");
 		pclient.setMobile("0607843052");
 		pclient.setTelephone(" ");
 		pclient.setVille("Lyon");

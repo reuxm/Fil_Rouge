@@ -1,6 +1,7 @@
 package groupe1.filrouge.controller.form;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 public class ClientForm {
 	private Integer id;
@@ -13,20 +14,21 @@ public class ClientForm {
 	@NotEmpty
 	private String adresse;
 	
+	@Pattern(regexp="\\d{5}", message="Attention le code postal doit être composé de 5 chiffres")
 	@NotEmpty
 	private String codePostal;
 	
 	@NotEmpty
 	private String ville;
 	
+	@Pattern(regexp="\\d{10}", message="Attention le numéro de téléphone doit être composé de 10 chiffres")
 	@NotEmpty
 	private String telephone;
 	
-	@NotEmpty
+	@Pattern(regexp="\\d{10}|", message="Attention le numéro de mobilce doit être composé de 10 chiffres")
 	private String mobile;
-
 	
-	private String cloturer="false";
+	private Boolean cloturer = false;
 	
 	public Integer getId() {
 		return id;
@@ -92,11 +94,11 @@ public class ClientForm {
 		this.mobile = mobile;
 	}
 
-	public String getCloturer() {
+	public Boolean getCloturer() {
 		return cloturer;
 	}
 
-	public void setCloturer(String cloturer) {
+	public void setCloturer(Boolean cloturer) {
 		this.cloturer = cloturer;
 	}
 	

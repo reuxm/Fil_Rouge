@@ -1,14 +1,16 @@
 package groupe1.filrouge.controller.form;
 
+import javax.validation.constraints.PositiveOrZero;
+
 public class CommandePieceForm {
 	private Integer id;
 	private Integer id_user;
 	private Integer id_piece;
 	
+	@PositiveOrZero(message = "La quantité doit être positive !")
 	private Integer qte;
-	
 	private String dateCreation;
-
+	private Boolean etat=false;
 	public Integer getId() {
 		return id;
 	}
@@ -48,5 +50,15 @@ public class CommandePieceForm {
 	public void setDateCreation(String dateCreation) {
 		this.dateCreation = dateCreation;
 	}
+
+	public Boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Boolean etat) {
+		this.etat = etat;
+	}
+
+
 
 }

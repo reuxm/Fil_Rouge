@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	 <head th:replace="fragments/headerload :: load">
+  	<title th:text="'Gestion des devis'"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+  </head>
+  <body>
+ 	<div th:replace="fragments/header :: header"></div>
+ 
+	    <div class="container">
+	    <form  action="#" th:action="@{/{action}(action=${action})}" 
+		  th:object="${devisform}" method="post"  >
+		  	 
+		  	 <div class="custom-control custom-checkbox mr-sm-2">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherDevisClots" checked>
+		        <label class="custom-control-label" for="afficherCacherDevisClots">Cacher les devis clôts</label>
+			 </div>
+		  	 
+			 <table class="table table-hover" id="tableDevis">
+			 <thead>
+			 	<tr>
+			 	<th>Client</th>
+			 	<th>Vehicule</th>
+			 	<th>Utilisateur</th>
+			 	<th>Date de création</th>
+			 	<th>Etat</th>				
+				<th></th>
+	
+			 	</tr>
+			 </thead>
+			 <tbody>
+			 	<tr th:each="devis : ${listedevis}" th:classappend="${(devis.etat ? 'table-secondary' : 'table-light') + ' ' + (devis.etat ? 'devisClot' : '')}">
+			 		<td th:text="${devis.client.firstname + ' '+  devis.client.name}"/>
+			 		<td th:text="${devis.vehicule.modele}"/>			 				 		
+			 		<td th:text="${devis.user.firstname + ' ' + devis.user.lastname}"/>
+			 		<td th:text="${devis.dateCreation}"/>
+			 		<td><a th:unless="${devis.etat}" class="btn btn-outline-secondary"
+						th:href="'/afficherModifierdevis/'+${devis.id}" th:text="Modif"></a>
+
+						<h5>
+							<span th:if="${devis.etat}" th:text="Clôt"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
+			 	</tr>
+			  
+			 </tbody>
+		 </table>
+
+		</form>
+	<div class="border p-4 m-2"  th:if="${action == 'CreerDevis'}"> 		
+
+	 <h3 th:if="${action == 'CreerDevis'}">Formulaire d'ajout</h3>
+	 
+		  <form action="#" th:action="@{/{action}(action=${action})}" 
+		  th:object="${devisform}"   method="post"  >
+		  <div th:each="e:${errors}" class="alert alert-danger alert-dismissible fade show" role="alert" >
+		  <span th:text="${e.defaultMessage}"></span>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		  </button>
+		  </div>
+		  <div class="form-group " >
+		  
+		  		<input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"/>
+		  		</div>
+		  		
+		   		<div class="form-group">
+		   		<label for="client">Client</label>
+		   	    <select th:field="*{client}" required class="form-control" >
+		   	    
+		   	    <option value="" selected hidden=true id="client">Sélection client</option>
+			    <option th:each="client :${listeclient}" 
+			    	th:value="${client.id}" th:utext="${client.firstname + ' ' + client.name }"/>
+			    </select>
+		   		<label for="vehicule">Véhicule</label>
+		   	    <select th:field="*{vehicule}" required class="form-control" >
+		   	    
+		   	    <option value="" selected hidden=true id="vehicule">Sélection véhicule</option>
+			    <option th:each="vehicule :${listevehicule}" 
+			    	th:value="${vehicule.id}" th:utext="${vehicule.modele}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="user">Utilisateur</label>
+			    
+			    <select th:field="*{user}" required id="user" class="form-control">
+			    <option value="" selected hidden=true>Sélection utilisateur</option>
+			    <option th:each="user :${listeuser}" 
+			    	th:value="${user.id}" th:utext="${user.firstname +' ' + user.lastname}"/>
+			    </select>
+			    </div>
+			    <div class="form-group">
+			    <label for="date">Date de création</label>
+		   		<input type="date" th:field="*{dateCreation}" class="form-control" id="date" placeholder="DateCreation" required/>
+		   		</div>
+		 <button class="btn btn-outline-success" type="submit">Valider</button>
+		</form>
+	 </div>
+
+    </div>
+    <div th:replace="fragments/footer :: footer">&copy; 2020 DTA Application Web Gestion de Garage</div>
+    </body>
+
+<script>
+	$("#afficherCacherDevisClots").change(function() {
+		var self = this;
+		$("#tableDevis tr.devisClot").toggle(!self.checked);
+	}).change();
+</script>
+
+</html>

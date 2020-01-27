@@ -9,17 +9,16 @@ public class FicheForm {
 
 	private String description;
 
-	@NotEmpty
+	@NotEmpty( message="veuillez indiquer une priorite" )
 	private String priorite;
 
-	@NotEmpty
+	@NotEmpty( message="la fiche n'est pas liee a un client" )
 	private String client;
 	
-	@PositiveOrZero
+	@PositiveOrZero( message="Le prix ne peux pas être négatif" )
 	private Float prix;
 	
-	@PositiveOrZero
-	private Float tva;
+	private Float tva = 0.2f;
 	
 	private String cloturer;
 
@@ -77,12 +76,6 @@ public class FicheForm {
 
 	public void setCloturer(String cloturer) {
 		this.cloturer = cloturer;
-	}
-
-	@Override
-	public String toString() {
-		return "FicheForm [id=" + id + ", description=" + description + ", priorite=" + priorite + ", client=" + client
-				+ ", prix=" + prix + ", tva=" + tva + ", cloturer=" + cloturer + "]";
 	}
 	
 	

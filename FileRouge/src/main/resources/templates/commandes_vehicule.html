@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headerload :: load">
+<title th:text="'Gestion Des Commandes De Pièces'"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+
+		<div class=" m-4  d-flex justify-content-end">
+			<form class="form-inline">
+				<input class="form-control mr-sm-2 " type="search"
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+
+		<div class="custom-control custom-checkbox mr-sm-2 ">
+		        <input type="checkbox" class="custom-control-input" id="afficherCacherCommandesVehiculeCloses" checked>
+		        <label class="custom-control-label" for="afficherCacherCommandesVehiculeCloses">Cacher les commandes cloturées</label>
+		</div>
+		<table class="table table-hover"
+			th:unless="${action == 'ModifierCommandeVehicule'}" id="tableCommandeVehicule">
+			<thead>
+				<tr>
+					<th>Date de création</th>
+					<th>Auteur</th>
+					<th>Client</th>
+					<th>Vehicule</th>
+					<th>Date de cloture</th>
+					<th></th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cmdvehicule : ${listecmdvehicules}" th:classappend="${(cmdvehicule.livre ? 'table-secondary' : 'table-light') + ' ' + (cmdvehicule.livre ? 'commandeClose' : '')}">
+
+					<td th:text="${cmdvehicule.dateCreation}" />
+					<td th:text="${cmdvehicule.devis.user.firstname + ' ' + cmdvehicule.devis.user.lastname}" />
+					<td th:text="${cmdvehicule.devis.client.firstname + ' ' + cmdvehicule.devis.client.name}" />
+					<td th:text="${cmdvehicule.devis.vehicule.modele}" />
+					<td th:text="${cmdvehicule.dateCloture}" />
+					<td><a th:unless="${cmdvehicule.etat}" class="btn btn-outline-secondary"
+						th:href="'/clotureCommandeVehicule/'+${cmdvehicule.id}" th:text="Prêt"></a>
+						 <a th:unless="${!cmdvehicule.etat or cmdvehicule.livre or veille}" class="btn btn-outline-success"
+						th:href="'/livreCommandeVehicule/'+${cmdvehicule.id}" th:text="Livré"></a>
+
+						<h5>
+							<span th:if="${cmdvehicule.livre}" th:text="Livré"
+								class="badge badge-pill badge-secondary"></span>
+						</h5></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+<script>
+	$("#afficherCacherCommandesVehiculeCloses").change(function() {
+		var self = this;
+		$("#tableCommandeVehicule tr.commandeClose").toggle(!self.checked);
+	}).change();
+</script>
+</html>

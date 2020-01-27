@@ -31,8 +31,8 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Entretiens Véhicules </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" th:href="@{/afficherCreerTache}">Gestion Tâches</a>
 							<a class="dropdown-item" href="#" th:href="@{/fiches}">Gestion Fiches</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherCreerTache}">Gestion Tâches</a>
 							<a class="dropdown-item" href="#" th:href="@{/afficherPiecesUtilisees}">Pièces utilisées</a>
 					</div></li>
 					<li class="nav-item dropdown">
@@ -40,8 +40,8 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Ventes Véhicules </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" th:href="@{/afficherCreerPiece}">Creation Devis</a>
-							<a class="dropdown-item" href="#" th:href="@{/afficherCreerVéhicule}">Validation Devis</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherCreerDevis}">Creation Devis</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherCommandeVehiculeVeille}">Commandes de la veille</a>
 
 					</div></li>						
 
@@ -52,7 +52,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#" th:href="@{/afficherCreerClient}"> Gestion Clients</a> 
 							<div class="dropdown-divider"></div>
-						    <a class="dropdown-item" href="#" th:href="@{/afficherCreerUser}"> Gestion Personnel</a>
+						    <a class="dropdown-item" href="#" th:href="@{/users}"> Gestion Personnel</a>
 						</div></li>
 					<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -62,7 +62,7 @@
 							<a class="dropdown-item" href="#" th:href="@{/afficherCreerPiece}"> Stock pièces</a> 
 						    <a class="dropdown-item" href="#" th:href="@{/afficherCreerVehicule}"> Stock véhicules</a>
 						    <div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" th:href="@{/afficherCreerFiche}">Commande Véhicule</a>
+							<a class="dropdown-item" href="#" th:href="@{/afficherCreerCommandeVehicule}">Commande Véhicule</a>
 							<a class="dropdown-item" href="#" th:href="@{/afficherCreerCommandePiece}">Commande Pièces</a>
 
 

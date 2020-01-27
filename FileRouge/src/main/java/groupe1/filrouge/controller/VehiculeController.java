@@ -26,8 +26,7 @@ public class VehiculeController {
 	
 	private Vehicule convertForm(VehiculeForm vehiculeform) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date madate = sdf.parse(vehiculeform.getDateCreation());
-		
+		Date madate = sdf.parse(vehiculeform.getDateCreation());	
 		Vehicule pvehicule = new Vehicule();
 		pvehicule.setId(vehiculeform.getId());
 		pvehicule.setModele(vehiculeform.getModele());
@@ -42,9 +41,15 @@ public class VehiculeController {
 		List<Vehicule> lVehicules = serviceVehicule.rechercheVehicule();
 		pmodel.addAttribute("listevehicule", lVehicules);
 		pmodel.addAttribute("action", "CreerVehicule");
-		VehiculeForm vehiculeform = new VehiculeForm();
-		vehiculeform.setId(0);
-		pmodel.addAttribute("vehiculeform",vehiculeform);
+		
+		if(!pmodel.containsAttribute("errors")) {
+			VehiculeForm vehiculeform = new VehiculeForm();
+			vehiculeform.setId(0);
+			Date dateJour = new Date();
+			vehiculeform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(dateJour));
+			pmodel.addAttribute("vehiculeform",vehiculeform);
+		}
+		
 		return "vehicules";
 	}
 	
@@ -57,7 +62,7 @@ public class VehiculeController {
 			VehiculeForm vehiculeform = new VehiculeForm();
 			vehiculeform.setId(pvehicule.getId());
 			vehiculeform.setModele(pvehicule.getModele());
-			vehiculeform.setQte(String.valueOf(pvehicule.getQte()));
+			vehiculeform.setQte(pvehicule.getQte());
 			vehiculeform.setPrixHT(pvehicule.getPrixHT());
 			vehiculeform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(pvehicule.getDateCreation()));
 			pmodel.addAttribute("vehiculeform", vehiculeform);
@@ -93,6 +98,7 @@ public class VehiculeController {
 		}
 		else
 		{
+			pmodel.addAttribute("errors", presult.getAllErrors());
 			System.err.println(presult);
 		}
 		return this.getAffiche(pmodel);
@@ -115,6 +121,12 @@ public class VehiculeController {
 			catch(Exception e) {
 				System.err.println(e.getMessage());
 			}
+		}
+		else
+		{
+			pmodel.addAttribute("errors", presult.getAllErrors());
+			System.err.println(presult);
+			return this.getAfficheMod(vehiculeform.getId(), pmodel);
 		}
 		return this.getAffiche(pmodel);
 	}

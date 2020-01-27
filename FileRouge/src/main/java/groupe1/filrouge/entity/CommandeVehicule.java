@@ -35,7 +35,9 @@ public class CommandeVehicule {
 	@Temporal(TemporalType.DATE)
 	@Column( name="date_cloture", nullable=true )
 	private Date dateCloture;
-
+	
+	@Column(name="livre")
+	private Boolean livre;
 	public Integer getId() {
 		return id;
 	}
@@ -56,7 +58,7 @@ public class CommandeVehicule {
 		return etat;
 	}
 
-	public void setEtatDevis(Boolean etat) {
+	public void setEtat(Boolean etat) {
 		this.etat= etat;
 	}
 
@@ -74,6 +76,14 @@ public class CommandeVehicule {
 
 	public void setDateCloture(Date dateCloture) {
 		this.dateCloture = dateCloture;
+	}
+
+	public Boolean getLivre() {
+		return livre;
+	}
+
+	public void setLivre(Boolean livre) {
+		this.livre = livre;
 	}
 
 }

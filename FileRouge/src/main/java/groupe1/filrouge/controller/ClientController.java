@@ -22,31 +22,33 @@ public class ClientController {
 	@Autowired
 	private IServiceClient service;
 	
-	private Client convertForm(ClientForm clientform) {
+	private Client convertForm(ClientForm clientform) throws Exception{
 		Client pclient = new Client();
 		pclient.setId(clientform.getId());
 		pclient.setFirstname(clientform.getFirstname());
 		pclient.setName(clientform.getName());	
 		pclient.setAdresse(clientform.getAdresse());
-		pclient.setCodepostal(clientform.getCodePostal());
+		pclient.setCodePostal(clientform.getCodePostal());
 		pclient.setMobile(clientform.getMobile());
 		pclient.setTelephone(clientform.getTelephone());
 		pclient.setVille(clientform.getVille());
-		pclient.setCloturer(Boolean.parseBoolean(clientform.getCloturer()));
+		pclient.setCloturer(clientform.getCloturer());
 		return pclient;
 	}
 	
 	@GetMapping("/afficherCreerClient")
-	public String getAffiche(Model pModel) {
+	public String getAffiche(Model pModel ) {
 		List<Client> lclient = service.list();
 		pModel.addAttribute("listeclient", lclient);	
 		
 		pModel.addAttribute("action", "CreerClient");
-		ClientForm clientform = new ClientForm();
-		clientform.setId(0);
-		pModel.addAttribute("clientform", clientform);
+		if(!pModel.containsAttribute("errors")){
+			ClientForm clientform = new ClientForm();
+			clientform.setId(0);
+			pModel.addAttribute("clientform", clientform);
+		}
 		return "clients";
-	}
+	}	
 	
 
 	
@@ -62,10 +64,10 @@ public class ClientController {
 			clientform.setFirstname(client.getFirstname());
 			clientform.setName(client.getName());
 			clientform.setVille(client.getVille());
-			clientform.setCodePostal(client.getCodepostal());
+			clientform.setCodePostal(client.getCodePostal());
 			clientform.setMobile(client.getMobile());
 			clientform.setTelephone(client.getTelephone());	
-			clientform.setCloturer(client.getCloturer().toString());
+			clientform.setCloturer(client.getCloturer());
 			pmodel.addAttribute("clientform", clientform);
 		}
 		return "clients";
@@ -85,6 +87,10 @@ public class ClientController {
 				System.err.println(e.getMessage());
 			}
 		}
+		else {
+			pmodel.addAttribute("errors",presult.getAllErrors());
+			pmodel.addAttribute("clientform",clientform);
+		}
 		return this.getAffiche(pmodel);
 	
 	}
@@ -99,10 +105,16 @@ public class ClientController {
 			{
 				Client client = convertForm(clientform);
 				service.create(client);
+				
 			}
 			catch(Exception e) {
 				System.err.println(e.getMessage());
 			}
+		}
+		else {
+			pmodel.addAttribute("errors",presult.getAllErrors());
+			pmodel.addAttribute("clientform",clientform);
+			return this.getAfficheMod(clientform.getId(), pmodel);
 		}
 		return this.getAffiche(pmodel);
 	}

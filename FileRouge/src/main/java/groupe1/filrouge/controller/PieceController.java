@@ -27,11 +27,15 @@ public class PieceController {
 	
 	private Piece convertForm(PieceForm pieceform) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date madate = sdf.parse(pieceform.getDateCreation());
-		
+		Date madate = sdf.parse(pieceform.getDateCreation());		
 		Piece ppiece = new Piece();
 		ppiece.setId(pieceform.getId());
-		ppiece.setLibelle(pieceform.getLibelle());
+		if (pieceform.getLibelle() != null) {
+			ppiece.setLibelle(pieceform.getLibelle());
+		}
+		else {
+			ppiece = servicePiece.recherchePieceId(pieceform.getId());
+		}
 		ppiece.setQte(Integer.valueOf(pieceform.getQte()));
 		ppiece.setDateCreation(madate);
 		return ppiece;
@@ -42,9 +46,15 @@ public class PieceController {
 		List<Piece> lPieces = servicePiece.recherchePiece();
 		pmodel.addAttribute("listepiece", lPieces);
 		pmodel.addAttribute("action", "CreerPiece");
-		PieceForm pieceform = new PieceForm();
-		pieceform.setId(0);
-		pmodel.addAttribute("pieceform",pieceform);
+		
+		if(!pmodel.containsAttribute("errors")) {
+			PieceForm pieceform = new PieceForm();
+			pieceform.setId(0);
+			Date dateJour = new Date();
+			pieceform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(dateJour));
+			pmodel.addAttribute("pieceform",pieceform);
+		}
+		
 		return "pieces";
 	}
 
@@ -57,7 +67,7 @@ public class PieceController {
 			PieceForm pieceform = new PieceForm();
 			pieceform.setId(ppiece.getId());
 			pieceform.setLibelle(ppiece.getLibelle());
-			pieceform.setQte(String.valueOf(ppiece.getQte()));
+			pieceform.setQte(ppiece.getQte());
 			pieceform.setDateCreation(new SimpleDateFormat("yyyy-MM-dd").format(ppiece.getDateCreation()));
 			pmodel.addAttribute("pieceform", pieceform);
 		}
@@ -93,6 +103,7 @@ public class PieceController {
 		else
 		{
 			System.err.println(presult);
+			pmodel.addAttribute("errors", presult.getAllErrors());
 		}
 		return this.getAffiche(pmodel);
 	}
@@ -108,13 +119,22 @@ public class PieceController {
 			try
 			{
 				Piece ppiece = convertForm(pieceform);
-				servicePiece.modifierPiece(ppiece);
-				
+				servicePiece.modifierPiece(ppiece);	
+
 			}
 			catch(Exception e) {
 				System.err.println(e.getMessage());
+				pmodel.addAttribute("errors", presult.getAllErrors());
+				pmodel.addAttribute("pieceform",pieceform);
+				return this.getAfficheMod(pieceform.getId(), pmodel);
 			}
 		}
+		else {
+			System.err.println(presult);
+			pmodel.addAttribute("errors", presult.getAllErrors());
+			return this.getAfficheMod(pieceform.getId(), pmodel);
+		}
+		
 		return this.getAffiche(pmodel);
 	}
 	
