@@ -30,6 +30,10 @@
 				<td>
 					<a class="btn btn-outline-secondary"
 						th:href="'/users/'+${u.id}" th:text="Modif"></a>
+					<a th:if="${ not u.profils.?[name=='COMMERCIAL'].isEmpty()  and  not u.suspended }" class="btn btn-outline-danger"
+						th:href="'/blockUser/'+${u.id}" th:text="Bloquer"></a>
+					<a th:if="${ u.suspended }" class="btn btn-outline-success"
+						th:href="'/blockUser/'+${u.id}" th:text="Debloquer"></a>
 				</td>
 			</tr>
 		</tbody>
