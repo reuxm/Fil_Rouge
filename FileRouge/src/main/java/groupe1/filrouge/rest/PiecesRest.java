@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import groupe1.filrouge.entity.Piece;
@@ -19,6 +20,11 @@ public class PiecesRest {
 	@GetMapping("/pieces")
 	public List<Piece> listpieces() {
 		return spiece.recherchePiece();
+	}
+	
+	@GetMapping("/pieces/{id}")
+	public Piece find( @PathVariable("id") int id ) {
+		return spiece.recherchePieceId(id);
 	}
 
 }
