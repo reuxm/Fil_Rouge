@@ -13,10 +13,15 @@ export class DevisComponent implements OnInit {
   constructor(private sdevis: DevisService, private router: Router) { }
 
   ngOnInit() {
+    this.getAllDevis();
   }
 
   getAllDevis(): void {
     this.sdevis.getAllDevis()
-    .subscribe(devis => {this.devis = devis, console.log(devis);} );
+    .subscribe(devis => {
+      console.log("Réponse des devis");
+      console.log(devis);
+      this.devis = devis;
+    } );
   }
 }
