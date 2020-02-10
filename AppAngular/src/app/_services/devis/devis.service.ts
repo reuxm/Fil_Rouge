@@ -9,7 +9,7 @@ import { Devis } from 'src/app/_models/devis.model';
 })
 export class DevisService {
 
-  private UrlDevis = 'http://localhost:8080/Rest/entity/devis'; 
+  private UrlDevis = 'http://localhost:8080/Rest/entity/'; 
 
   constructor(private http: HttpClient) { }
 
