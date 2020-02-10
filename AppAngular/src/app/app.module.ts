@@ -8,7 +8,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
 import { VehiculeComponent } from './vehicule/vehicule.component';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ListTachesComponent } from './list-taches/list-taches.component';
 import { DevisComponent } from './devis/devis.component';
