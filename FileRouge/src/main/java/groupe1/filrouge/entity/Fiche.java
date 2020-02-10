@@ -63,7 +63,7 @@ public class Fiche {
 	/**
 	 * JAVADOC Création du clé étranger idclient pour pointer au objet client
 	 */
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_client",  nullable = false)
 	private Client client;

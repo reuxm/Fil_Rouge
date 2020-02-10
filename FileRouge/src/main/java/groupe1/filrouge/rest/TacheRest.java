@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import groupe1.filrouge.entity.Devis;
-import groupe1.filrouge.service.IServiceDevis;
+import groupe1.filrouge.entity.Tache;
+import groupe1.filrouge.service.IServiceTache;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Rest/entity")
-public class DevisRest {
-
+public class TacheRest {
+	
 	@Autowired
-	private IServiceDevis sdevis;
-
-	@GetMapping("/devis")
-	public List<Devis> listdevis() {
-		return sdevis.list();
+	private IServiceTache serviceTache;
+	
+	@GetMapping("/taches")
+	public List<Tache> readAllTaches() {
+		return serviceTache.rechercheTache();
+	}	
+	
+	@GetMapping("/taches/{id}")
+	public Tache readTache(@PathVariable("id") int id) {
+		return serviceTache.rechercheTacheId(id);
 	}
-
-	@PostMapping("/createdevis")
-	public void createD(@RequestBody Devis d) {
-		sdevis.create(d);
+	
+	@PostMapping("/createTache")
+	public void createTache(@RequestBody Tache tache) {
+		serviceTache.creerTache(tache);
 	}
-
-	@GetMapping("/devis/{id}")
-	public Devis find(@PathVariable("id") int id) {
-		return sdevis.find(id);
-	}
-  
 }

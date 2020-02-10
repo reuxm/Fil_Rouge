@@ -1,0 +1,88 @@
+<div class="container col-md-12"> 
+				
+    <p class="text-center my-4 card-title h2 pb-2"><strong>List des devis</strong></p>
+  
+    <div class="table-responsive table-container">  
+    <table class="table table-dark table-hover table-striped">  
+      <thead class="thead-light">  
+      <tr>  
+        <th>Id Devis</th>  
+        <th>Date Creation</th> 
+        <th>Client</th> 
+        <th>Vehicule</th>
+        <th>User</th>
+        <th>Etat</th> 
+      </tr>  
+      </thead>  
+      <tbody>  
+      <tr *ngFor="let d of devis"> 
+         
+        <td>{{d.id}}</td>  
+        <td>{{d.dateCreation}}</td>
+        <td>{{d.id_client}}</td> 
+        <td>{{d.id_vehicule}}</td> 
+        <td>{{d.id_user}}</td>
+        <td>{{d.etat}}</td> 
+         
+        <td>  
+          <button type="button" class="btn btn-secondary">Confirmer</button>
+  
+        </td>  
+      </tr>  
+      </tbody>  
+    </table>  
+    </div> 
+
+    <h5 class="card-header unique-color white-text text-center py-4">
+      <strong>Ajouter Devis</strong>
+  </h5>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      
+              <div class="form-group card-body px-lg-5 pt-0">
+                  <label>Date Création:</label>
+                  <input type="text" formControlName="Date" placeholder="Date Création" class="form-control"
+                  formControlName="dateCreation" type="text" [value]="dateCreation | date: 'MM/dd/yyyy'" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && d.dateCreation.errors }">
+ 
+                  <div *ngIf="submitted && d.dateCreation.errors">
+                    <div *ngIf="d.dateCreation.errors.required">Date Création is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group card-body px-lg-5 pt-0">
+                  <label>Client</label>
+                  <input type="text" formControlName="id_client" placeholder="Client" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && d.id_client.errors }">
+                  <div *ngIf="submitted && d.id_client.errors">
+                    <div *ngIf="d.id_client.errors.required">Client is required</div>
+                  </div>
+              </div>
+
+              <div class="form-group card-body px-lg-5 pt-0">
+                <label>Vehicule</label>
+                <input type="text" formControlName="id_vehicule" placeholder="Vehicule" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && d.id_vehicule.errors }">
+                <div *ngIf="submitted && d.id_vehicule.errors.errors">
+                  <div *ngIf="d.id_vehicule.errors.required">Vehicule is required</div>
+                </div>
+            </div>
+
+            <div class="form-group card-body px-lg-5 pt-0">
+              <label>User</label>
+              <input type="text" formControlName="id_user" placeholder="User" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && d.id_user.errors }">
+              <div *ngIf="submitted && d.id_user.errors.errors">
+                <div *ngIf="d.id_user.errors.required">User is required</div>
+              </div>
+          </div>
+ 
+
+                
+  
+                <div class="text-center">
+                  <button type="button" class="btn btn-secondary">Confirmer</button>
+                </div>
+
+  </form>
+</div>

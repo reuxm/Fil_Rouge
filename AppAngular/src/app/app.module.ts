@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +10,13 @@ import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.compo
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ListTachesComponent } from './list-taches/list-taches.component';
+import { DevisComponent } from './devis/devis.component';
+import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FichesComponent } from './fiches/fiches.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +24,18 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     HomeComponent,
     ListeVehiculesComponent,
-    VehiculeComponent
+    VehiculeComponent,
+    DevisForm,
+    DevisComponent,
+    ListTachesComponent,
+    FichesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
