@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 /**
  * @author Matiace
  * @version 1.0
@@ -33,6 +35,7 @@ public class Profil {
 	@Column(name="name", length = 50, nullable = false)
 	private String name;
   
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="profil_user",
 	joinColumns= @JoinColumn(name = "id_profil"),

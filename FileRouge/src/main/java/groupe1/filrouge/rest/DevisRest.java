@@ -36,5 +36,5 @@ public class DevisRest {
 	public Devis find(@PathVariable("id") int id) {
 		return sdevis.find(id);
 	}
-
+  
 }

@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Bassel Gaied
  * @version 1.0
@@ -24,36 +27,44 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "vehicule")
 public class Vehicule {
+	
 	/**
 	 * JAVADOC Id Vehicule est génerer par Hibernate
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	/**
 	 * JAVADOC modele du voiture : obligatoire
 	 */
 	@Column(name = "modele", length = 50, nullable = false)
 	private String modele;
+	
 	/**
 	 * JAVADOC la quantité du voiture : obligatoire
 	 */
 	@Column(name = "quantite", length = 11, nullable = false)
 	private Integer qte;
+	
 	/**
 	 * JAVADOC le prix du voiture
 	 */
 	@Column(name = "prixHT")
 	private Float prixHT;
+	
 	/**
 	 * JAVADOC la date de création du voiture : obligatoire
 	 */
+	@JsonIgnore
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
 	private Date dateCreation;
+	
 	/**
 	 * JAVADOC la voiture peut avoir une liste de devis
 	 */
+	@JsonBackReference
 	@OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
 	private List<Devis> listeDevis;
 	/**

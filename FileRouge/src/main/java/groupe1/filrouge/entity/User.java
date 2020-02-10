@@ -20,33 +20,44 @@ import java.util.Collection;
 @Entity
 @Table(name = "users") 
 public class User {
+	
 	/**
 	 * JAVADOC Id User est génerer par Hibernate
 	 */
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)		
 	private Integer id;
+	
 	/**
 	 * JAVADOC prénom du User : obligatoire
 	 */
 	@Column(name="firstname", length = 50, nullable = false)
 	private String firstname;
+	
 	/**
 	 * JAVADOC nom de User : obligatoire
 	 */
 	@Column(name="lastname", length = 50, nullable = false)
 	private String lastname;
+	
 	/**
 	 * JAVADOC Login de User : obligatoire
 	 */
 	@Column(name="login", length = 15, nullable = false)
 	private String login;
+	
 	/**
 	 * JAVADOC mot de passe de User : obligatoire
 	 */
 	@Column(name="pwd", length = 10, nullable = false)
 	private String password;
 
+	/**
+	 * Indique que le compte utilisateur est bloque 
+	 */
+	@Column(name="suspended")
+	private Boolean suspended;
+	
 	/**
 	 * JAVADOC Jointure des deux table user et profil
 	 */
@@ -55,6 +66,7 @@ public class User {
 	joinColumns= @JoinColumn(name = "id_user"),
 	inverseJoinColumns= @JoinColumn(name="id_profil") ) 
 	private Collection<Profil> profils;
+	
 	/**
 	 * 
 	 * @return <b> L'Id User </b>
@@ -132,6 +144,18 @@ public class User {
 
 	public void setProfils(Collection<Profil> profils) {
 		this.profils = profils;
+	}
+	
+	public Boolean getSuspended() {
+		return suspended;
+	}
+	
+	public void setSuspended(Boolean suspended) {
+		this.suspended = suspended;
+	}
+	
+	public void toogleSupended() {
+		setSuspended( !getSuspended() );
 	}
 	
 }
