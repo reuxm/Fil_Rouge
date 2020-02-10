@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import groupe1.filrouge.entity.Devis;
 import groupe1.filrouge.service.IServiceDevis;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/Rest/entity")
 public class DevisRest {
