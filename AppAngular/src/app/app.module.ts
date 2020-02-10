@@ -10,7 +10,6 @@ import { ListTachesComponent } from './list-taches/list-taches.component';
 import { DevisComponent } from './devis/devis.component';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { FichesComponent } from './fiches/fiches.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { FichesComponent } from './fiches/fiches.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    DevisForm,
     DevisComponent,
     ListTachesComponent,
     FichesComponent,
