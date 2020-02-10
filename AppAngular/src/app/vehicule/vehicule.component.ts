@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { VehiculeModel } from './vehicule.model';
 
 @Component({
   selector: 'app-vehicule',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vehicule.component.css']
 })
 export class VehiculeComponent implements OnInit {
-
+  @Input() vehicule: VehiculeModel;
+  hasImage: boolean = false;
   constructor() { }
 
   ngOnInit() {
+    const image = new Image();
+    image.onload = () => {
+      this.hasImage = true;
+    }
+    image.src = `assets/images/${this.vehicule.modele.toLowerCase()}.png`;
+
   }
 
 }

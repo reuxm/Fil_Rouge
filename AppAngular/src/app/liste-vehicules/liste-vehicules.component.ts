@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiculeModel } from '../vehicule/vehicule.model';
+import { VehiculeService } from '../_service/vehicule/vehicule.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-vehicules',
@@ -8,16 +10,24 @@ import { VehiculeModel } from '../vehicule/vehicule.model';
 })
 export class ListeVehiculesComponent implements OnInit {
   public ListVehicule: VehiculeModel[] = [];
-  // Ajouter le lien fetch vers les data
-  public listeData = data;
-  constructor() {
+  public listeData;
+  constructor(private svehicule: VehiculeService, private router: Router) {
 
   }
+
 
   ngOnInit() {
-    for (const e of data) {
+    this.getAllVehicule();
+    for (const e of this.listeData) {
       const vehicule = new VehiculeModel(e.id, e.modele, e.quantite, e.prixHt, e.dateCreation);
       this.ListVehicule.push(vehicule);
+    }
   }
+  getAllVehicule(){
+    this.svehicule.getAllVehicules()
+    .subscribe(vehicule => {
+      this.ListVehicule = vehicule;
+    });
 
+  }
 }
