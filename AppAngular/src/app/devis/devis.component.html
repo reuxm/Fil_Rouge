@@ -1,1 +1,32 @@
-<p>devis works!</p>
+<div class="container col-md-12"> 
+				
+    <p class="text-center my-4 card-title h2 pb-2"><strong>List des devis</strong></p>
+  
+    <div class="table-responsive table-container">  
+    <table class="table table-dark table-hover table-striped">  
+      <thead class="thead-light">  
+      <tr>  
+        <th>Id Devis</th>  
+        <th>Date Creation</th> 
+        <th>Client</th> 
+        <th>Vehicule</th>
+        <th>User</th>
+      </tr>  
+      </thead>  
+      <tbody>  
+      <tr *ngFor="let d of devis"> 
+         
+        <td>{{d.id}}</td>  
+        <td>{{l.dateCreation}}</td>
+        <td>{{l.id_client}}</td> 
+        <td>{{l.id_vehicule}}</td> 
+        <td>{{l.id_user}}</td> 
+         
+        <td>  
+          <button type="button" class="btn btn-secondary">Confirmer</button>
+  
+        </td>  
+      </tr>  
+      </tbody>  
+    </table>  
+    </div> 
