@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ListTachesComponent } from './list-taches/list-taches.component';
 import { DevisComponent } from './devis/devis.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FichesComponent } from './fiches/fiches.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { DevisComponent } from './devis/devis.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    DevisComponent
-    ListTachesComponent
+    DevisComponent,
+    ListTachesComponent,
+    FichesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
