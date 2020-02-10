@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { ListTachesComponent } from './list-taches/list-taches.component';
 import { DevisComponent } from './devis/devis.component';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FichesComponent } from './fiches/fiches.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +19,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    DevisComponent
-    
+    DevisForm,
+    DevisComponent,
+    ListTachesComponent,
+    FichesComponent,
+
   ],
   imports: [
     BrowserModule,

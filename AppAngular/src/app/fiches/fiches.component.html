@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Création</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prix TTC</th>
+            <th scope="col">TVA</th>
+            <th scope="col">Cloture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fiche of fiches">
+            <td>{{ fiche.dateCreation }}</td>
+            <td>{{ fiche.description }}</td>
+            <td>{{ fiche.prix }}</td>
+            <td>{{ fiche.tva }}</td>
+            <td>{{ fiche.dateCloture }}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
