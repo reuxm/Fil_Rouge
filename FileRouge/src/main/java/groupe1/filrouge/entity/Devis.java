@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * @author Bassel Gaied
@@ -33,6 +31,7 @@ public class Devis {
 	/**
 	 * JAVADOC Création du clé étranger idclient pour pointer au objet client
 	 */
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_client", nullable = false)
 	@JsonBackReference
@@ -40,6 +39,7 @@ public class Devis {
 	/**
 	 * JAVADOC Création du clé étranger idvehicule pour pointer au objet voiture
 	 */
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_vehicule", nullable = false)
 	@JsonBackReference
@@ -47,6 +47,7 @@ public class Devis {
 	/**
 	 * JAVADOC Création du clé étranger iduser pour pointer au objet user
 	 */
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_user", nullable = false)
 	@JsonIgnore
