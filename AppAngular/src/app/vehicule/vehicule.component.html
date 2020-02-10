@@ -1,0 +1,11 @@
+<div class="card">
+
+    <div *ngIf="hasImage"><img  src="assets/images/{{vehicule.modele|lowercase}}.png" class="card-img-top" [alt]=""></div>
+    <div class="card-body">
+        <h5 class="card-title">{{vehicule.modele}}</h5>
+        <div class="row">
+            <p class="card-text justify-content-center col-6">Prix: {{vehicule.prixHT}}</p>
+            <p class="card-text justify-content-end col-6">Quantité: {{vehicule.qte}}</p>
+    </div>
+    </div>
+</div>
