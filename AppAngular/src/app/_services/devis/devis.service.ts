@@ -21,6 +21,14 @@ export class DevisService {
               );
           }
 
+            /** POST: add a new Devis  */
+       createDevis (devis: Devis): Observable<Devis> {
+        return this.http.post<Devis>(this.UrlDevis+'createdevis', devis)
+          .pipe(
+            catchError(this.handleError<Devis>('createdevis', devis))
+          );
+      }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
  
