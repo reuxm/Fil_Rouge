@@ -11,7 +11,6 @@ import { VehiculeComponent } from './vehicule/vehicule.component';
 import { CommonModule } from '@angular/common';
 import { ListTachesComponent } from './list-taches/list-taches.component';
 import { DevisComponent } from './devis/devis.component';
-import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FichesComponent } from './fiches/fiches.component';
 import { TacheDetailComponent } from './tache-detail/tache-detail.component';
