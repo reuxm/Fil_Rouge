@@ -12,7 +12,7 @@ export class Tache {
     piece: Piece;
 }
 
-class User {
+export class User {
     id: number;
     firstname: string;
     lastname: string;
@@ -22,17 +22,17 @@ class User {
     profils: Profil[];
 }
 
-class Profil {
+export class Profil {
     id: number;
     name: string;
 }
 
-class Priorite {
+export class Priorite {
     id: number;
     libelle: string;
 }
 
-class Piece {
+export class Piece {
     id: number;
     libelle: string;
     qte: number;
