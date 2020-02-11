@@ -16,7 +16,22 @@ export class TachesService {
   getAllTaches(): Observable<Tache[]> {
     return this.http.get<Tache[]>(this.url + 'taches')
       .pipe(
-        catchError(this.handleError<Tache[]>('getAllFiches', []))
+        catchError(this.handleError<Tache[]>('getAllTaches', []))
+      );
+  }
+
+  getTache(id: string): Observable<Tache> {
+    return this.http.get<Tache>(this.url + 'taches/' + id)
+      .pipe(
+        catchError(this.handleError<Tache>('getTache', ))
+      );
+  }
+
+  updateTache(tache: Tache): Observable<Tache> {
+    console.log(tache);
+    return this.http.post<Tache>(this.url + 'updateTache', tache)
+      .pipe(
+        catchError(this.handleError<Tache>('updateTache', tache))
       );
   }
 

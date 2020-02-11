@@ -5,6 +5,7 @@ import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.compo
 import { DevisComponent } from './devis/devis.component';
 import { ListTachesComponent } from './list-taches/list-taches.component';
 import { FichesComponent } from './fiches/fiches.component';
+import { TacheDetailComponent } from './tache-detail/tache-detail.component';
 
 
 
@@ -15,7 +16,13 @@ const routes: Routes = [
   { path: 'vehicule', component: ListeVehiculesComponent},
   {path: 'devis', component: DevisComponent},
   { path: 'fiches', component: FichesComponent },
-  { path: 'list', component: ListTachesComponent },
+  {
+    path: 'taches',
+    component: ListTachesComponent,
+    children: [
+      { path: 'detail/:id', component: TacheDetailComponent }
+    ]
+  },
 ];
 
 @NgModule({

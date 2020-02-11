@@ -49,14 +49,14 @@ public class Fiche {
 	/**
 	 * JAVADOC Création du clé étranger iduser pour pointer au objet user
 	 */
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_user",  nullable = false)
 	private User user;
 	/**
 	 * JAVADOC Création du clé étranger idpriorite pour pointer au objet priorite
 	 */
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_priorite",  nullable = false)
 	private Priorite priorite;

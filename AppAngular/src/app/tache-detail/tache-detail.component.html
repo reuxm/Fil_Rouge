@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-body">
+        <form #tacheForm="ngForm" (ngSubmit)="updateTache(tache)">
+            <div class="form-group">
+                <label for="libelle">Libelle</label>
+                <input type="text" class="form-control" [(ngModel)]="tache.libelle" name="libelle" disabled>
+            </div>
+            <div class="form-group">
+                <label for="commentaire">Commentaire</label>
+                <textarea class="form-control" [(ngModel)]="tache.commentaire" name="commentaire" 
+                placeholder="Ajouter un commentaire..." style="max-height: 150px;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="client">Client</label>
+                <input type="text" class="form-control" *ngIf="(tache.fiche.client.firstname && tache.fiche.client.name) === null" [(ngModel)]="tache.fiche.client.firstname + ' ' + tache.fiche.client.name" 
+                name="client" disabled>
+            </div>
+            <div class="form-group">
+                <label for="user">Utilisateur</label>
+                <input type="text" class="form-control" [(ngModel)]="tache.user.login" name="user" disabled>
+            </div>
+            <div class="form-group">
+                <label for="piece">Pièce</label>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" [(ngModel)]="tache.piece.libelle" name="piece.libelle" disabled>
+                    </div>
+                    <div class="input-group col">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">&times;</div>
+                    </div>
+                    <input type="text" class="form-control" [(ngModel)]="tache.piece.qte" name="piece.qte" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" [(ngModel)]="tache.etat" name="etat" id="etat">
+                    <label class="custom-control-label" for="etat">Terminé</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Enregistrer</button>
+        </form>
+    </div>
+</div>
