@@ -16,7 +16,7 @@ export class VehiculeComponent implements OnInit {
     image.onload = () => {
       this.hasImage = true;
     }
-    image.src = `assets/images/${this.vehicule.modele.toLowerCase()}.png`;
+    image.src = `assets/images/${this.vehicule.modele.toLowerCase()}.jpg`;
 
   }
 

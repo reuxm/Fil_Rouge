@@ -1,11 +1,12 @@
 <div class="card">
-
-    <div *ngIf="hasImage"><img  src="assets/images/{{vehicule.modele|lowercase}}.png" class="card-img-top" [alt]=""></div>
+    <div *ngIf="hasImage"><img src="assets/images/{{vehicule.modele|lowercase}}.jpg" class="card-img-top" [alt]=""></div>
+    <div *ngIf="!hasImage"><img src="assets/images/default.jpg" class="card-img-top" [alt]=""></div>
     <div class="card-body">
-        <h5 class="card-title">{{vehicule.modele}}</h5>
-        <div class="row">
-            <p class="card-text justify-content-center col-6">Prix: {{vehicule.prixHT}}</p>
-            <p class="card-text justify-content-end col-6">Quantité: {{vehicule.qte}}</p>
-    </div>
+        <h4 class="card-title">{{vehicule.modele}}</h4>
+        <hr class="mt-2">
+        <p class="card-text flex-wrap"><strong>Prix:</strong> {{vehicule.prixHT}}€</p>
+        <p class="card-text align-content-end flex-wrap"><strong>Quantité:</strong> {{vehicule.qte}}</p>
+
     </div>
 </div>
+
