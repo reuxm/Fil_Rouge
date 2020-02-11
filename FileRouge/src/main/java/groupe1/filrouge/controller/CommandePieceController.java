@@ -54,7 +54,6 @@ public class CommandePieceController {
 		pcmdpiece.setUser(puser);
 		return pcmdpiece;
 	}
-
 	@GetMapping("/afficherCreerCommandePiece")
 	public String getAffiche(Model pmodel) {
 		List<CommandePiece> lcmdpieces = serviceCommandePiece.list();

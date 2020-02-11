@@ -25,7 +25,7 @@ import groupe1.filrouge.service.IServicePriorite;
 import groupe1.filrouge.service.IServiceUser;
 
 @Controller
-@PostAuthorize("hasAuthority('CHEF_ATELIER')")
+@PostAuthorize("hasAuthority('CHEF_ATELIER') or hasAuthority('MECANICIEN')")
 public class FicheController {
 
 	@Autowired

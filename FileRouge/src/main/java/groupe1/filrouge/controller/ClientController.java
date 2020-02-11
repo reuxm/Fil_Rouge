@@ -19,7 +19,7 @@ import groupe1.filrouge.entity.Client;
 import groupe1.filrouge.service.IServiceClient;
 
 @Controller
-@PostAuthorize("hasAuthority('ADMINISTRATEUR')")
+@PostAuthorize("hasAuthority('ADMINISTRATEUR') OR hasAuthority('COMMERCIAL') OR hasAuthority('CHEF_ATELIER')")
 public class ClientController {
 	@Autowired
 	private IServiceClient service;

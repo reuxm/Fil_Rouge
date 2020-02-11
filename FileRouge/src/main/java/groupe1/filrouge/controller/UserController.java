@@ -58,6 +58,7 @@ public class UserController {
 			user.setFirstname( form.getNom() );
 			user.setLogin( form.getLogin() );
 			user.setPassword( BCrypt.hashpw( form.getPass1(), BCrypt.gensalt(10) ) );
+			user.setSuspended(false);
 			boolean[] p = form.getProfils();
 			List<Profil> profils = new ArrayList<Profil>();
 			for( int i=0 ; i<5 ; i++) {
@@ -89,6 +90,7 @@ public class UserController {
 		pmodel.addAttribute( "nom", user.getLastname() );
 		pmodel.addAttribute( "prenom", user.getFirstname() );
 		pmodel.addAttribute( "login", user.getLogin() );
+		pmodel.addAttribute( "suspended", user.getSuspended());
 		Collection<Profil> profils = user.getProfils();
 		pmodel.addAttribute( "profil", new boolean[] {
 				profils.contains( pService.rechercheProfilId( 1 ) ),
@@ -117,6 +119,7 @@ public class UserController {
 			user.setFirstname( form.getPrenom() );
 			user.setLogin( form.getLogin() );
 			user.setPassword( original.getPassword());
+			user.setSuspended( original.getSuspended());
 			boolean[] p = form.getProfils();
 			List<Profil> profils = new ArrayList<Profil>();
 			for( int i=0 ; i<5 ; i++) {

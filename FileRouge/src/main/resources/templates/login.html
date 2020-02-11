@@ -11,13 +11,14 @@
     <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
+        <div class="card card-signin my-5 p-2">
           <div class="card-body">
+			<div class = "d-flex flex-column align-items-center" >
+            <img th:src="@{/img/login.png}" class="login" /> 
             
-            <div class="row"> <img th:src="@{/img/logo.jpg}" class="logo col-2)" /> 
-            <h3 class="card-title col-10">Login</h3>
+            <h1 class="card-title ">Login</h1></div>
 			</div>
-			<hr class="my-2">
+			<hr class="mt-2">
             <div th:if="${msg != null}">
             <span class="badge badge-danger" th:text="${msg}"></span>
             </div>
@@ -31,12 +32,12 @@
 
               <div class="form-label-group">
                 <label>Mot de passe</label>
-                <input type="password" name="password" class="form-control p-y-2" required>
-                <hr class="my-2">
+                <input type="password" name="password" class="form-control mb-4" required>
+
 
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connecter</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Se Connecter</button>
               
                <input class="btn btn-lg btn-primary btn-block text-uppercase" type="hidden" name="${__csrf.parameterName}" value="${__csrf.token}"></input>
               

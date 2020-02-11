@@ -29,7 +29,7 @@ import groupe1.filrouge.service.IServiceTache;
 import groupe1.filrouge.service.IServiceUser;
 
 @Controller
-@PostAuthorize("hasAuthority('MAGASINIER') OR hasAuthority('MECANICIEN')") 
+@PostAuthorize("hasAuthority('MAGASINIER') OR hasAuthority('MECANICIEN') OR hasAuthority('CHEF_ATELIER')") 
 public class TacheController {
 	@Autowired
 	private IServiceTache service;

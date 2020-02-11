@@ -12,6 +12,15 @@ h1{
     border-radius: 50%;
  
 }
+.login
+{
+    margin-left: 10p;
+    height: 70px;
+    width: 70px;
+    border: 1px black solid;
+    border-radius: 50%;
+ 
+}
 .home{
     margin: auto;
     height: auto;
