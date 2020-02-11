@@ -31,3 +31,10 @@ h1{
     width: 40px;
     border-radius: 50%;   
 }
+.warning{
+	height: 20px;
+    width: 20px;
+    border: 1px black solid;
+    border-radius: 50%;	
+}
+}

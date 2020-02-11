@@ -1,7 +1,13 @@
 package groupe1.filrouge.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 /**
  * @author Matiace
  * @version 1.0
@@ -19,8 +28,13 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "users") 
-public class User {
+public class User implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * JAVADOC Id User est génerer par Hibernate
 	 */
@@ -61,7 +75,7 @@ public class User {
 	/**
 	 * JAVADOC Jointure des deux table user et profil
 	 */
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="profil_user",
 	joinColumns= @JoinColumn(name = "id_user"),
 	inverseJoinColumns= @JoinColumn(name="id_profil") ) 
@@ -157,5 +171,45 @@ public class User {
 	public void toogleSupended() {
 		setSuspended( !getSuspended() );
 	}
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		final List<GrantedAuthority> authorities = 
+				new ArrayList<GrantedAuthority>();
+		for (final Profil role : this.getProfils()) {
+			authorities.add(
+					new SimpleGrantedAuthority(role.getName()));
+		}
+		return authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

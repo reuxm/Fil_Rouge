@@ -1,7 +1,6 @@
 package groupe1.filrouge.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +25,7 @@ import groupe1.filrouge.service.IServiceProfil;
 import groupe1.filrouge.service.IServiceUser;
 
 @Controller
+@PostAuthorize("hasAuthority('ADMINISTRATEUR')")
 public class UserController {
 	
 	@Autowired
