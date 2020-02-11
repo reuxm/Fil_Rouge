@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Devis } from 'src/app/_models/devis.model';
+import { Devis, Client } from 'src/app/_models/devis.model';
 import {DevisService} from '../_services/devis/devis.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,10 +23,17 @@ export class DevisComponent implements OnInit {
 
     this.addForm = this.formBuilder.group({
       
-      dateCreation: ['', Validators.required],
-      client: ['', Validators.required],
-      vehicule: ['', [Validators.required]],
-      user: ['', [Validators.required]],
+      dateCreation: [''],
+      
+      client: this.formBuilder.group({
+        name: ''
+      }),
+      vehicule: this.formBuilder.group({
+        modele: ''
+      }),
+      user: this.formBuilder.group({
+        firstname: ''
+      }),
 
     });
   }
@@ -48,6 +55,7 @@ export class DevisComponent implements OnInit {
         console.log("Form devis done");
         console.log(data);
         this.router.navigate(['/devis']);
+        console.warn(this.addForm.value);
       });
     }
   }
