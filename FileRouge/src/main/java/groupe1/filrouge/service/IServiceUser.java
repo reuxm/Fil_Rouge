@@ -11,4 +11,5 @@ public interface IServiceUser {
 	public void creerUser(final User user);
 	public void modifierUser(final User user);
 	public void supprimerUser(final User user);
+	public User get(final String login);
 	}

@@ -369,8 +369,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `login`, `pwd`) VALUES
-(1, 'DURAND', 'JEAN', 'JDURAND', '1234'),
-(2, 'MARTIN', 'JEANNE', 'JMARTIN', '1234');
+(1, 'DURAND', 'JEAN', 'JDURAND', '$2a$10$CoalNJDmjR0xc3ZuCwXPp.NYCKeoahilrOgRROE0GVx2fQU/P4GpW'),
+(2, 'MARTIN', 'JEANNE', 'JMARTIN', '$2a$10$CoalNJDmjR0xc3ZuCwXPp.NYCKeoahilrOgRROE0GVx2fQU/P4GpW');
 
 -- --------------------------------------------------------
 

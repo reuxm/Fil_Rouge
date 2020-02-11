@@ -24,25 +24,31 @@ public class ServiceUser implements IServiceUser {
 	@Transactional(readOnly=true)
 	@Override
 	public User rechercheUserId(int id) {
-		return dao.findById(id).get();
-		
+		return dao.findById(id).get();	
 	}
+	
 	@Transactional
 	@Override
 	public void creerUser(User user) {
 		dao.save(user);
-
 	}
+	
 	@Transactional
 	@Override
 	public void modifierUser(User user) {
 		dao.save(user);
-
 	}
 
+	@Transactional
 	@Override
 	public void supprimerUser(User user) {
 		dao.deleteById(user.getId());
+	}
+
+	@Transactional(readOnly=true)
+	@Override
+	public User get( String login ) {
+		return dao.get( login );
 	}
 
 }

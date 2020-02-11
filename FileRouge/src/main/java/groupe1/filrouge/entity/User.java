@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import java.util.Collection;
 /**
  * @author Matiace
@@ -18,7 +21,13 @@ import java.util.Collection;
  */
 
 @Entity
-@Table(name = "users") 
+@Table(name = "users")
+@NamedQueries({
+	@NamedQuery(
+		name="User.get",
+		query="select u from User u where u.login like ?1"
+	)
+})
 public class User {
 	
 	/**
