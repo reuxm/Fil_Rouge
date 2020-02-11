@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import groupe1.filrouge.service.IServicePiece;
 import groupe1.filrouge.service.IServiceUser;
 
 @Controller
+@PostAuthorize("hasAuthority('MAGASINIER')")
 public class CommandePieceController {
 	@Autowired
 	IServiceCommandePiece serviceCommandePiece;
@@ -52,7 +54,6 @@ public class CommandePieceController {
 		pcmdpiece.setUser(puser);
 		return pcmdpiece;
 	}
-
 	@GetMapping("/afficherCreerCommandePiece")
 	public String getAffiche(Model pmodel) {
 		List<CommandePiece> lcmdpieces = serviceCommandePiece.list();
