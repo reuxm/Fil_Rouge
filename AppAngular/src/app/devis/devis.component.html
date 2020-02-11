@@ -39,10 +39,8 @@
       
               <div class="form-group card-body px-lg-5 pt-0">
                   <label>Date Création:</label>
-                  <input type="text" formControlName="Date" placeholder="Date Création" class="form-control"
-                  formControlName="dateCreation" type="text" [value]="dateCreation | date: 'MM/dd/yyyy'" class="form-control"
+                  <input type="text" formControlName="dateCreation" placeholder="MM/dd/yyyy" class="form-control"
                    [ngClass]="{ 'is-invalid': submitted && d.dateCreation.errors }">
- 
                   <div *ngIf="submitted && d.dateCreation.errors">
                     <div *ngIf="d.dateCreation.errors.required">Date Création is required</div>
                   </div>
@@ -50,31 +48,28 @@
 
                 <div class="form-group card-body px-lg-5 pt-0">
                   <label>Client</label>
-                  <input type="text" formControlName="id_client" placeholder="Client" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && d.id_client.errors }">
-                  <div *ngIf="submitted && d.id_client.errors">
-                    <div *ngIf="d.id_client.errors.required">Client is required</div>
-                  </div>
+                <select class="form-control" formControlName="client" placeholder="Client" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && d.client.name.errors }">
+                  <option *ngFor="let d of devis">{{d.client.name}}</option>
+                </select>
               </div>
 
               <div class="form-group card-body px-lg-5 pt-0">
                 <label>Vehicule</label>
-                <input type="text" formControlName="id_vehicule" placeholder="Vehicule" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && d.id_vehicule.errors }">
-                <div *ngIf="submitted && d.id_vehicule.errors.errors">
-                  <div *ngIf="d.id_vehicule.errors.required">Vehicule is required</div>
-                </div>
+              <select class="form-control" formControlName="vehicule" placeholder="Vehicule" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && d.vehicule.modele.errors }">
+              <option *ngFor="let d of devis">{{d.vehicule.modele}}</option>
+              </select>
             </div>
 
             <div class="form-group card-body px-lg-5 pt-0">
               <label>User</label>
-              <input type="text" formControlName="id_user" placeholder="User" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && d.id_user.errors }">
-              <div *ngIf="submitted && d.id_user.errors.errors">
-                <div *ngIf="d.id_user.errors.required">User is required</div>
-              </div>
+            <select class="form-control" formControlName="user" placeholder="User" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && d.user.firstname.errors }">
+            <option *ngFor="let d of devis">{{d.user.firstname}}</option>
+            </select>
           </div>
- 
+
                 <div class="text-center">
                   <button type="button" class="btn btn-secondary">Confirmer</button>
                 </div>
