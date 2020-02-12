@@ -16,6 +16,8 @@ import { FichesComponent } from './fiches/fiches.component';
 import { TacheDetailComponent } from './tache-detail/tache-detail.component';
 import { FormsModule } from '@angular/forms';
 import { ListeCommandeVehiculesComponent } from './liste-commande-vehicules/liste-commande-vehicules.component';
+import { SearchComponent } from './search/search.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ListeCommandeVehiculesComponent } from './liste-commande-vehicules/list
     FichesComponent,
     TacheDetailComponent,
     ListeCommandeVehiculesComponent,
+    SearchComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
