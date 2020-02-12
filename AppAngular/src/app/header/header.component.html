@@ -3,17 +3,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- <img src="../assets/logo.jpg" class="img-fluid" alt="Responsive image"> -->
-    <a class="navbar-brand" href="#">Gestion de garage</a>
+    <a class="navbar-brand" routerLink="/">Gestion de garage</a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <!-- Modifier ce lien afin qu'il soit gérer par le router d'Angular -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/list">Mes tâches</a>
-            </li>
-            <!-- Modifier ce lien afin qu'il soit gérer par le router d'Angular -->
             <li class="nav-item">
-                <a class="nav-link" href="/add">Ajouter une tâche</a>
+                <a class="nav-link" routerLink="/taches" routerLinkActive="active">Mes tâches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/vehicule" routerLinkActive="active">Parc Auto</a>
             </li>
             <li>
             	<p *ngIf="login" class="nav-link">Logged as {{ login }}</p>

@@ -1,7 +1,6 @@
 package groupe1.filrouge.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +25,7 @@ import groupe1.filrouge.service.IServiceProfil;
 import groupe1.filrouge.service.IServiceUser;
 
 @Controller
+@PostAuthorize("hasAuthority('ADMINISTRATEUR')")
 public class UserController {
 	
 	@Autowired
@@ -57,6 +58,7 @@ public class UserController {
 			user.setFirstname( form.getNom() );
 			user.setLogin( form.getLogin() );
 			user.setPassword( BCrypt.hashpw( form.getPass1(), BCrypt.gensalt(10) ) );
+			user.setSuspended(false);
 			boolean[] p = form.getProfils();
 			List<Profil> profils = new ArrayList<Profil>();
 			for( int i=0 ; i<5 ; i++) {
@@ -88,6 +90,7 @@ public class UserController {
 		pmodel.addAttribute( "nom", user.getLastname() );
 		pmodel.addAttribute( "prenom", user.getFirstname() );
 		pmodel.addAttribute( "login", user.getLogin() );
+		pmodel.addAttribute( "suspended", user.getSuspended());
 		Collection<Profil> profils = user.getProfils();
 		pmodel.addAttribute( "profil", new boolean[] {
 				profils.contains( pService.rechercheProfilId( 1 ) ),
@@ -116,6 +119,7 @@ public class UserController {
 			user.setFirstname( form.getPrenom() );
 			user.setLogin( form.getLogin() );
 			user.setPassword( original.getPassword());
+			user.setSuspended( original.getSuspended());
 			boolean[] p = form.getProfils();
 			List<Profil> profils = new ArrayList<Profil>();
 			for( int i=0 ; i<5 ; i++) {

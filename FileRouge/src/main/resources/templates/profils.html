@@ -22,6 +22,7 @@
 					<th th:text="Nom" ></th>
 					<th th:text="Prenom" ></th>
 					<th th:text="Login" ></th>
+
 					<th></th>
 				</tr>
 			</thead>
@@ -30,6 +31,7 @@
 				<td th:text=${u.lastname} ></td>
 				<td th:text=${u.firstname} ></td>
 				<td th:text=${u.login} ></td>
+
 				<td class="col-3">
 					<a th:href="'/profils/'+${pid}" th:text="${pname}" class="badge badge-secondary"></a>
 					<a class="btn btn-outline-danger" th:href="'/profils/'+${pid}+'/'+${u.id}" th:text="'Retirer le role'"></a>

@@ -1,7 +1,9 @@
 package groupe1.filrouge.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import java.util.Collection;
+
+
 /**
  * @author Matiace
  * @version 1.0
@@ -29,11 +33,11 @@ import java.util.Collection;
 	)
 })
 public class User {
-	
+
 	/**
 	 * JAVADOC Id User est génerer par Hibernate
 	 */
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)		
 	private Integer id;
 	
@@ -70,7 +74,7 @@ public class User {
 	/**
 	 * JAVADOC Jointure des deux table user et profil
 	 */
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="profil_user",
 	joinColumns= @JoinColumn(name = "id_user"),
 	inverseJoinColumns= @JoinColumn(name="id_profil") ) 
@@ -166,5 +170,5 @@ public class User {
 	public void toogleSupended() {
 		setSuspended( !getSuspended() );
 	}
-	
+
 }

@@ -14,7 +14,7 @@
 			<tr >
 				<th th:text="Nom" ></th>
 				<th th:text="Prenom" ></th>
-				<th th:text="Login" ></th>
+				<th th:text="Login" ></th>				
 				<th th:text="Profils" class="col-lg-4"></th>
 				<th></th>
 			</tr>
@@ -70,7 +70,6 @@
 				<label th:text="'Mot de passe'"></label>
 				<input type="password" name="pass1" class="form-control" placeholder="Mot de passe" required />
 			</div>
-			
 			<div class="form-group">
 				<label th:text="'Répéter le mot de passe'"></label>
 				<input type="password" name="pass2" class="form-control" placeholder="Répéter le mot de passe" required />
@@ -83,6 +82,7 @@
 					class="form-check-input"  />
 					<label th:text="${p.name}" th:for="'profil'+${p.id}" class="form-check-label"></label>
 				</div>
+
 			</div>
 
 			<button type="submit" class="btn btn-outline-success" th:text="Valider"></button>

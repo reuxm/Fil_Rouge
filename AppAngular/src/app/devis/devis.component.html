@@ -11,22 +11,61 @@
         <th>Client</th> 
         <th>Vehicule</th>
         <th>User</th>
+        <!-- <th>Etat</th>  -->
       </tr>  
       </thead>  
       <tbody>  
-      <tr *ngFor="let d of devis"> 
+        <ng-container *ngFor="let d of devis">
+      <tr *ngIf="d.etat"> 
          
         <td>{{d.id}}</td>  
-        <td>{{l.dateCreation}}</td>
-        <td>{{l.id_client}}</td> 
-        <td>{{l.id_vehicule}}</td> 
-        <td>{{l.id_user}}</td> 
-         
-        <td>  
-          <button type="button" class="btn btn-secondary">Confirmer</button>
-  
-        </td>  
-      </tr>  
+        <td>{{d.dateCreation | date}}</td>
+        <td>{{d.client.name}}</td> 
+        <td>{{d.vehicule.modele}}</td> 
+        <td>{{d.user.firstname}}</td>
+        <!-- <td>{{d.etat}}</td>  -->
+          
+      </tr> 
+    </ng-container> 
       </tbody>  
     </table>  
     </div> 
+
+    <h5 class="card-header unique-color white-text text-center py-4">
+      <strong>Create Devis</strong>
+  </h5>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      
+              <div class="form-group card-body px-lg-5 pt-0">
+                  <label>Date Création:</label>
+                  <input type="text" formControlName="dateCreation" placeholder="yyyy-mm-dd" class="form-control" required>
+                </div>
+
+                <div class="form-group card-body px-lg-5 pt-0" formGroupName="client">
+                  <label>Client</label>
+                <select class="form-control" formControlName="name" placeholder="Client" class="form-control">
+                  <option *ngFor="let d of devis">{{d.client.name}}</option>
+                </select>
+              </div>
+
+              <div class="form-group card-body px-lg-5 pt-0" formGroupName="vehicule">
+                <label>Vehicule</label>
+              <select class="form-control" formControlName="modele" placeholder="Vehicule" class="form-control">
+              <option *ngFor="let d of devis">{{d.vehicule.modele}}</option>
+              </select>
+            </div>
+
+            <div class="form-group card-body px-lg-5 pt-0" formGroupName="user">
+              <label>User</label>
+            <select class="form-control" formControlName="firstname" placeholder="User" class="form-control">
+            <option *ngFor="let d of devis">{{d.user.firstname}}</option>
+            </select>
+          </div>
+
+                <div class="text-center">
+                  <input type="submit" class="btn btn-secondary" value="Confirmer"/>
+                </div>
+
+  </form>
+</div>

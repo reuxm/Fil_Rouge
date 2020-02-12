@@ -1,0 +1,27 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope=col>Date de création</th>
+            <th scope=col>Auteur</th>
+            <th scope=col>Client</th>
+            <th scope=col>Vehicule</th>
+            <th scope=col>Date de cloture</th>
+            <th>Livraison</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <ng-container *ngFor="let commande of ListCommandes">
+            <tr *ngIf="commande.etat&&!commande.livre" >   
+              <td >{{commande.dateCreation| date : format : shortDate}}</td>
+              <td>{{commande.devis.user.firstname}} {{commande.devis.user.lastname}}</td>
+              <td>{{commande.devis.client.firstname}} {{commande.devis.client.name}}</td>
+              <td>{{commande.devis.vehicule.modele}}</td>
+              <td>{{commande.dateCloture }}</td>
+              <td><a class="btn btn-outline-success" (click)="livraisonCommande(commande)">Livré</a></td>
+            </tr>
+          </ng-container>
+        </tbody>
+    </table>
+</div>
