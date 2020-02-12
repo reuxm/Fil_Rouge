@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="client">Client</label>
-                <input type="text" class="form-control" *ngIf="(tache.fiche.client.firstname && tache.fiche.client.name) === null" [(ngModel)]="tache.fiche.client.firstname + ' ' + tache.fiche.client.name" 
+                <input type="text" class="form-control" *ngIf="tache.fiche.client === null" [(ngModel)]="tache.fiche.client.firstname + ' ' + tache.fiche.client.name" 
                 name="client" disabled>
             </div>
             <div class="form-group">

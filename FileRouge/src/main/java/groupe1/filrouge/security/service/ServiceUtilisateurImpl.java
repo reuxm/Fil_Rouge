@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import groupe1.filrouge.entity.User;
 import groupe1.filrouge.security.dao.DaoUserDetail;
+import groupe1.filrouge.security.entity.UserDet;
 
 
 @Service
@@ -26,7 +27,7 @@ public class ServiceUtilisateurImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Objects.requireNonNull(username);
-        User utilisateur = utilisateurRepository.loadUserByUsername(username);
+        UserDet utilisateur = utilisateurRepository.loadUserByUsername(username);
 
         return utilisateur;
     }
