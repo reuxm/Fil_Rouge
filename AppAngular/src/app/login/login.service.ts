@@ -12,8 +12,20 @@ export class LoginService {
 	
 	private user = '';
 	
+	private com = false;
+	
+	private meca = false;
+	
 	get loggedUser(): string {
 		return this.user;
+	}
+	
+	get isCom() {
+		return this.com;
+	}
+	
+	get isMeca() {
+		return this.meca;
 	}
 	
 	constructor( private http: HttpClient) { }
@@ -27,6 +39,8 @@ export class LoginService {
 		if( d ) {
 			ret = true;
 			this.user = login;
+			this.com = d['com'];
+			this.meca = d['meca'];
 		}
 		return ret;
 	}
