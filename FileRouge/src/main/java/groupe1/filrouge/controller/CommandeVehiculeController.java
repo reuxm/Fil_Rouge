@@ -26,6 +26,7 @@ import groupe1.filrouge.service.IServiceDevis;
 import groupe1.filrouge.service.IServiceFactureDevis;
 
 @Controller
+
 @PostAuthorize("hasAuthority('MAGASINIER') OR hasAuthority('COMMERCIAL')")
 public class CommandeVehiculeController {
 

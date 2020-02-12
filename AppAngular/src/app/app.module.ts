@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FichesComponent } from './fiches/fiches.component';
 import { TacheDetailComponent } from './tache-detail/tache-detail.component';
 import { FormsModule } from '@angular/forms';
+import { ListeCommandeVehiculesComponent } from './liste-commande-vehicules/liste-commande-vehicules.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     DevisComponent,
     ListTachesComponent,
     FichesComponent,
-    TacheDetailComponent
+    TacheDetailComponent,
+    ListeCommandeVehiculesComponent,
   ],
   imports: [
     BrowserModule,

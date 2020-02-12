@@ -4,10 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
+
 /**
  * @author Matiace
  * @version 1.0
@@ -29,7 +24,6 @@ import java.util.List;
 @Entity
 @Table(name = "users") 
 public class User  {
-
 
 	/**
 	 * JAVADOC Id User est génerer par Hibernate

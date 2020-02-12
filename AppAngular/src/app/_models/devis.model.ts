@@ -36,6 +36,5 @@ export class Vehicule {
     id: number;
     modele: string;
     qte: number;
-    prixHT: number
-    
+    prixHT: number;
 }
