@@ -1,35 +1,34 @@
-package groupe1.filrouge.entity;
+package groupe1.filrouge.security.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-/**
- * @author Matiace
- * @version 1.0
- * @since 2020-01-16 <br>
- * <b> Java Doc pour le projet fil rouge</b>
- */
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import groupe1.filrouge.entity.Profil;
 
 @Entity
 @Table(name = "users") 
-public class User  {
-
+public class UserDet implements UserDetails {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * JAVADOC Id User est génerer par Hibernate
@@ -167,5 +166,45 @@ public class User  {
 	public void toogleSupended() {
 		setSuspended( !getSuspended() );
 	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		final List<GrantedAuthority> authorities = 
+				new ArrayList<GrantedAuthority>();
+		for (final Profil role : this.getProfils()) {
+			authorities.add(
+					new SimpleGrantedAuthority(role.getName()));
+		}
+		return authorities;
+	}
 
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
