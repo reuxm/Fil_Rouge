@@ -19,7 +19,7 @@
       <tr *ngIf="d.etat"> 
          
         <td>{{d.id}}</td>  
-        <td>{{d.dateCreation}}</td>
+        <td>{{d.dateCreation | date}}</td>
         <td>{{d.client.name}}</td> 
         <td>{{d.vehicule.modele}}</td> 
         <td>{{d.user.firstname}}</td>
@@ -39,7 +39,7 @@
       
               <div class="form-group card-body px-lg-5 pt-0">
                   <label>Date Création:</label>
-                  <input type="text" formControlName="dateCreation" placeholder="yyyy-mm-dd" class="form-control">
+                  <input type="text" formControlName="dateCreation" placeholder="yyyy-mm-dd" class="form-control" required>
                 </div>
 
                 <div class="form-group card-body px-lg-5 pt-0" formGroupName="client">

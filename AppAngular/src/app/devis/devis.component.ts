@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Devis, Client } from 'src/app/_models/devis.model';
 import {DevisService} from '../_services/devis/devis.service';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +23,7 @@ export class DevisComponent implements OnInit {
 
     this.addForm = this.formBuilder.group({
       
-      dateCreation: [''],
+      dateCreation:  ['', Validators.required],
       
       client: this.formBuilder.group({
         name: ''
