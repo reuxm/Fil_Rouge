@@ -15,6 +15,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/add">Ajouter une tâche</a>
             </li>
+            <li>
+            	<p *ngIf="login" class="nav-link">Logged as {{ login }}</p>
+            	<a *ngIf="!login" class="btn btn-outline-success" routerLink="/login" routerLinkActive="activeLink">Login</a>
+            </li>
         </ul>
     </div>
 </nav>

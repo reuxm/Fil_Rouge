@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+	private login='';
+	
+ 	constructor( private logServ: LoginService, private route: ActivatedRoute ) { }
 
-  ngOnInit() {
-  }
+ 	ngOnInit() { 
+		this.route.queryParamMap.subscribe(d => {
+			let log = d.get('login');
+			if( log )
+				this.login = this.logServ.loggedUser;
+		});
+ 	}
 
 }
