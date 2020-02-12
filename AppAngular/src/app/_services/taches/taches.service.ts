@@ -28,7 +28,6 @@ export class TachesService {
   }
 
   updateTache(tache: Tache): Observable<Tache> {
-    console.log(tache);
     return this.http.post<Tache>(this.url + 'updateTache', tache)
       .pipe(
         catchError(this.handleError<Tache>('updateTache', tache))

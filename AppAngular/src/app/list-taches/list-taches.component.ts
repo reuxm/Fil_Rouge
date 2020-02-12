@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Fiche } from 'src/app/_models/fiche.model';
-import { FichesService } from '../_services/fiches/fiches.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tache } from '../_models/tache.model';
 import { TachesService } from '../_services/taches/taches.service';
