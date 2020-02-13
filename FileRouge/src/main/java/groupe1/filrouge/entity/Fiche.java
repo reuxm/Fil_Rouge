@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 /**
  * @author Marie
  * @version 1.0
@@ -47,18 +49,21 @@ public class Fiche {
 	/**
 	 * JAVADOC Création du clé étranger iduser pour pointer au objet user
 	 */
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_user",  nullable = false)
 	private User user;
 	/**
 	 * JAVADOC Création du clé étranger idpriorite pour pointer au objet priorite
 	 */
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_priorite",  nullable = false)
 	private Priorite priorite;
 	/**
 	 * JAVADOC Création du clé étranger idclient pour pointer au objet client
 	 */
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_client",  nullable = false)
 	private Client client;

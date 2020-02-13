@@ -48,6 +48,7 @@ public class TestCommandePiece {
 		cmd.setPiece(servicePiece.recherchePieceId(1));
 		cmd.setUser(serviceUser.rechercheUserId(1));
 		cmd.setQte(5);
+		cmd.setEtat(false);
 		cmd.setDateCreation(new Date());
 		
 		serviceCommandePiece.create(cmd);
@@ -64,6 +65,7 @@ public class TestCommandePiece {
 		cmd.setPiece(servicePiece.recherchePieceId(1));
 		cmd.setUser(serviceUser.rechercheUserId(1));
 		cmd.setQte(5);
+		cmd.setEtat(false);
 		cmd.setDateCreation(new Date());
 		
 		serviceCommandePiece.create(cmd);
@@ -72,6 +74,7 @@ public class TestCommandePiece {
 		cmd.setPiece(servicePiece.recherchePieceId(2));
 		cmd.setUser(serviceUser.rechercheUserId(2));
 		cmd.setQte(3);
+		cmd.setEtat(true);
 		cmd.setDateCreation(new Date());
 		
 		serviceCommandePiece.update(cmd);
@@ -88,6 +91,7 @@ public class TestCommandePiece {
 		cmd.setPiece(servicePiece.recherchePieceId(1));
 		cmd.setUser(serviceUser.rechercheUserId(1));
 		cmd.setQte(5);
+		cmd.setEtat(false);
 		cmd.setDateCreation(new Date());
 		
 		serviceCommandePiece.create(cmd);

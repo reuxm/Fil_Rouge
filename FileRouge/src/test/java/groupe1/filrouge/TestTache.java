@@ -57,6 +57,7 @@ public class TestTache {
 		pTache.setPriorite(servicePriorite.recherchePrioriteId(1));
 		pTache.setUser(serviceUser.rechercheUserId(1));
 		pTache.setQte(10);
+		pTache.setLibelle("tache1");
 		serviceTache.creerTache(pTache);
 		System.out.println(serviceTache.rechercheTache());
 		
@@ -75,6 +76,7 @@ public class TestTache {
 		pTache.setPriorite(servicePriorite.recherchePrioriteId(1));
 		pTache.setUser(serviceUser.rechercheUserId(1));
 		pTache.setQte(10);
+		pTache.setLibelle("tache1");
 		serviceTache.creerTache(pTache);
 		System.out.println(serviceTache.rechercheTache());	
 		pTache.setCommentaire("Deuxième Commentaire");
@@ -84,6 +86,7 @@ public class TestTache {
 		pTache.setPriorite(servicePriorite.recherchePrioriteId(2));
 		pTache.setUser(serviceUser.rechercheUserId(2));
 		pTache.setQte(20);
+		pTache.setLibelle("tache2");
 		System.out.println(serviceTache.rechercheTache());
 		serviceTache.modifierTache(pTache);
 		System.out.println(serviceTache.rechercheTache());
@@ -103,6 +106,7 @@ public class TestTache {
 		pTache.setPriorite(servicePriorite.recherchePrioriteId(1));
 		pTache.setUser(serviceUser.rechercheUserId(1));
 		pTache.setQte(10);
+		pTache.setLibelle("tache1");
 		serviceTache.creerTache(pTache);
 		System.out.println(serviceTache.rechercheTache());
 		serviceTache.supprimerTache(pTache);

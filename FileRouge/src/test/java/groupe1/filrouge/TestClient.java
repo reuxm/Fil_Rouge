@@ -32,7 +32,7 @@ public class TestClient {
 	@Test
 	public void testRechercheId() {
 		System.out.println("---------TEST RECHERCHE ID---------");
-		System.out.println(serviceClient.find(1));
+		System.out.println(serviceClient.find(2));
 	}
 	
 	@Test

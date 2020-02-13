@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="facture_fiche")
 public class FactureFiche {
@@ -21,6 +23,7 @@ public class FactureFiche {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="id_fiche", nullable=false)
 	private Fiche fiche;

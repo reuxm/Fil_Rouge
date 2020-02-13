@@ -16,6 +16,7 @@ public class UserForm {
 	
 	private boolean[] profils = new boolean[5];
 	
+
 	public Integer getId() {
 		return id;
 	}

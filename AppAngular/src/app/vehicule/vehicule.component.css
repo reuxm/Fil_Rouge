@@ -1,0 +1,13 @@
+.card{
+    min-height: 300px;
+    overflow: hidden;
+
+}
+
+img{
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;    
+  
+}

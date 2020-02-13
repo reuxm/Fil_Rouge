@@ -1,0 +1,21 @@
+<br/>
+<div class="md-form" style="width: 50%;">
+    <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Rechercher une pièce">
+</div>
+<hr/>
+<div *ngIf="searchText != ''">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Libellé</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let piece of pieces | filter: searchText">
+                <td>{{ piece.libelle }}</td>
+                <td>{{ piece.qte }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

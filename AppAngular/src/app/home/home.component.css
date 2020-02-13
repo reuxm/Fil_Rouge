@@ -1,0 +1,20 @@
+
+.home{
+    margin: auto;
+    height: auto;
+    width: 100%;
+    display:block
+}
+
+.btn{
+    margin:0px auto;
+    text-align: center
+  }
+
+#login
+{
+    margin-left: 10p;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;   
+}

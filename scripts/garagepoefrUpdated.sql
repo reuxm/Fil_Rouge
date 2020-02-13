@@ -360,7 +360,8 @@ CREATE TABLE `users` (
   `lastname` varchar(50) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `login` varchar(15) NOT NULL,
-  `pwd` varchar(100) NOT NULL
+  `pwd` varchar(100) NOT NULL,
+  `suspended` bit(1) DEFAULT 0;
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -368,8 +369,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `login`, `pwd`) VALUES
-(1, 'DURAND', 'JEAN', 'JDURAND', '1234'),
-(2, 'MARTIN', 'JEANNE', 'JMARTIN', '1234');
+(1, 'DURAND', 'JEAN', 'JDURAND', '$2a$10$CoalNJDmjR0xc3ZuCwXPp.NYCKeoahilrOgRROE0GVx2fQU/P4GpW'),
+(2, 'MARTIN', 'JEANNE', 'JMARTIN', '$2a$10$CoalNJDmjR0xc3ZuCwXPp.NYCKeoahilrOgRROE0GVx2fQU/P4GpW');
 
 -- --------------------------------------------------------
 
