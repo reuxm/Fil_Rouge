@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tache } from '../_models/tache.model';
+
+import { LoginService } from '../login/login.service';
 import { TachesService } from '../_services/taches/taches.service';
 
 @Component({
@@ -12,9 +14,11 @@ export class ListTachesComponent implements OnInit {
 
   taches: Tache[];
 
-  constructor(private serviceTache: TachesService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private serviceTache: TachesService, private logServ: LoginService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+	  if( !this.logServ.isMeca )
+		  this.router.navigate(['\home']);
     this.route.queryParamMap.subscribe(d => {
       let tache_id = d.get('detail');
       let reload = d.get('reload');

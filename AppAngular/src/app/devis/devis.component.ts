@@ -3,6 +3,7 @@ import { Devis, Client } from 'src/app/_models/devis.model';
 import {DevisService} from '../_services/devis/devis.service';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-devis',
@@ -15,10 +16,12 @@ export class DevisComponent implements OnInit {
   addForm: FormGroup;
   submitted: boolean;
 
-  constructor(private sdevis: DevisService, private router: Router,
+  constructor(private sdevis: DevisService, private logServ: LoginService, private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+	  if( !this.logServ.isCom )
+		  this.router.navigate(['\home']);
     this.getAllDevis();
 
     this.addForm = this.formBuilder.group({

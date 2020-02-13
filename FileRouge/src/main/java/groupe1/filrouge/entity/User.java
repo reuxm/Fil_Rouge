@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import java.util.Collection;
 
 
@@ -22,13 +25,19 @@ import java.util.Collection;
  */
 
 @Entity
-@Table(name = "users") 
-public class User  {
+@Table(name = "users")
+@NamedQueries({
+	@NamedQuery(
+		name="User.get",
+		query="select u from User u where u.login like ?1"
+	)
+})
+public class User {
 
 	/**
 	 * JAVADOC Id User est génerer par Hibernate
 	 */
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)		
 	private Integer id;
 	
