@@ -32,7 +32,6 @@ export class LoginService {
 	
 	async check( login: string, pwd: string ): Promise<boolean> {
 		let ret = false;
-		console.warn(login,pwd);
 		let d = await this.http.post(
 			data.url + this.url + 'test',
 			{ login:login, pwd:pwd }
