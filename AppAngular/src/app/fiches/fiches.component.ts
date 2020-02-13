@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Fiche } from 'src/app/_models/fiche.model';
 import { FichesService } from '../_services/fiches/fiches.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-fiches',
@@ -12,10 +13,12 @@ export class FichesComponent implements OnInit {
 
   fiches: Fiche[];
 
-  constructor(private serviceFiche: FichesService, private router: Router) { }
+  constructor(private serviceFiche: FichesService, private logServ: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.getAllFiches();
+	  if( !this.logServ.isMeca )
+		  this.router.navigate(['\home']);
+	  this.getAllFiches();
   }
 
   getAllFiches(): void {

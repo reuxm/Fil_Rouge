@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Devis, Client } from 'src/app/_models/devis.model';
 import {DevisService} from '../_services/devis/devis.service';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Vehicule } from '../_models/devis.model';
 import { User } from '../_models/tache.model';
 import { forkJoin } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-devis',
@@ -18,13 +20,15 @@ export class DevisComponent implements OnInit {
   addForm: FormGroup;
   submitted: boolean;
 
-  constructor(private sdevis: DevisService, private router: Router,
-    private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+
+
+  constructor(private sdevis: DevisService, private logServ: LoginService, private router: Router,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(d => {
-      this.getAllDevis();
-    });
+	  if( !this.logServ.isCom )
+		  this.router.navigate(['\home']);
+    this.getAllDevis();
 
 
     this.addForm = this.formBuilder.group({

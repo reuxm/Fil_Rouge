@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommandeVehicule } from '../_models/commandeVeh.model';
 import { CommandeVehService } from '../_services/commandeVeh/commande-veh.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-liste-commande-vehicules',
@@ -11,9 +12,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListeCommandeVehiculesComponent implements OnInit {
   ListCommandes: CommandeVehicule[];
   public listeData;
-  constructor(private sCommandeVeh: CommandeVehService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private sCommandeVeh: CommandeVehService, private logServ: LoginService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+	  if( !this.logServ.isCom )
+		  this.router.navigate(['\home']);
     this.getAllCommandeVeh();
   }
 
