@@ -15,6 +15,11 @@ import groupe1.filrouge.entity.FactureFiche;
 import groupe1.filrouge.service.IServiceFactureDevis;
 import groupe1.filrouge.service.IServiceFactureFiche;
 
+/**
+ * Class Rest qui permet de générer des factures sous format JSON
+ * @author Groupe1
+ *
+ */
 @RestController
 @RequestMapping("/Rest/entity")
 public class FactureController {

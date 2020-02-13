@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import groupe1.filrouge.entity.Fiche;
 import groupe1.filrouge.service.IServiceFiche;
 
+/**
+ * Class Rest qui permet de faire le lient entre l'entité Fiche de java et l'application Angular
+ * @author Formation
+ *
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Rest/entity")
@@ -20,11 +25,19 @@ public class FicheControllerRest {
 	@Autowired
 	private IServiceFiche serviceFiche;
 	
+	/**
+	 * Récupération des fiches
+	 * @return listes des fiches
+	 */
 	@GetMapping("/fiches")
 	public List<Fiche> readAllFiches() {
 		return serviceFiche.rechercheFiche();
 	}
-	
+	/**
+	 * Récupération d'une fiche suivant son id
+	 * @param id
+	 * @return fiche
+	 */
 	@GetMapping("/fiches/{id}")
 	public Fiche readFiche(@PathVariable("id") int id) {
 		return serviceFiche.rechercheFicheId(id);
