@@ -16,7 +16,7 @@ import groupe1.filrouge.service.IServiceUser;
 
 @RestController
 @RequestMapping("/Rest/login")
-@CrossOrigin(origins="http://127.0.0.1:4200")
+@CrossOrigin(origins="http://localhost:4200")
 public class LoginRest {
 
 	@Autowired
