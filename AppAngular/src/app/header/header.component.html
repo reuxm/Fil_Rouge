@@ -22,11 +22,11 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/commandeVeh" routerLinkActive="active">Commande de véhicules</a>
             </li>
-            <li *ngIf="login">
-            	<p class="nav-link">Connecté en tant que {{ login }}</p>
-            </li>
 
-        </ul>       
+        </ul>
+		<li *ngIf="login">
+			<p class="nav-link">Connecté en tant que {{ login }}</p>
+		</li>      
         <span *ngIf="login" class="nav-link btn btn-outline-danger" (click)="logout()">Deconnexion</span>
         <a *ngIf="!login" class="btn btn-outline-success" routerLink="/login" routerLinkActive="activeLink">Connexion</a>
         
