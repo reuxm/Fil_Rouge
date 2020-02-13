@@ -24,9 +24,7 @@
             </li>
 
         </ul>
-		<li *ngIf="login">
-			<p class="nav-link">Connecté en tant que {{ login }}</p>
-		</li>      
+		<span *ngIf="login" class="nav-link" style="color: lightgray;">Connecté en tant que {{ login }}</span> 
         <span *ngIf="login" class="nav-link btn btn-outline-danger" (click)="logout()">Deconnexion</span>
         <a *ngIf="!login" class="btn btn-outline-success" routerLink="/login" routerLinkActive="activeLink">Connexion</a>
         

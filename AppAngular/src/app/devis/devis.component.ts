@@ -8,7 +8,6 @@ import { identifierModuleUrl } from "@angular/compiler";
 import { Vehicule } from "../_models/devis.model";
 import { User } from "../_models/tache.model";
 import { forkJoin } from "rxjs";
-import { Router } from "@angular/router";
 import { LoginService } from "../login/login.service";
 
 @Component({
@@ -19,6 +18,7 @@ import { LoginService } from "../login/login.service";
 export class DevisComponent implements OnInit {
   addForm: FormGroup;
   submitted: boolean;
+  devis: Devis[];
 
   constructor(
     private sdevis: DevisService,

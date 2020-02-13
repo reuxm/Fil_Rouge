@@ -20,15 +20,6 @@ export class User {
     password: string;
     suspended: boolean;
     profils: Profil[];
-    constructor(param) {
-        this.id = param.id;
-        this.firstname = param.firstname;
-        this.lastname = param.lastname;
-        this.login = param.lastname;
-        this.password = param.password;
-        this.suspended = param.suspended;
-        this.profils = param.profils;
-    }
 }
 
 export class Profil {
