@@ -45,4 +45,10 @@ export class LoginService {
 		}
 		return ret;
 	}
+	
+	logout() {
+		this.user="";
+		this.com=false;
+		this.meca=false;
+	}
 }

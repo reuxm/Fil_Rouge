@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { LoginService } from '../login/login.service';
 
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
 	private login='';
 	
- 	constructor( private logServ: LoginService, private route: ActivatedRoute ) { }
+ 	constructor( private logServ: LoginService, private route: ActivatedRoute, private router: Router ) { }
 
  	ngOnInit() { 
 		this.route.queryParamMap.subscribe(d => {
@@ -22,4 +22,8 @@ export class HeaderComponent implements OnInit {
 		});
  	}
 
+	logout() {
+		this.logServ.logout();
+			this.router.navigate(['/home'], { queryParams: { login: false } });
+	}
 }
