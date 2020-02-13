@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Devis, Client } from 'src/app/_models/devis.model';
 import {DevisService} from '../_services/devis/devis.service';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
+import { Router, ActivatedRoute } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
+import { Vehicule } from '../_models/devis.model';
+import { User } from '../_models/tache.model';
+import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 
@@ -11,10 +17,10 @@ import { LoginService } from '../login/login.service';
   styleUrls: ['./devis.component.css']
 })
 export class DevisComponent implements OnInit {
-  devis : Devis[];
-
   addForm: FormGroup;
   submitted: boolean;
+
+
 
   constructor(private sdevis: DevisService, private logServ: LoginService, private router: Router,
     private formBuilder: FormBuilder) { }
@@ -24,18 +30,20 @@ export class DevisComponent implements OnInit {
 		  this.router.navigate(['\home']);
     this.getAllDevis();
 
+
     this.addForm = this.formBuilder.group({
-      
       dateCreation:  ['', Validators.required],
-      
       client: this.formBuilder.group({
-        name: ''
+        name: '',
+        id: ''
       }),
       vehicule: this.formBuilder.group({
-        modele: ''
+        modele:'',
+        id: ''
       }),
       user: this.formBuilder.group({
-        firstname: ''
+        firstname: '',
+        id: ''
       }),
 
     });
@@ -44,23 +52,32 @@ export class DevisComponent implements OnInit {
   getAllDevis(): void {
     this.sdevis.getAllDevis()
     .subscribe(devis => {
-      console.log("Réponse des devis");
-      console.log(devis);
       this.devis = devis;
     } );
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
-    if(this.addForm.valid){
-      this.sdevis.createDevis(this.addForm.value)
-      .subscribe( data => {
-        console.log("Form devis done");
-        console.log(data);
-        this.router.navigate(['/devis']);
-        console.warn(this.addForm.value);
+    const formValue = this.addForm.value;
+
+    const vehiculeP = this.sdevis.getVehicule(parseInt(formValue.vehicule.id));
+    const clientP = this.sdevis.getClient(parseInt(formValue.client.id));
+    const userP = this.sdevis.getUser(parseInt(formValue.user.id));
+    forkJoin([vehiculeP, clientP, userP]).subscribe(responses => {
+      const devis = new Devis(
+        {dateCreation: formValue.dateCreation,
+          client: responses[1],
+          vehicule: responses[0],
+          user: responses[2],
+          etat: false}
+      );
+      console.log(devis);
+      this.sdevis.createDevis(devis)
+      .subscribe( devis => {
+        this.router.navigate(['/devis'], {queryParams: {ok: true} } );
+        console.warn(devis);
       });
-    }
+    });
   }
 
   // get the form short name to access the form fields
